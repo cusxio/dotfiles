@@ -1,0 +1,9 @@
+[user]
+    name = Jonathan Chan
+    email = cusxio@gmail.com
+[color]
+    ui = true
+[push]
+    default = simple
+[core]
+    excludesfile = ~/.config/git/ignore
