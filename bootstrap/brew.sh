@@ -14,6 +14,7 @@ __brew_install_casks() {
         "keka"
         "evernote"
         "teamviewer"
+        "dropbox"
 
         # Quicklook
         # https://github.com/sindresorhus/quick-look-plugins
@@ -123,7 +124,7 @@ __brew() {
     logger::action "Caskroom"
     __check_caskroom_installation
     logger::action "Caskroom casks"
-    # __brew_install_casks
+     __brew_install_casks
     logger::complete "[OK] brew.sh initilization complete"
 }
 
