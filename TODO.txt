@@ -1,2 +1,0 @@
-1) NVM
-2) TODO CHECK nig install list, so that it doesn't reinstall installed 
