@@ -1,5 +1,7 @@
 # Sourced by .zshrc
 
+zplug "mafredri/zsh-async", on:sindresorhus/pure
+zplug "sindresorhus/pure", use:pure.zsh
 
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 
