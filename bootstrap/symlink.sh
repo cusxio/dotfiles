@@ -27,6 +27,12 @@ _symlink() {
 
     # zsh
     __symlink_helper zsh/.zshenv        .zshenv
+
+    case "$OSTYPE" in
+        darwin*)
+            __symlink_helper mac/hushlogin    .hushlogin
+        ;;
+    esac
 }
 
 _symlink
