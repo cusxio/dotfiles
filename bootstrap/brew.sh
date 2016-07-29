@@ -15,6 +15,7 @@ __brew_install_casks() {
         "evernote"
         "teamviewer"
         "dropbox"
+        "hammerspoon"
 
         # Quicklook
         # https://github.com/sindresorhus/quick-look-plugins

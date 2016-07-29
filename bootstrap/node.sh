@@ -6,6 +6,11 @@ source ../library/requires.sh
 __npm_install_g() {
     declare -ar NPM_PACKAGES=(
         "gulp"
+        "babel-cli"
+        "eslint"
+        "http-server"
+        "npm-check-updates"
+        "speed-test"
     )
     for package in "${NPM_PACKAGES[@]}"; do
         require::npm "$package"
@@ -37,7 +42,7 @@ __nvm_update() {
     if [[ $? = 0 ]]; then
         source "${NVM_DIR}/nvm.sh"
         logger::success "NVM Update"
-    else 
+    else
         logger::error "NVM Update"
     fi
 }
