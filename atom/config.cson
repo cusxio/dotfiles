@@ -1,0 +1,23 @@
+"*":
+  core:
+    themes: [
+      "atom-material-ui"
+      "oceanic-next"
+    ]
+  editor:
+    scrollPastEnd: true
+    softWrap: true
+    tabLength: 4
+    tabType: "soft"
+  "exception-reporting":
+    userId: "b5d44fc2-8362-560d-abbb-04068dd3a3c5"
+  minimap:
+    plugins:
+      "git-diff": true
+      "git-diffDecorationsZIndex": 0
+      pigments: true
+      pigmentsDecorationsZIndex: 0
+  "tree-view":
+    hideIgnoredNames: true
+  welcome:
+    showOnStartup: false

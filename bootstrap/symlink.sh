@@ -22,9 +22,15 @@ __symlink_helper() {
 
 _symlink() {
     logger::action "Symlinking dotfiles"
+    # git
     __symlink_helper git/gitconfig      .config/git/config
     __symlink_helper git/gitignore      .config/git/ignore
-
+    # atom
+    __symlink_helper atom/config.cson      .config/atom/config.cson
+    __symlink_helper atom/init.coffee      .config/atom/init.coffee
+    __symlink_helper atom/keymap.cson      .config/atom/keymap.cson
+    __symlink_helper atom/snippets.cson    .config/atom/snippets.cson
+    __symlink_helper atom/styles.less      .config/atom/styles.less
     # zsh
     __symlink_helper zsh/.zshenv        .zshenv
 

@@ -1,6 +1,6 @@
 # Sourced by shell/init.sh
-# 
-# Add utility functions that can be used by all types of 
+#
+# Add utility functions that can be used by all types of
 # shell here.
 
 # Recursively make directory and cd into it automatically.
@@ -66,4 +66,10 @@ function dic() {
 
 function dri() {
     docker rmi $(docker images -q)
+}
+
+# Atom
+
+save_atom_pkg () {
+    apm list --installed --bare > ~/.dotfiles/atom/atom_packages.txt
 }
