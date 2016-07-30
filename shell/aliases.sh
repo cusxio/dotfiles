@@ -29,7 +29,7 @@ alias nrc="npm run clean"
 
 # git
 alias gc="git clone"
-alias gd="git diff | st"
+alias gd="git diff"
 alias ga="git add"
 alias gbd="git branch -D"
 alias gst="git status"
@@ -67,6 +67,7 @@ alias ss='subl .'
 alias oo='open .'
 
 # Tmux
+alias tmux="tmux -f ${DOTFILES}/tmux/config.conf"
 alias tls="tmux ls"
 alias ta="tmux attach -t"
 alias tns="tmux new-session -s"
@@ -82,4 +83,3 @@ alias exe="chmod +x"
 # Servers
 alias pserver="open http://localhost:8000 && python -m SimpleHTTPServer"
 alias nserver="http-server -o -p 8001"
-

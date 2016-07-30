@@ -7,8 +7,8 @@ source "${DOTFILES}/shell/init.sh"
 
 # ZSH Options
 # http://zsh.sourceforge.net/Doc/Release/Options.html
-# "Options are primarily referred to by name. 
-# These names are case insensitive and underscores are ignored. 
+# "Options are primarily referred to by name.
+# These names are case insensitive and underscores are ignored.
 # For example, 'allexport' is equivalent to 'A__lleXP_ort'."
 
 # Changing directories
@@ -27,7 +27,7 @@ setopt LIST_PACKED
 
 # Expansion and Globbing
 
-setopt EXTENDED_GLOB  
+setopt EXTENDED_GLOB
 
 # History
 
@@ -102,11 +102,9 @@ __zplug_source() {
 __zplug_init() {
 	if [[ ! -f "$ZPLUG_INIT_FILE" ]]; then
 		rm -rf "$ZPLUG_HOME"
-		git clone https://github.com/zplug/zplug.git \
-		"$ZPLUG_HOME"
-
-		__zplug_source && \
-		zplug update --self
+		git clone https://github.com/zplug/zplug.git "$ZPLUG_HOME" \
+            && __zplug_source \
+            && zplug update --self
 	fi
 
 	[[ -z "$ZPLUG_ROOT" ]] && __zplug_source
