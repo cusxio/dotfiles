@@ -5,6 +5,7 @@
       "oceanic-next"
     ]
   editor:
+    fontFamily: "GohuFont"
     scrollPastEnd: true
     softWrap: true
     tabLength: 4
