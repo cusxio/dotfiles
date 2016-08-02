@@ -1,9 +1,15 @@
 [user]
     name = Jonathan Chan
     email = cusxio@gmail.com
+
 [color]
     ui = true
+
 [push]
     default = simple
+
 [core]
     excludesfile = ~/.config/git/ignore
+
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/

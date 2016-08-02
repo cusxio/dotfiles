@@ -1,24 +1,42 @@
 "*":
+  "atom-beautify":
+    general:
+      _analyticsUserId: "e780839d-842e-43a6-8c8e-c513bf8c0c7f"
+  "atom-material-ui":
+    colors:
+      paintCursor: true
+    tabs:
+      noTabMinWidth: true
+    treeView: {}
+    ui:
+      animations: false
+      panelContrast: true
   core:
     themes: [
       "atom-material-ui"
       "oceanic-next"
     ]
   editor:
-    fontFamily: "GohuFont"
+    fontFamily: "SourceCodePro-Light"
     scrollPastEnd: true
     softWrap: true
     tabLength: 4
     tabType: "soft"
   "exception-reporting":
     userId: "b5d44fc2-8362-560d-abbb-04068dd3a3c5"
+  linter:
+    showErrorInline: false
+  "markdown-preview": {}
   minimap:
     plugins:
       "git-diff": true
       "git-diffDecorationsZIndex": 0
+      "highlight-selected": true
+      "highlight-selectedDecorationsZIndex": 0
       pigments: true
       pigmentsDecorationsZIndex: 0
   "tree-view":
     hideIgnoredNames: true
+    hideVcsIgnoredFiles: true
   welcome:
     showOnStartup: false
