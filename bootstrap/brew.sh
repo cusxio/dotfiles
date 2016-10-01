@@ -16,6 +16,8 @@ __brew_install_casks() {
         "teamviewer"
         "dropbox"
         "hammerspoon"
+        "spotify"
+        "spotifree"
 
         # Quicklook
         # https://github.com/sindresorhus/quick-look-plugins
