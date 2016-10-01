@@ -11,6 +11,8 @@ __npm_install_g() {
         "http-server"
         "npm-check-updates"
         "speed-test"
+        "surge"
+        "now"
     )
     for package in "${NPM_PACKAGES[@]}"; do
         require::npm "$package"
