@@ -33,6 +33,8 @@ _symlink() {
     __symlink_helper atom/styles.less      .config/atom/styles.less
     # zsh
     __symlink_helper zsh/.zshenv        .zshenv
+    # sass-lint
+    __symlink_helper sass-lint/.sass-lint.yml .config/sass-lint/.sass-lint.yml
 
     case "$OSTYPE" in
         darwin*)
