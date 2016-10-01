@@ -32,3 +32,11 @@
 # https://atom.io/docs/latest/using-atom-basic-customization#cson
 'atom-text-editor.vim-mode-plus.insert-mode':
     'j k': 'vim-mode-plus:activate-normal-mode'
+
+'atom-text-editor.vim-mode-plus.normal-mode':
+    'S': 'vim-mode-plus:surround-smart-word'
+    's': 'vim-mode-plus:surround'
+    's d': 'vim-mode-plus:delete-surround-any-pair'
+    's c': 'vim-mode-plus:change-surround-any-pair'
+    's w': 'vim-mode-plus:surround-word'
+    's m': 'vim-mode-plus:map-surround'

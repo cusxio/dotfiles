@@ -2,6 +2,10 @@
   "atom-beautify":
     general:
       _analyticsUserId: "e780839d-842e-43a6-8c8e-c513bf8c0c7f"
+    js:
+      end_with_comma: true
+      end_with_newline: true
+      space_after_anon_function: true
   "atom-material-ui":
     colors:
       paintCursor: true
@@ -24,8 +28,14 @@
     tabType: "soft"
   "exception-reporting":
     userId: "b5d44fc2-8362-560d-abbb-04068dd3a3c5"
+  "file-types":
+    pug: "source.jade"
   linter:
+    errorPanelHeight: 181
     showErrorInline: false
+  "linter-sass-lint":
+    configFile: "~/.config/sass-lint/.sass-lint.yml"
+    noConfigDisable: false
   "markdown-preview": {}
   minimap:
     plugins:
@@ -37,6 +47,22 @@
       pigmentsDecorationsZIndex: 0
   "tree-view":
     hideIgnoredNames: true
-    hideVcsIgnoredFiles: true
   welcome:
     showOnStartup: false
+  whitespace:
+    ensureSingleTrailingNewline: false
+".git-commit.text":
+  editor:
+    tabLength: 4
+".git-config.source":
+  editor:
+    tabLength: 4
+".git-rebase.text":
+  editor:
+    tabLength: 4
+".jade.source":
+  editor:
+    tabLength: 4
+".pyjade.source":
+  editor:
+    tabLength: 4
