@@ -40,8 +40,14 @@ set -g status-left-length 70
 set -g status-left "#[fg=colour237][ #[fg=colour240]#S #[fg=colour237]] "
 
 # Right Side
+# https://linux.die.net/man/3/strftime
+
+set -g @spotify_playing_icon "♫ "
+set -g @spotify_paused_icon "= "
+set -g @spotify_stopped_icon "λ"
+
 set -g status-right-length 120
-set -g status-right "#[fg=colour237][ #[fg=yellow]#(echo $(node -v)) #[fg=colour237]]#[fg=colour237][ #[fg=colour240]%A, %d %b %H:%M #[fg=colour237]]"
+set -g status-right "#[fg=colour237][#[fg=yellow] #{spotify_status}#[fg=colour240]#{spotify_track}#[fg=colour237] ]#[fg=colour237][ #[fg=yellow]#(echo $(node -v)) #[fg=colour237]]#[fg=colour237][ #[fg=colour240]%a, %d/%m %H:%M #[fg=colour237]]"
 
 # message
 set-option -g message-bg default
