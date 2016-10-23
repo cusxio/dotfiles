@@ -22,12 +22,18 @@ export HOMEBREW_NO_ANALYTICS=1
 
 # FZF
 # https://github.com/junegunn/fzf
+export FZF_COMPLETION_TRIGGER=';'
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export FZF_DEFAULT_OPTS='
   --color prompt:214,hl+:220,pointer:220,hl:214
 '
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-# export FZF_CTRL_T_OPTS='--preview "(([[ "{}" =~ \.twig$ ]] &&  highlight -S html -O ansi -l {} 2> /dev/null || highlight -O ansi -l {} 2> /dev/null) || cat {} || tree -C {}) 2> /dev/null | head -200" --bind "?:toggle-preview,alt-k:preview-page-up,alt-j:preview-page-down"'
+
+# Need to understand what this code does more.
+export FZF_CTRL_T_OPTS='--preview "(([[ "{}" =~ \.twig$ ]] &&  highlight -S html -O ansi -l {} 2> /dev/null || highlight -O ansi -l {} 2> /dev/null) || cat {} || tree -C {}) 2> /dev/null | head -200" --bind "?:toggle-preview,alt-k:preview-page-up,alt-j:preview-page-down"'
+
+# Prompt - λ ▴ ⚡ Δ ⇒ ›
+export PURE_PROMPT_SYMBOL='⚡'
 
 # Go
 export GOPATH="${HOME}/go"
