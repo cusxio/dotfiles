@@ -2,13 +2,13 @@
 
 # Themes
 # zplug "cusxio/delta-prompt", use:delta.zsh
-zplug "mafredri/zsh-async", on:sindresorhus/pure
-zplug "sindresorhus/pure", use:pure.zsh
+zplug "${ZDOTDIR}", from:local, use:"{prompt,}.zsh", nice:10
+zplug "mafredri/zsh-async"
 
 # ZSH
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-autosuggestions"
+# zplug "zsh-users/zsh-autosuggestions"
 
 # Utilities
 zplug "supercrabtree/k"
