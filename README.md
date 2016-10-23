@@ -1,12 +1,14 @@
 # dotfiles
 
-dotfiles for macOS
+dotfiles for macOS by @cusxio
 
-![](prompt.png)
+![](terminal.png)
 
 ## Features
 
 - zsh with zplug
+
+- customized ZSH prompt based on [Pure prompt]((https://github.com/sindresorhus/pure)
 
 - XDG Base Directory Support
 
@@ -16,6 +18,8 @@ dotfiles for macOS
     - [node](bootstrap/node.sh)
     - [brew](bootstrap/brew.sh)
     - [python](bootstrap/python.sh)
+
+- 24-bit Color Setup
 
 ## Installation
 
