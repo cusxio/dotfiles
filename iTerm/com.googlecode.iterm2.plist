@@ -979,6 +979,8 @@
 	<false/>
 	<key>HideScrollbar</key>
 	<true/>
+	<key>HideTab</key>
+	<true/>
 	<key>JobName</key>
 	<true/>
 	<key>LoadPrefsFromCustomFolder</key>
@@ -1027,14 +1029,16 @@
 	<string>269 194 606 456 0 0 1920 1177 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>650 605 620 392 0 0 1920 1177 </string>
+	<key>NSWindow Frame SessionsPreferences</key>
+	<string>269 152 606 456 0 0 1920 1177 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>792 688 796 473 0 0 1920 1177 </string>
+	<string>168 622 796 473 0 0 1920 1177 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>155 593 592 584 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 725 730 452 0 0 1920 1177 </string>
+	<string>521 460 730 452 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 79 955 1098 0 0 1920 1177 </string>
+	<string>0 725 730 452 0 0 1920 1177 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1280,13 +1284,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.73299999999999998</real>
+				<real>0.1444794088602066</real>
 				<key>Color Space</key>
 				<string>Calibrated</string>
 				<key>Green Component</key>
-				<real>0.73299999999999998</real>
+				<real>0.6926688551902771</real>
 				<key>Red Component</key>
-				<real>0.73299999999999998</real>
+				<real>0.96949708461761475</real>
 			</dict>
 			<key>Cursor Guide Color</key>
 			<dict>
@@ -1717,9 +1721,9 @@
 			<key>Unlimited Scrollback</key>
 			<false/>
 			<key>Use Bold Font</key>
-			<true/>
+			<false/>
 			<key>Use Bright Bold</key>
-			<true/>
+			<false/>
 			<key>Use Italic Font</key>
 			<true/>
 			<key>Use Non-ASCII Font</key>
@@ -2374,6 +2378,10 @@
 			<string>/Users/cusx/Documents/dev</string>
 		</dict>
 	</array>
+	<key>NoSyncDoNotWarnBeforeMultilinePaste</key>
+	<true/>
+	<key>NoSyncDoNotWarnBeforeMultilinePaste_selection</key>
+	<integer>0</integer>
 	<key>NoSyncInstallationId</key>
 	<string>B0E2B0A8-397A-4E24-A27A-1A8176B0E81C</string>
 	<key>NoSyncPermissionToShowTip</key>
@@ -2424,7 +2432,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-10-20T16:39:14Z</date>
+	<date>2016-10-22T16:40:01Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -2434,7 +2442,7 @@
 	<key>UseBorder</key>
 	<false/>
 	<key>WindowNumber</key>
-	<true/>
+	<false/>
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
 	<key>findIgnoreCase_iTerm</key>
