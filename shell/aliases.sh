@@ -59,7 +59,10 @@ alias dcb="docker-compose build"
 alias dcu="docker-compose up"
 
 # Editors
-alias vi='vim'
+alias v="vi"
+alias vv="command vim"
+type vim >/dev/null 2>&1 && alias vi='vim'
+type nvim >/dev/null 2>&1 && alias vim='nvim'
 
 # Open working directory
 alias aa='atom .'
