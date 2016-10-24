@@ -32,7 +32,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # Need to understand what this code does more.
 export FZF_CTRL_T_OPTS='--preview "(([[ "{}" =~ \.twig$ ]] &&  highlight -S html -O ansi -l {} 2> /dev/null || highlight -O ansi -l {} 2> /dev/null) || cat {} || tree -C {}) 2> /dev/null | head -200" --bind "?:toggle-preview,alt-k:preview-page-up,alt-j:preview-page-down"'
 
-# Prompt - λ ▴ ⚡ Δ ⇒ ›
+# Prompt - λ ▴ ⚡ Δ ⇒ › ϟ
 export PURE_PROMPT_SYMBOL='⚡'
 
 # Go
