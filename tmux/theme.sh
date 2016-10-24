@@ -7,7 +7,9 @@ set-option -g status on
 
 # visual notification of activity in other windows
 setw -g monitor-activity on
-set -g visual-activity on
+
+# display a status line message when activity occurs
+# set -g visual-activity on
 
 # set update frequencey (default 15 seconds)
 set -g status-interval 1
@@ -16,23 +18,24 @@ set -g status-interval 1
 set -g status-justify left
 
 # position the status bar at bottom of screen
-set-option -g status-position bottom
+set -g status-position bottom
 
 # set color for status bar
-set-option -g status-bg default
-set-option -g status-fg default
-set-option -g status-attr dim
+set -g status-bg default
+set -g status-fg default
+set -g status-attr dim
 
-set-window-option -g window-status-format ' #I '
-set-window-option -g window-status-current-format ' #I #W '
-set-window-option -g window-status-attr default
-set-window-option -g window-status-current-attr default
+setw -g window-status-format ' #I '
+setw -g window-status-current-format ' #I #W '
+setw -g window-status-attr default
+setw -g window-status-current-attr default
 
-set-window-option -g window-status-activity-fg red
-set-window-option -g window-status-activity-bg black
+setw -g window-status-activity-attr none
+setw -g window-status-activity-fg red
+setw -g window-status-activity-bg default
 
-set-window-option -g window-status-current-fg black
-set-window-option -g window-status-current-bg yellow
+setw -g window-status-current-fg black
+setw -g window-status-current-bg yellow
 
 # Left Side
 # Session
@@ -50,7 +53,7 @@ set -g status-right-length 120
 set -g status-right "#[fg=colour237][#[fg=yellow] #{spotify_status}#[fg=colour240]#{spotify_track}#[fg=colour237] ]#[fg=colour237][ #[fg=yellow]#(echo $(node -v)) #[fg=colour237]]#[fg=colour237][ #[fg=colour240]%a, %d/%m %H:%M #[fg=colour237]]"
 
 # message
-set-option -g message-bg default
-set-option -g message-fg colour003 # yellow
+set -g message-bg default
+set -g message-fg colour003 # yellow
 
-set-option -g pane-active-border-fg colour003
+set -g pane-active-border-fg colour003
