@@ -2,26 +2,34 @@
   "atom-beautify":
     general:
       _analyticsUserId: "e780839d-842e-43a6-8c8e-c513bf8c0c7f"
+      analytics: false
     js:
+      default_beautifier: "Pretty Diff"
       end_with_comma: true
       end_with_newline: true
       space_after_anon_function: true
+    jsx:
+      end_with_comma: true
+      space_after_anon_function: true
   "atom-material-ui":
     colors:
+      abaseColor: "#ffd54f"
+      accentColor: "#a28832"
       paintCursor: true
+      predefinedColor: "Amber"
     tabs:
       noTabMinWidth: true
     treeView: {}
     ui:
       animations: false
-      panelContrast: true
   core:
+    telemetryConsent: "no"
     themes: [
       "atom-material-ui"
-      "oceanic-next"
+      "gruvbox-plus-syntax"
     ]
   editor:
-    fontFamily: "SourceCodePro-Light"
+    fontFamily: "InputMono-ExtraLight"
     scrollPastEnd: true
     softWrap: true
     tabLength: 4
@@ -30,13 +38,18 @@
     userId: "b5d44fc2-8362-560d-abbb-04068dd3a3c5"
   "file-types":
     pug: "source.jade"
+  "gruvbox-plus-syntax":
+    contrast: "Hard"
+  "language-babel":
+    autoIndentJSX: true
   linter:
     errorPanelHeight: 181
     showErrorInline: false
   "linter-sass-lint":
-    configFile: "~/.config/sass-lint/.sass-lint.yml"
-    noConfigDisable: false
-  "markdown-preview": {}
+    noConfigDisable: true
+  "markdown-preview":
+    breakOnSingleNewline: true
+    useGitHubStyle: true
   minimap:
     plugins:
       "git-diff": true
@@ -51,6 +64,9 @@
     showOnStartup: false
   whitespace:
     ensureSingleTrailingNewline: false
+".babel.regexp.source":
+  editor:
+    tabLength: 4
 ".git-commit.text":
   editor:
     tabLength: 4
@@ -63,6 +79,15 @@
 ".jade.source":
   editor:
     tabLength: 4
+".js.jsx.source":
+  editor:
+    tabLength: 4
+".languagebabel.ttlextension":
+  editor:
+    tabLength: 4
 ".pyjade.source":
+  editor:
+    tabLength: 4
+".source.styledcss":
   editor:
     tabLength: 4
