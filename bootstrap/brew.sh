@@ -18,6 +18,7 @@ __brew_install_casks() {
         "hammerspoon"
         "spotify"
         "spotifree"
+        "hyper"
 
         # Quicklook
         # https://github.com/sindresorhus/quick-look-plugins
@@ -64,6 +65,7 @@ __brew_install_formulas() {
         "the_silver_searcher"
         "fzf"
         "tree"
+        "rmtrash"
 
         # VCS
         "git"
@@ -80,8 +82,15 @@ __brew_install_formulas() {
         # Programming
         "pyenv"
         "pyenv-virtualenv"
+
         # Editors
-        "vim --with-override-system-vim --with-lua --with-override-system-vim"
+        "vim --with-override-system-vim --with-lua --with-python3"
+        "neovim/neovim/neovim"
+
+        # Misc.
+        "cowsay"
+        "wifi-password"
+        "tree"
     )
 
     for formula in "${FORMULAS[@]}"; do
