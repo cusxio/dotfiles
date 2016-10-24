@@ -8,7 +8,7 @@ dotfiles for macOS by @cusxio
 
 - zsh with zplug
 
-- customized ZSH prompt based on [Pure prompt]((https://github.com/sindresorhus/pure)
+- customized ZSH prompt based on [Pure prompt](https://github.com/sindresorhus/pure)
 
 - XDG Base Directory Support
 
