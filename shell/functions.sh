@@ -27,7 +27,7 @@ mkcd () {
 
 # FZF
 
-v() {
+vs() {
     local file
     file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && vim "${file}" || return 1
 }
@@ -38,6 +38,13 @@ v() {
 fz() {
     local dir
     dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
+}
+
+fs() {
+    local session
+    session=$(tmux list-sessions -F "#{session_name}" | \
+    fzf --query="$1" --select-1 --exit-0) &&
+    tmux switch-client -t "$session"
 }
 
 # FUTURE: Checkout some FZF git functions.
@@ -70,38 +77,6 @@ dri() {
 
 # Atom
 
-save_atom_pkg () {
+atom_save_pkg() {
     apm list --installed --bare > ~/.dotfiles/atom/atom_packages.txt
-}
-
-colorgrid() {
-    iter=16
-    while [ $iter -lt 52 ]
-    do
-        second=$[$iter+36]
-        third=$[$second+36]
-        four=$[$third+36]
-        five=$[$four+36]
-        six=$[$five+36]
-        seven=$[$six+36]
-        if [ $seven -gt 250 ];then seven=$[$seven-251]; fi
-
-        echo -en "\033[38;5;$(echo $iter)m█ "
-        printf "%03d" $iter
-        echo -en "   \033[38;5;$(echo $second)m█ "
-        printf "%03d" $second
-        echo -en "   \033[38;5;$(echo $third)m█ "
-        printf "%03d" $third
-        echo -en "   \033[38;5;$(echo $four)m█ "
-        printf "%03d" $four
-        echo -en "   \033[38;5;$(echo $five)m█ "
-        printf "%03d" $five
-        echo -en "   \033[38;5;$(echo $six)m█ "
-        printf "%03d" $six
-        echo -en "   \033[38;5;$(echo $seven)m█ "
-        printf "%03d" $seven
-
-        iter=$[$iter+1]
-        printf '\r\n'
-    done
 }
