@@ -22,19 +22,31 @@ __symlink_helper() {
 
 _symlink() {
     logger::action "Symlinking dotfiles"
+
     # git
     __symlink_helper git/gitconfig      .config/git/config
     __symlink_helper git/gitignore      .config/git/ignore
+
     # atom
     __symlink_helper atom/config.cson      .config/atom/config.cson
     __symlink_helper atom/init.coffee      .config/atom/init.coffee
     __symlink_helper atom/keymap.cson      .config/atom/keymap.cson
     __symlink_helper atom/snippets.cson    .config/atom/snippets.cson
     __symlink_helper atom/styles.less      .config/atom/styles.less
+
+    # hyper.app
+    __symlink_helper hyper/dot.hyper.js    .hyper.js
+
+    # vim
+    __symlink_helper vim           .vim
+    __symlink_helper vim           .config/nvim
+    __symlink_helper vim/vimrc     .config/nvim/init.vim
+
     # zsh
-    __symlink_helper zsh/.zshenv        .zshenv
+    __symlink_helper zsh/.zshenv   .zshenv
+
     # sass-lint
-    __symlink_helper sass-lint/.sass-lint.yml .config/sass-lint/.sass-lint.yml
+    __symlink_helper sass-lint/dot.sass-lint.yml .config/sass-lint/.sass-lint.yml
 
     case "$OSTYPE" in
         darwin*)
