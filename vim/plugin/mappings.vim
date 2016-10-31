@@ -14,7 +14,8 @@ xnoremap jk <Esc>
 cnoremap jk <C-c>
 
 " Save
-inoremap <C-s>     <C-O>:update<cr>
+" inoremap <C-s>     <C-O>:update<cr>
+inoremap <C-s>     <Esc>:update<cr>
 nnoremap <C-s>     :update<cr>
 
 " Disable all arrow keys
