@@ -8,11 +8,13 @@ __npm_install_g() {
         "gulp"
         "babel-cli"
         "eslint"
-        "http-server"
+        "superstatic"
         "npm-check-updates"
         "speed-test"
         "surge"
         "now"
+        "lighthouse"
+        "cost-of-modules"
     )
     for package in "${NPM_PACKAGES[@]}"; do
         require::npm "$package"
@@ -20,16 +22,18 @@ __npm_install_g() {
 }
 
 __node_default() {
-    nvm alias default "5" &> /dev/null
-    logger::result $? "nvm alias default 5"
-    nvm use "5" &> /dev/null
+    nvm alias default "lts/boron" &> /dev/null
+    logger::result $? "nvm alias default lts/boron"
+    nvm use "lts/boron" &> /dev/null
 }
 
 __node_install() {
     declare -ar NODE_VERIONS=(
-        # aka latest.
-        # "node"
-        "5"
+        # LTS
+        "--lts=boron"
+
+        # aka latest
+        "node"
     )
     for version in "${NODE_VERIONS[@]}"; do
         require::node "$version"
@@ -73,7 +77,7 @@ __nvm() {
     logger::action "Node <3"
     __node_install
     logger::action "Setting a default Node version"
-    # Setting node 5 as the default version.
+    # Setting node lts/boron as the default version.
     __node_default
     logger::action "NPM Global Packages"
     __npm_install_g
