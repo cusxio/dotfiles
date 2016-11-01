@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
-source ../library/logger.sh
-source ../library/requires.sh
+cd "$(dirname "$0")/.." || exit 1
+
+declare -r DOTFILES_PATH="$(pwd)"
+
+source "${DOTFILES_PATH}/library/logger.sh"
+source "${DOTFILES_PATH}/library/requires.sh"
 
 declare -r P2_LATEST="$(pyenv install -l | grep -e '2.7.[0-9]' | grep -v - | tail -1)"
 declare -r P3_LATEST="$(pyenv install -l | grep -e '3.5.[0-9]' | grep -v - | tail -1)"

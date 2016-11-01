@@ -2,7 +2,11 @@
 
 set -e
 
-source ./logger.sh
+cd "$(dirname "$0")/.." || exit 1
+
+declare -r DOTFILES_PATH="$(pwd)"
+
+source "${DOTFILES_PATH}/library/logger.sh"
 
 logger::action "Installing XCode"
 

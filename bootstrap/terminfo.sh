@@ -10,6 +10,8 @@ __terminfo() {
     logger::action "Setting up terminfo"
 
     find "${DOTFILES_PATH}/terminfo/" -name '*.terminfo' -exec tic -x {} \;
+
+    logger::result $? "terminfo setup"
 }
 
 __terminfo

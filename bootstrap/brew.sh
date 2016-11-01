@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
-source ../library/logger.sh
-source ../library/requires.sh
+cd "$(dirname "$0")/.." || exit 1
+
+declare -r DOTFILES_PATH="$(pwd)"
+
+source "${DOTFILES_PATH}/library/logger.sh"
+source "${DOTFILES_PATH}/library/requires.sh"
 
 __brew_install_casks() {
     declare -ar CASKS=(
@@ -91,6 +95,7 @@ __brew_install_formulas() {
         "cowsay"
         "wifi-password"
         "tree"
+        "mas"
     )
 
     for formula in "${FORMULAS[@]}"; do

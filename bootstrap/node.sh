@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
-source ../library/logger.sh
-source ../library/requires.sh
+cd "$(dirname "$0")/.." || exit 1
+
+declare -r DOTFILES_PATH="$(pwd)"
+
+source "${DOTFILES_PATH}/library/logger.sh"
+source "${DOTFILES_PATH}/library/requires.sh"
 
 __npm_install_g() {
     declare -ar NPM_PACKAGES=(
@@ -15,6 +19,7 @@ __npm_install_g() {
         "now"
         "lighthouse"
         "cost-of-modules"
+        "browser-sync"
     )
     for package in "${NPM_PACKAGES[@]}"; do
         require::npm "$package"
