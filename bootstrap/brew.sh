@@ -84,8 +84,8 @@ __brew_install_formulas() {
         "tmux"
 
         # Programming
-        "pyenv"
-        "pyenv-virtualenv"
+        # "pyenv"
+        # "pyenv-virtualenv"
         "chruby"
         "ruby-install"
 
