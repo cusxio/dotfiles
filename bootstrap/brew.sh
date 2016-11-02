@@ -86,6 +86,8 @@ __brew_install_formulas() {
         # Programming
         "pyenv"
         "pyenv-virtualenv"
+        "chruby"
+        "ruby-install"
 
         # Editors
         "vim --with-override-system-vim --with-lua --with-python3"
