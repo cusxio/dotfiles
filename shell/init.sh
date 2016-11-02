@@ -14,3 +14,6 @@ source "${DOTFILES}/shell/node.sh"
 
 # Python
 source "${DOTFILES}/shell/python.sh"
+
+# Ruby
+source "${DOTFILES}/shell/ruby.sh"
