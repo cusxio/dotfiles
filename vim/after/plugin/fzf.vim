@@ -15,5 +15,6 @@ let g:fzf_action = {
 
 nnoremap <silent> <expr> <Leader><Leader> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Files\<cr>"
 nnoremap <silent> <Leader>ag :Ag<C-R><C-W><CR>
+nnoremap <silent> <Leader>f  :Ag<CR>
 nnoremap <silent> <Leader><Enter> :Buffers<CR>
 nnoremap <silent> <Leader>C :Colors<CR>
