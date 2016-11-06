@@ -23,7 +23,7 @@ alias nid="npm install --save"
 alias nidd="npm install --save-dev"
 alias nudd="npm uninstall --save-dev"
 alias nud="npm uninstall --save"
-alias nrs="npm run start"
+alias ns="npm start"
 alias nrb="npm run build"
 alias nrc="npm run clean"
 
@@ -59,10 +59,7 @@ alias dcb="docker-compose build"
 alias dcu="docker-compose up"
 
 # Editors
-alias v="vi"
-alias vv="command vim"
-type vim >/dev/null 2>&1 && alias vi='vim'
-type nvim >/dev/null 2>&1 && alias vim='nvim'
+type nvim >/dev/null 2>&1 && alias v='nvim'
 
 # Open working directory
 alias aa='atom .'
