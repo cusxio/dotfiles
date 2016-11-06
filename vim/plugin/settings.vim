@@ -41,7 +41,7 @@ if has('nvim')
     " Python 2
     let s:pyenv_python2 = glob(expand('$PYENV_ROOT/versions/neovim2/bin/python'))
     if !empty(s:pyenv_python2)
-        let g:python_host_prog  = s:pyenv_python2
+        let g:python_host_prog = s:pyenv_python2
     else
         let g:loaded_python_provider = 1
     endif
@@ -54,7 +54,6 @@ if has('nvim')
         let g:loaded_python3_provider = 1
     endif
 endif
-
 
 if has('autocmd')
     " Indent according to previous line
@@ -137,13 +136,13 @@ autocmd InsertEnter,WinLeave * set nocursorline
 " Show eol/ trailing white spaces/ tabs
 set list
 set listchars=
-set listchars+=tab:▸\
+" set listchars+=tab:▸\
 set listchars+=trail:·
-set listchars+=eol:¬
-set listchars+=extends:»
-set listchars+=precedes:«
-set listchars+=nbsp:⣿
-
+" set listchars+=eol:¬
+" set listchars+=extends:»
+" set listchars+=precedes:«
+" set listchars+=nbsp:⣿
+"
 " Fold Settings
 " set foldcolumn=2
 " hi FoldColumn guibg=#1d2021
