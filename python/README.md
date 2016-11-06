@@ -1,5 +1,7 @@
 # Setup
 
+1.
+
 ```bash
 pyenv install 2.7.12
 pyenv install 3.5.2
@@ -14,4 +16,10 @@ pyenv which python  # Note the path
 pyenv activate neovim3
 pip install neovim
 pyenv which python  # Note the path
+```
+
+2.
+
+```
+pyenv global neovim3
 ```
