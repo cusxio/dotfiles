@@ -1,0 +1,21 @@
+{
+  "ecmaVersion": 6,
+  "libs": [
+    "browser",
+    "ecmascript"
+  ],
+  "loadEagerly": [],
+  "async": true,
+  "plugins": {
+    "doc_comment": {
+      "fullDocs": true
+    },
+    "complete_strings": {},
+    "es_modules": {},
+    "modules": {},
+    "node": {},
+    "commonjs": {},
+    "node_resolve":{},
+    "webpack": {}
+  }
+}
