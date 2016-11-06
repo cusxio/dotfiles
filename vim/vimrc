@@ -50,6 +50,19 @@ Plug 'neomake/neomake', { 'on': ['Neomake'] }
 " Async Processes
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
+" Completion
+
+if has ('nvim') && has('python3')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+endif
+
+if executable('npm')
+    Plug 'ternjs/tern_for_vim', { 'do': 'npm install --g tern' }
+    if has('nvim')
+        Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install --g tern' }
+    endif
+endif
+
 " ------------------------------------------------
 " Integrations
 " ------------------------------------------------
@@ -87,7 +100,11 @@ Plug 'jaawerth/nrun.vim'
 " Status Line
 Plug 'itchyny/lightline.vim'
 
-" Theme
+" Indent Guides
+Plug 'nathanaelkane/vim-indent-guides'
+
+" Color Schemes
 Plug 'morhetz/gruvbox'
+Plug 'daylerees/colour-schemes', { 'rtp': 'vim' }
 
 call plug#end()
