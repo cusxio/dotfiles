@@ -80,6 +80,9 @@ Plug 'tpope/vim-fugitive'
 " EditorConfig
 Plug 'editorconfig/editorconfig-vim'
 
+" Emmet
+Plug 'mattn/emmet-vim', { 'for': ['javascript.jsx', 'html', 'css'] }
+
 " ------------------------------------------------
 " Syntax and Language
 " ------------------------------------------------
@@ -106,5 +109,6 @@ Plug 'nathanaelkane/vim-indent-guides'
 " Color Schemes
 Plug 'morhetz/gruvbox'
 Plug 'daylerees/colour-schemes', { 'rtp': 'vim' }
+Plug 'atelierbram/Base2Tone-vim'
 
 call plug#end()
