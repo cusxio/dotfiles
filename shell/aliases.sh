@@ -79,6 +79,7 @@ alias td="tmux detach"
 alias rmrf="rm -rf"
 alias cls="clear"
 alias exe="chmod +x"
+alias tree="tree -C -a --dirsfirst -I '.git|node_modules|.DS_Store'"
 
 # Servers
 alias pserver="open http://localhost:8000 && python -m SimpleHTTPServer"
