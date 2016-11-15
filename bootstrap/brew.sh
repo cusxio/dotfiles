@@ -70,6 +70,7 @@ __brew_install_formulas() {
         "fzf"
         "tree"
         "rmtrash"
+        "ripgrep"
 
         # VCS
         "git"
@@ -86,11 +87,13 @@ __brew_install_formulas() {
         # Programming
         # "pyenv"
         # "pyenv-virtualenv"
+        "python"
+        "python3"
         "chruby"
         "ruby-install"
 
         # Editors
-        "vim --with-override-system-vim --with-lua --with-python3"
+        "vim --with-override-system-vim --with-python3"
         "neovim/neovim/neovim"
 
         # Misc.
@@ -98,6 +101,7 @@ __brew_install_formulas() {
         "wifi-password"
         "tree"
         "mas"
+        "youtube-dl"
     )
 
     for formula in "${FORMULAS[@]}"; do
@@ -143,7 +147,7 @@ __brew() {
     logger::action "Caskroom"
     __check_caskroom_installation
     logger::action "Caskroom casks"
-     __brew_install_casks
+    __brew_install_casks
     logger::complete "[OK] brew.sh initilization complete"
 }
 
