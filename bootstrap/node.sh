@@ -9,17 +9,20 @@ source "${DOTFILES_PATH}/library/requires.sh"
 
 __npm_install_g() {
     declare -ar NPM_PACKAGES=(
-        "gulp"
         "babel-cli"
+        "browser-sync"
+        "cost-of-modules"
         "eslint"
-        "superstatic"
+        "gh-pages"
+        "gulp"
+        "http-server"
+        "lighthouse"
+        "now"
         "npm-check-updates"
         "speed-test"
+        "superstatic"
         "surge"
-        "now"
-        "lighthouse"
-        "cost-of-modules"
-        "browser-sync"
+        "yarn"
     )
     for package in "${NPM_PACKAGES[@]}"; do
         require::npm "$package"
