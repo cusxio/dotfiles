@@ -7,6 +7,12 @@ if executable('npm') && executable('tern')
 endif
 
 if has('nvim')
-    call deoplete#enable()
+    " http://vi.stackexchange.com/questions/9468/cant-get-deoplete-plugin-working-in-neovim
+    let g:deoplete#enable_at_startup  = 1
     let g:deoplete#file#enable_buffer_path = 1
+
+
+    let g:deoplete#sources={}
+    let g:deoplete#sources['javascript.jsx'] = ['buffer', 'file', 'ternjs']
 endif
+
