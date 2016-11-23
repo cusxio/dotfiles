@@ -40,3 +40,6 @@
     's c': 'vim-mode-plus:change-surround-any-pair'
     's w': 'vim-mode-plus:surround-word'
     's m': 'vim-mode-plus:map-surround'
+
+'atom-text-editor.vim-mode-plus.visual-mode':
+    'S': 'vim-mode-plus:surround'
