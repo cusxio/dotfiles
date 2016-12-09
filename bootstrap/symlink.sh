@@ -48,6 +48,9 @@ _symlink() {
     # sass-lint
     __symlink_helper sass-lint/dot.sass-lint.yml .config/sass-lint/.sass-lint.yml
 
+    # tern-project
+    __symlink_helper tern/dot.tern-config      .tern-project
+
     case "$OSTYPE" in
         darwin*)
             __symlink_helper mac/hushlogin    .hushlogin
