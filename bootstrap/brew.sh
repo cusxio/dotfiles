@@ -23,6 +23,7 @@ __brew_install_casks() {
         "spotify"
         "spotifree"
         "hyper"
+        "imageoptim"
 
         # Quicklook
         # https://github.com/sindresorhus/quick-look-plugins
