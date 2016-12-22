@@ -33,6 +33,14 @@
 'atom-text-editor.vim-mode-plus.insert-mode':
     'j k': 'vim-mode-plus:activate-normal-mode'
 
+'atom-text-editor.vim-mode-plus:not(.insert-mode)':
+    'g c': 'vim-mode-plus:toggle-line-comments'
+    '[ b': 'pane:show-previous-recently-used-item'
+    '] b': 'pane:show-next-recently-used-item'
+    'space space': 'fuzzy-finder:toggle-file-finder'
+    'space enter': 'fuzzy-finder:toggle-buffer-finder'
+    'space f': 'project-find:show'
+
 'atom-text-editor.vim-mode-plus.normal-mode':
     'S': 'vim-mode-plus:surround-smart-word'
     's': 'vim-mode-plus:surround'
@@ -41,5 +49,10 @@
     's w': 'vim-mode-plus:surround-word'
     's m': 'vim-mode-plus:map-surround'
 
-'atom-text-editor.vim-mode-plus.visual-mode':
-    'S': 'vim-mode-plus:surround'
+'.platform-darwin':
+    'space v': 'tree-view:toggle'
+
+'.tree-view':
+  'g g': 'core:move-to-top'
+  'shift-g': 'core:move-to-bottom'
+
