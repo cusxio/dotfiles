@@ -35,9 +35,6 @@
     webpack: true
   "autocomplete-plus": {}
   core:
-    packagesWithKeymapsDisabled: [
-      "tab-switcher"
-    ]
     telemetryConsent: "no"
     themes: [
       "atom-material-ui"
