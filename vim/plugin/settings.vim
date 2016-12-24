@@ -140,7 +140,7 @@ autocmd InsertEnter,WinLeave * set nocursorline
 " Show eol/ trailing white spaces/ tabs
 set list
 set listchars=
-" set listchars+=tab:▸\
+set listchars+=tab:»·
 set listchars+=trail:·
 " set listchars+=eol:¬
 " set listchars+=extends:»
