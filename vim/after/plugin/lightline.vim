@@ -74,7 +74,7 @@ let g:lightline = {
     \ },
     \ 'active': {
     \   'left': [ [ 'mode' ], [ 'spell', 'paste' ], ['fugitive'], ['filename'] ],
-    \   'right': [ ['percent', 'lineinfo'], ['fileformat', 'fileencoding', 'filetype', 'filesize'], ['neomake'] ]
+    \   'right': [ ['percent', 'lineinfo'], ['fileformat', 'fileencoding', 'filetype', 'filesize'] ]
     \ },
     \ 'component': {
     \   'filename': '%<%f'
@@ -85,13 +85,9 @@ let g:lightline = {
     \   'fugitive': 'GitInfo',
     \   'filesize': 'FileSize'
     \ },
-    \ 'component_expand': {
-    \   'neomake': 'LightlineNeomake'
-    \ },
     \ 'component_type': {
     \   'paste': 'warning',
     \   'spell': 'warning',
-    \   'neomake': 'error',
     \ },
     \ }
 

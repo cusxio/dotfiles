@@ -108,7 +108,5 @@ Plug 'nathanaelkane/vim-indent-guides'
 
 " Color Schemes
 Plug 'morhetz/gruvbox'
-Plug 'daylerees/colour-schemes', { 'rtp': 'vim' }
-Plug 'atelierbram/Base2Tone-vim'
 
 call plug#end()
