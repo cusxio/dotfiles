@@ -54,8 +54,8 @@ function! Filename()
        \ ('' != Modified() ? ' ' . Modified() : '')
 endfunction
 
-function! LightlineNeomake()
-    return '%{neomake#statusline#LoclistStatus()}'
+function! LightlineALE()
+    return '%{ALEGetStatusLine()}'
 endfunction
 
 let g:lightline = {
@@ -74,7 +74,7 @@ let g:lightline = {
     \ },
     \ 'active': {
     \   'left': [ [ 'mode' ], [ 'spell', 'paste' ], ['fugitive'], ['filename'] ],
-    \   'right': [ ['percent', 'lineinfo'], ['fileformat', 'fileencoding', 'filetype', 'filesize'] ]
+    \   'right': [ ['percent', 'lineinfo'], ['fileformat', 'fileencoding', 'filetype', 'filesize'], ['ale'] ]
     \ },
     \ 'component': {
     \   'filename': '%<%f'
@@ -84,6 +84,9 @@ let g:lightline = {
     \   'modified': 'Modified',
     \   'fugitive': 'GitInfo',
     \   'filesize': 'FileSize'
+    \ },
+    \ 'component_expand': {
+    \   'ale': 'LightlineALE'
     \ },
     \ 'component_type': {
     \   'paste': 'warning',

@@ -45,7 +45,8 @@ Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler.vim'
 
 " Linting
-Plug 'neomake/neomake', { 'on': ['Neomake'] }
+" Plug 'neomake/neomake', { 'on': ['Neomake'] }
+Plug 'w0rp/ale'
 
 " Async Processes
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }

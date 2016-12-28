@@ -45,6 +45,9 @@ nnoremap <S-tab> <c-w>W
 nnoremap ]e :lnext<cr>zz
 nnoremap [e :lprev<cr>zz
 
+nnoremap ]q :cnext<cr>zz
+nnoremap [q :cprev<cr>zz
+
 if has('nvim')
     tnoremap <A-h> <C-\><C-n><C-w>h
     tnoremap <A-j> <C-\><C-n><C-w>j
