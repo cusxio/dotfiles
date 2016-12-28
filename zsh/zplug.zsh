@@ -2,7 +2,7 @@
 
 # Themes
 # zplug "cusxio/delta-prompt", use:delta.zsh
-zplug "${ZDOTDIR}", from:local, use:"{prompt,}.zsh", nice:10
+zplug "${ZDOTDIR}", from:local, use:"{prompt,}.zsh", defer:3
 zplug "mafredri/zsh-async"
 
 # ZSH
