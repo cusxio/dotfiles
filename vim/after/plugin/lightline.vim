@@ -1,65 +1,85 @@
-function! FileSize()
-    let bytes = getfsize(expand('%:p'))
-    if (bytes >= 1024)
-        let kbytes = bytes / 1024
-    endif
-    if (exists('kbytes') && kbytes >= 1000)
-        let mbytes = kbytes / 1000
-    endif
+function! LightlineMode()
+    let fname = expand('%:t')
+    return fname == '__Tagbar__' ? 'Tagbar' :
+        \ fname == 'ControlP' ? 'CtrlP' :
+        \ fname == '__Gundo__' ? 'Gundo' :
+        \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
+        \ fname =~ 'NERD_tree' ? 'NERDTree' :
+        \ &ft == 'unite' ? 'Unite' :
+        \ &ft == 'vimfiler' ? 'VimFiler' :
+        \ &ft == 'vimshell' ? 'VimShell' :
+        \ winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
 
-    if bytes <= 0
-        return '[empty file] '
-    endif
+function! LightlineFugitive()
+    try
+        if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && &ft !~? 'vimfiler' && exists('*fugitive#head')
+            let mark = ' '
+            let branch = fugitive#head()
+            return branch !=# '' ? mark.branch : ''
+        endif
+    catch
+    endtry
+    return ''
+endfunction
 
-    if (exists('mbytes'))
-        return mbytes . 'MB '
-    elseif (exists('kbytes'))
-        return kbytes . 'KB '
+function! LightlineFilename()
+    let fname = expand('%:t')
+    return fname == 'ControlP' && has_key(g:lightline, 'ctrlp_item') ? g:lightline.ctrlp_item :
+        \ fname == '__Tagbar__' ? g:lightline.fname :
+        \ fname =~ '__Gundo\|NERD_tree' ? '' :
+        \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \ &ft == 'unite' ? unite#get_status_string() :
+        \ &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+        \ ('' != fname ? fname : '[No Name]') .
+        \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+endfunction
+
+function! LightlineReadonly()
+    return &ft !~? 'help' && &readonly ? '' : ''
+endfunction
+
+function! LightlineModified()
+    return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightlineFileformat()
+    return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightlineFiletype()
+    return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightlineFileencoding()
+    return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+endfunction
+
+function! s:count(index)
+    let l:buf = bufnr('%')
+    let l:count = ale#statusline#Count(l:buf)
+    if type(l:count) ==# type(0)
+        let l:count = 0
     else
-        return bytes . 'B '
+        let l:count = l:count[a:index]
     endif
+
+    return l:count
 endfunction
 
-function! ReadOnly()
-    if &readonly || !&modifiable
-        return ''
-    else
-        return ''
+function! LightlineAleError()
+    let l:count = s:count(0)
+    return l:count ? 'E:' . l:count : ''
 endfunction
 
-function! Modified()
-    if &filetype == "help"
-        return ""
-    elseif &modified
-        return "+"
-    elseif &modifiable
-        return ""
-    else
-        return ""
-    endif
-endfunction
-
-function! GitInfo()
-    let git = fugitive#head()
-    if git != ''
-        return ' '.fugitive#head()
-    else
-        return ''
-endfunction
-
-function! Filename()
-  return ('' != ReadOnly() ? ReadOnly() . ' ' : '') .
-       \ expand('%') =~? 'term://.*\.fzf/bin/fzf' ? '' :
-       \ ('' != expand('%:p:~') ? expand('%:p:~') : '[No Name]') .
-       \ ('' != Modified() ? ' ' . Modified() : '')
-endfunction
-
-function! LightlineALE()
-    return '%{ALEGetStatusLine()}'
+function! LightlineAleWarning()
+    let l:count = s:count(1)
+    return l:count ? 'W:' . l:count : ''
 endfunction
 
 let g:lightline = {
-    \ 'colorscheme': 'gruvbox',
+    \ 'colorscheme': 'onedark',
     \ 'enable' :{
     \   'tabline': 0,
     \   'statusline': 1
@@ -73,24 +93,26 @@ let g:lightline = {
     \   'right': ''
     \ },
     \ 'active': {
-    \   'left': [ [ 'mode' ], [ 'spell', 'paste' ], ['fugitive'], ['filename'] ],
-    \   'right': [ ['percent', 'lineinfo'], ['fileformat', 'fileencoding', 'filetype', 'filesize'], ['ale'] ]
-    \ },
-    \ 'component': {
-    \   'filename': '%<%f'
-    \ },
-    \ 'component_function': {
-    \   'readonly': 'ReadOnly',
-    \   'modified': 'Modified',
-    \   'fugitive': 'GitInfo',
-    \   'filesize': 'FileSize'
+    \   'left': [ [ 'mode', 'paste' ], ['fugitive'], ['filename'] ],
+    \   'right': [ ['percent', 'lineinfo'], ['fileformat', 'fileencoding', 'filetype' ], ['alewarning', 'aleerror'] ]
     \ },
     \ 'component_expand': {
-    \   'ale': 'LightlineALE'
+    \   'alewarning': 'LightlineAleWarning',
+    \   'aleerror': 'LightlineAleError'
     \ },
     \ 'component_type': {
-    \   'paste': 'warning',
-    \   'spell': 'warning',
+    \   'aleerror': 'error',
+    \   'alewarning': 'warning'
+    \ },
+    \ 'component_function': {
+    \   'mode': 'LightlineMode',
+    \   'fugitive': 'LightlineFugitive',
+    \   'filename': 'LightlineFilename',
+    \   'readonly': 'LightlineReadonly',
+    \   'modified': 'LightlineModified',
+    \   'fileformat': 'LightlineFileformat',
+    \   'filetype': 'LightlineFiletype',
+    \   'fileencoding': 'LightlineFileencoding',
     \ },
     \ }
 
