@@ -95,7 +95,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'moll/vim-node', { 'for': ['javascript'] }
 
 " Use local node modules
-Plug 'jaawerth/nrun.vim'
+" Plug 'jaawerth/nrun.vim'
 
 " ------------------------------------------------
 " Eye Candy
@@ -106,8 +106,13 @@ Plug 'itchyny/lightline.vim'
 
 " Indent Guides
 Plug 'nathanaelkane/vim-indent-guides'
+" let g:indent_guides_enable_on_vim_startup = 1
 
 " Color Schemes
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
+" Plug 'rakr/vim-one'
+" Plug 'w0ng/vim-hybrid'
+Plug 'joshdick/onedark.vim'
 
 call plug#end()
+
