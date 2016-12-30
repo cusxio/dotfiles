@@ -25,4 +25,3 @@ if has('nvim')
     let g:deoplete#omni#functions['html'] = ['htmlcomplete#CompleteTags']
 
 endif
-

@@ -5,6 +5,5 @@ let NERDTreeHijackNetrw = 1
 
 let NERDTreeMapOpenSplit = 's'
 let NERDTreeMapOpenVSplit = 'v'
-let NERDTreeStatusline = -1
 
 nnoremap <Space>t :NERDTreeToggle<cr>

@@ -81,4 +81,3 @@ augroup oxygenVimFilerKeymap
     autocmd FileType vimfiler nmap <silent> <buffer> <expr> v        vimfiler#do_switch_action('vsplit')
     autocmd FileType vimfiler nmap <silent> <buffer> <expr> s        vimfiler#do_switch_action('split')
 augroup END
-
