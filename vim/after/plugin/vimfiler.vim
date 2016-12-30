@@ -15,16 +15,22 @@ let g:unite_kind_file_use_trashbox = 1
 " horizontal: vimfiler buffer in horizontal
 " vertical: vimfiler buffer in vertical
 " force_quit: exit the vimfiler buffer after firing an action
-" call vimfiler#custom#profile('vimfiler', 'context', {
+" call vimfiler#custom#profile('default', 'context', {
 "     \ 'explorer' : 1,
+"     \ 'winwidth' : 30,
+"     \ 'winminwidth' : 30,
 "     \ 'toggle' : 1,
-"     \ 'columns' : 'type:size',
-"     \ 'explorer_columns' : 'type:size',
+"     \ 'columns' : 'type',
+"     \ 'auto_expand': 1,
+"     \ 'direction' : 'rightbelow',
+"     \ 'parent': 0,
+"     \ 'explorer_columns' : 'type',
 "     \ 'status' : 1,
 "     \ 'safe' : 0,
-"     \ 'force_quit': 1,
-"     \ 'vertical': 1,
-"     \ 'split' : 1
+"     \ 'split' : 1,
+"     \ 'hidden': 1,
+"     \ 'no_quit' : 1,
+"     \ 'force_hide' : 0,
 "     \ })
 
 call vimfiler#custom#profile('default', 'context', {

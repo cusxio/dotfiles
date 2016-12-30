@@ -43,6 +43,7 @@ Plug 'Shougo/unite.vim'
 
 " For File Explorer
 Plug 'Shougo/vimfiler.vim'
+Plug 'scrooloose/nerdtree'
 
 " Linting
 " Plug 'neomake/neomake', { 'on': ['Neomake'] }
