@@ -27,9 +27,12 @@ call plug#begin('~/.vim/plugged')
 
 " Automatically close brackets/parentheses etc..
 Plug 'cohama/lexima.vim'
+" Plug 'rstacruz/vim-closer'
 
 " Easily change brackets/parentheses etc..
 Plug 'tpope/vim-surround'
+
+Plug 'tpope/vim-repeat'
 
 " Comment things
 " works better by default for JSX than vim-commentary
