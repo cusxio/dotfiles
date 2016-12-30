@@ -102,11 +102,11 @@ Plug 'moll/vim-node', { 'for': ['javascript'] }
 " ------------------------------------------------
 
 " Status Line
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
 
 " Indent Guides
 Plug 'nathanaelkane/vim-indent-guides'
-" let g:indent_guides_enable_on_vim_startup = 1
 
 " Color Schemes
 " Plug 'morhetz/gruvbox'
