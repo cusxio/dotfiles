@@ -160,3 +160,6 @@ set updatetime=250
 
 " Allow hidden buffers
 set hidden
+
+set completeopt=menuone
+set completeopt-=preview

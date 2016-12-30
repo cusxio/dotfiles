@@ -10,18 +10,19 @@ let g:echodoc_enable_at_startup	= 1
 
 if has('nvim')
     " http://vi.stackexchange.com/questions/9468/cant-get-deoplete-plugin-working-in-neovim
-    let g:deoplete#enable_at_startup  = 1
+    let g:deoplete#enable_at_startup = 1
     let g:deoplete#file#enable_buffer_path = 1
+    let g:deoplete#enable_smart_case = 1
 
-    set splitbelow
-    " set completeopt+=noselect
-    " set completeopt+=noinsert
 
     " Close preview window after completion is done.
     autocmd CompleteDone * pclose!
 
-
-    let g:deoplete#sources={}
+    let g:deoplete#sources = {}
     let g:deoplete#sources['javascript.jsx'] = ['buffer', 'file', 'ternjs']
+
+    let g:deoplete#omni#functions = {}
+    let g:deoplete#omni#functions['html'] = ['htmlcomplete#CompleteTags']
+
 endif
 
