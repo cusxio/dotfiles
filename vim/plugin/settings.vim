@@ -152,7 +152,8 @@ set listchars+=trail:·
 " hi FoldColumn guibg=#1d2021
 
 " Use system clip
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
+set clipboard=unnamed
 
 " Faster git-gutter update
 set updatetime=250

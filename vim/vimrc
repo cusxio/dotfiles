@@ -32,6 +32,8 @@ Plug 'cohama/lexima.vim'
 " Easily change brackets/parentheses etc..
 Plug 'tpope/vim-surround'
 
+" Enhance cut/copy/paste usability in vim
+Plug 'svermeulen/vim-easyclip'
 Plug 'tpope/vim-repeat'
 
 " Comment things
