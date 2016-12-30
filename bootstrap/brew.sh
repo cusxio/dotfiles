@@ -24,6 +24,9 @@ __brew_install_casks() {
         "spotifree"
         "hyper"
         "imageoptim"
+        "visual-studio-code"
+        "kap"
+        "appcleaner"
 
         # Quicklook
         # https://github.com/sindresorhus/quick-look-plugins
