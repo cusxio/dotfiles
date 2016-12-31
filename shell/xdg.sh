@@ -1,7 +1,7 @@
 # Sourced by shell/vars.sh
-# 
+#
 # https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
-# 
+#
 # Setups a few environment variable based on the specifications
 
 [ -n "$SOURCED_XDG" ] && return export SOURCED_XDG=1

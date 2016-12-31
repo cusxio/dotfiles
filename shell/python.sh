@@ -10,3 +10,6 @@ command -v "pyenv" &> /dev/null && {
 command -v "pyenv-virtualenv-init" &> /dev/null && {
     eval "$(pyenv virtualenv-init -)"
 }
+
+export WORKON_HOME="${HOME}/.local/virtualenv"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
