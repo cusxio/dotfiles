@@ -14,14 +14,17 @@ __npm_install_g() {
         "cost-of-modules"
         "eslint"
         "gh-pages"
+        "gmb"
         "gulp"
         "http-server"
         "lighthouse"
         "now"
         "npm-check-updates"
+        "sass-lint"
         "speed-test"
         "superstatic"
         "surge"
+        "tern"
         "yarn"
     )
     for package in "${NPM_PACKAGES[@]}"; do

@@ -91,6 +91,7 @@ __brew_install_formulas() {
         # Programming
         # "pyenv"
         # "pyenv-virtualenv"
+        "go"
         "python"
         "python3"
         "chruby"
