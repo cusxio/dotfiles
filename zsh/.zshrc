@@ -50,18 +50,18 @@ setopt VI
 # fpath and zsh manual
 
 if [[ -d "${BREW_PREFIX}" ]]; then
-	fpath=(
-		"${BREW_PREFIX}/share/zsh/site-functions"
-		$fpath
-	)
+    fpath=(
+        "${BREW_PREFIX}/share/zsh/site-functions"
+        $fpath
+    )
 
-	# https://github.com/Homebrew/homebrew-core/blob/master/Formula/zsh.rb
-	# Use brew's zsh help files.
-	if [[ -d "${BREW_PREFIX}/share/zsh/help" ]]; then
-		unalias run-help
-		autoload run-help
-		HELPDIR="${BREW_PREFIX}/share/zsh/help"
-	fi
+    # https://github.com/Homebrew/homebrew-core/blob/master/Formula/zsh.rb
+    # Use brew's zsh help files.
+    if [[ -d "${BREW_PREFIX}/share/zsh/help" ]]; then
+        unalias run-help
+        autoload run-help
+        HELPDIR="${BREW_PREFIX}/share/zsh/help"
+    fi
 
 fi
 
@@ -93,26 +93,26 @@ ZPLUG_INIT_FILE="${ZPLUG_HOME}/init.zsh"
 
 
 __zplug_source() {
-	if [[ -f "$ZPLUG_INIT_FILE" ]]; then
-		source "$ZPLUG_INIT_FILE"
-	fi
-	export PATH="${ZPLUG_HOME}/bin:${PATH}"
+    if [[ -f "$ZPLUG_INIT_FILE" ]]; then
+        source "$ZPLUG_INIT_FILE"
+    fi
+    export PATH="${ZPLUG_HOME}/bin:${PATH}"
 }
 
 __zplug_init() {
-	if [[ ! -f "$ZPLUG_INIT_FILE" ]]; then
-		rm -rf "$ZPLUG_HOME"
-		git clone https://github.com/zplug/zplug.git "$ZPLUG_HOME" \
+    if [[ ! -f "$ZPLUG_INIT_FILE" ]]; then
+        rm -rf "$ZPLUG_HOME"
+        git clone https://github.com/zplug/zplug.git "$ZPLUG_HOME" \
             && __zplug_source \
             && zplug update --self
-	fi
+    fi
 
-	[[ -z "$ZPLUG_ROOT" ]] && __zplug_source
+    [[ -z "$ZPLUG_ROOT" ]] && __zplug_source
 
-	command -v "zplug" &> /dev/null && {
-		zplug check --verbose || zplug install
-		zplug load
-	}
+    command -v "zplug" &> /dev/null && {
+        zplug check --verbose || zplug install
+        zplug load
+    }
 }
 
 __zplug_init
@@ -121,29 +121,31 @@ __zplug_init
 # nvm hooks based on .nvmrc
 
 __nvm_auto_use() {
-	[[ -f ".nvmrc" && -r ".nvmrc" ]] && nvm use
+    [[ -f ".nvmrc" && -r ".nvmrc" ]] && nvm use
 }
 
 command -v "nvm" &> /dev/null && {
-	add-zsh-hook chpwd __nvm_auto_use
+    add-zsh-hook chpwd __nvm_auto_use
 }
 
 # ZSH Completion System Configuration
 # http://zsh.sourceforge.net/Doc/Release/Completion-System.html#Completion-System-Configuration
 
 if [[ "$0" == *"zsh" ]]; then
-	zmodload -i zsh/complist
-	zstyle ':completion:*' use-cache 1
-	zstyle ':completion:*' cache-path "${XDG_CACHE_HOME}/.zcache"
-	zstyle ':completion:*' menu select=2
-	zstyle ':completion:*' group-name ''
-	zstyle ':completion:*:messages' format '%d'
-	zstyle ':completion:*:descriptions' format '%d'
-	zstyle ':completion:*:options' verbose yes
-	zstyle ':completion:*:values' verbose yes
-	zstyle ':completion:*:options' prefix-needed yes
-	zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+    zmodload -i zsh/complist
+    zstyle ':completion:*' use-cache 1
+    zstyle ':completion:*' cache-path "${XDG_CACHE_HOME}/.zcache"
+    zstyle ':completion:*' menu select=2
+    zstyle ':completion:*' group-name ''
+    zstyle ':completion:*:messages' format '%d'
+    zstyle ':completion:*:descriptions' format '%d'
+    zstyle ':completion:*:options' verbose yes
+    zstyle ':completion:*:values' verbose yes
+    zstyle ':completion:*:options' prefix-needed yes
+    zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
     zstyle ':completion:*' keep-prefix
     zstyle ':completion:*' list-colors ''
     zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;34=0=01'
 fi
+
+source "${DOTFILES}/shell/after.sh"
