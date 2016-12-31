@@ -34,13 +34,19 @@ setw -g window-status-activity-attr none
 setw -g window-status-activity-fg red
 setw -g window-status-activity-bg default
 
-setw -g window-status-current-fg black
-setw -g window-status-current-bg yellow
+# gruvbox: black
+setw -g window-status-current-fg magenta
+
+# gruvbox: yellow
+setw -g window-status-current-bg default
 
 # Left Side
 # Session
 set -g status-left-length 70
-set -g status-left "#[fg=colour237][ #[fg=colour240]#S #[fg=colour237]] "
+set -g status-left "#[fg=blue][ #[fg=magenta]#S #[fg=blue]] "
+
+# gruvbox
+# set -g status-left "#[fg=colour237][ #[fg=colour240]#S #[fg=colour237]] "
 
 # Right Side
 # https://linux.die.net/man/3/strftime
@@ -56,4 +62,5 @@ set -g status-right "#(${DOTFILES}/tmux/status.sh)"
 set -g message-bg default
 set -g message-fg colour003 # yellow
 
-set -g pane-active-border-fg colour003
+# gruvbox colour003
+set -g pane-active-border-fg magenta

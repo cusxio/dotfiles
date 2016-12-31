@@ -134,13 +134,15 @@ prompt_pure_preprompt_render() {
     [[ -n ${prompt_pure_cmd_timestamp+x} && "$1" != "precmd" ]] && return
 
     # set color for git branch/dirty status, change color if dirty checking has been delayed
-    local git_color=240 # modified, default 242
+    local git_color=242 # modified, default 242, gruvbox 240
     [[ -n ${prompt_pure_git_last_dirty_check_timestamp+x} ]] && git_color=red
 
     # construct preprompt, beginning with path
-    local preprompt=" %F{240}%1~%f "
+    local preprompt=" %F{blue}%1~%f "
     # modified, default
     # local preprompt="%F{blue}%~%f"
+    # gruvbox
+    # local preprompt=" %F{240}%1~%f "
 
     # git info
     prompt_pure_vcs_brackets() {
@@ -148,9 +150,11 @@ prompt_pure_preprompt_render() {
             echo "(${vcs_info_msg_0_})"
         fi
     }
-    preprompt+="%F{$git_color}$(prompt_pure_vcs_brackets)%F{003}${prompt_pure_git_dirty}%f"
+    preprompt+="%F{$git_color}$(prompt_pure_vcs_brackets)%F{magenta}${prompt_pure_git_dirty}%f"
     # modified, default
     #preprompt+="%F{$git_color}${vcs_info_msg_0_}${prompt_pure_git_dirty}%f"
+    # gruvbox
+    # preprompt+="%F{$git_color}$(prompt_pure_vcs_brackets)%F{003}${prompt_pure_git_dirty}%f"
 
     # git pull/push arrows
     preprompt+="%F{cyan}${prompt_pure_git_arrows}%f"
@@ -381,9 +385,11 @@ prompt_pure_setup() {
     [[ $UID -eq 0 ]] && prompt_pure_username=' %F{white}%n%f%F{242}@%m%f'
 
     # prompt turns red if the previous command didn't exit with 0
-    PROMPT=" %(?.%F{003}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f "
+    PROMPT=" %(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f "
     # modified, default
     # PROMPT="%(?.%F{magenta}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f "
+    # gruvbox
+    # PROMPT=" %(?.%F{003}.%F{red})${PURE_PROMPT_SYMBOL:-❯}%f "
 
 }
 

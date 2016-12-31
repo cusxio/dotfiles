@@ -1,14 +1,12 @@
 # Sourced by .zshrc
 
 # Themes
-# zplug "cusxio/delta-prompt", use:delta.zsh
-zplug "${ZDOTDIR}", from:local, use:"{prompt,}.zsh", defer:3
-zplug "mafredri/zsh-async"
+zplug "mafredri/zsh-async", defer:0
+zplug "${ZDOTDIR}", from:local, use:"{prompt,}.zsh", as:theme
 
 # ZSH
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-completions"
-# zplug "zsh-users/zsh-autosuggestions"
 
 # Utilities
 zplug "supercrabtree/k"
