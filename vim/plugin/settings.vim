@@ -163,3 +163,16 @@ set hidden
 
 set completeopt=menuone
 set completeopt-=preview
+
+" Show Help in Full Window
+function! s:showhelp()
+    if &buftype == 'help'
+        " wincmd L - vertical split
+        " wincmd T - tab
+        only
+        " nnoremap <buffer> q :q<cr>
+        nnoremap <buffer> q :bd<cr>
+    endif
+endfunction
+
+autocmd BufEnter *.txt call s:showhelp()
