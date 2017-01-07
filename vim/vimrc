@@ -60,7 +60,7 @@ Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 " Completion
 Plug 'Shougo/echodoc.vim'
 
-if has ('nvim') && has('python3')
+if has('nvim') && has('python3')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 endif
 

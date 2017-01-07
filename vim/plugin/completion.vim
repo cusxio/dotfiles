@@ -14,7 +14,6 @@ if has('nvim')
     let g:deoplete#file#enable_buffer_path = 1
     let g:deoplete#enable_smart_case = 1
 
-
     " Close preview window after completion is done.
     autocmd CompleteDone * pclose!
 
