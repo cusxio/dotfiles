@@ -9,6 +9,7 @@ source "${DOTFILES_PATH}/library/requires.sh"
 
 __npm_install_g() {
     declare -ar NPM_PACKAGES=(
+        "alfred-npms"
         "babel-cli"
         "browser-sync"
         "cost-of-modules"
