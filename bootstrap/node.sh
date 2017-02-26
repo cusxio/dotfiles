@@ -26,7 +26,6 @@ __npm_install_g() {
         "superstatic"
         "surge"
         "tern"
-        "yarn"
     )
     for package in "${NPM_PACKAGES[@]}"; do
         require::npm "$package"
@@ -34,9 +33,9 @@ __npm_install_g() {
 }
 
 __node_default() {
-    nvm alias default "lts/boron" &> /dev/null
-    logger::result $? "nvm alias default lts/boron"
-    nvm use "lts/boron" &> /dev/null
+    nvm alias default node &> /dev/null
+    logger::result $? "nvm alias default node"
+    nvm use node &> /dev/null
 }
 
 __node_install() {
@@ -89,7 +88,7 @@ __nvm() {
     logger::action "Node <3"
     __node_install
     logger::action "Setting a default Node version"
-    # Setting node lts/boron as the default version.
+    # Setting latest as the default version.
     __node_default
     logger::action "NPM Global Packages"
     __npm_install_g
