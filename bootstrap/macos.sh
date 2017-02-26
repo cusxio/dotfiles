@@ -24,3 +24,8 @@ chflags nohidden ~/Library
 
 # Enable subpixel font rendering on non-Apple LCDs
 defaults write NSGlobalDomain AppleFontSmoothing -int 2
+
+# Make dock autohide/show faster
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock autohide-delay -int 0
+defaults write com.apple.dock autohide-time-modifier -float 0.5
