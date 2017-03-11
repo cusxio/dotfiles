@@ -1,7 +1,7 @@
 # Sourced by .zshrc
 
 # Themes
-zplug "mafredri/zsh-async", defer:0
+zplug "mafredri/zsh-async", from:github
 zplug "${ZDOTDIR}", from:local, use:"{prompt,}.zsh", as:theme
 
 # ZSH
