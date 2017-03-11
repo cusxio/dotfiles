@@ -75,7 +75,7 @@ require::npm() {
     npm list -g --depth 0 | grep $1 &> /dev/null
 
     if [[ $? != 0 ]]; then
-        npm install -g $1
+        npm install -g --production $1
         logger::result $? "npm install -g $1"
     else
         logger::error "npm install -g $1 is already installed !"
