@@ -18,6 +18,11 @@ COMPOSED_PATH="/usr/local/sbin:${OXYGEN_SYSTEM_PATH}"
 # Go
 COMPOSED_PATH="${GOPATH}/bin:${COMPOSED_PATH}"
 
+# Postgres
+if [[ -d "/Applications/Postgres.app/Contents/Versions/latest/bin" ]]; then
+    COMPOSED_PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:${COMPOSED_PATH}"
+fi
+
 # Local
 COMPOSED_PATH="${DOTFILES}/bin:${COMPOSED_PATH}"
 
