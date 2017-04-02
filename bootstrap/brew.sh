@@ -52,6 +52,8 @@ __check_caskroom_installation() {
     if [[ $? != 0 ]]; then
         brew tap caskroom/cask
         brew tap caskroom/versions
+        brew tap caskroom/fonts
+        brew tap homebrew/services
         logger::success "Caskroom install complete"
     else
         logger::warning "Caskroom is already installed"
@@ -67,6 +69,7 @@ __brew_install_formulas() {
         "automake"
         "cmake"
         "openssl"
+        "reattach-to-user-namespace"
 
         # Filesystem
         "fasd"
@@ -96,17 +99,21 @@ __brew_install_formulas() {
         "python3"
         "chruby"
         "ruby-install"
+        "redis"
+        "postgresql"
 
         # Editors
         "vim --with-override-system-vim --with-python3"
         "neovim/neovim/neovim"
 
         # Misc.
+        "highlight"
         "cowsay"
         "wifi-password"
         "tree"
         "mas"
         "youtube-dl"
+        "yarn"
     )
 
     for formula in "${FORMULAS[@]}"; do
