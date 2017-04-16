@@ -42,6 +42,9 @@ _symlink() {
     __symlink_helper vim           .config/nvim
     __symlink_helper vim/vimrc     .config/nvim/init.vim
 
+    # spacemacs
+    __symlink_helper spacemacs     .spacemacs.d
+
     # zsh
     __symlink_helper zsh/.zshenv   .zshenv
 
