@@ -47,17 +47,13 @@ __brew_install_casks() {
     done
 }
 
-__check_caskroom_installation() {
-    brew tap | grep "caskroom" &> /dev/null
-    if [[ $? != 0 ]]; then
-        brew tap caskroom/cask
-        brew tap caskroom/versions
-        brew tap caskroom/fonts
-        brew tap homebrew/services
-        logger::success "Caskroom install complete"
-    else
-        logger::warning "Caskroom is already installed"
-    fi
+__brew_tap_repositories() {
+    brew tap caskroom/cask
+    brew tap caskroom/versions
+    brew tap caskroom/fonts
+    brew tap homebrew/services
+    brew tap d12frosted/emacs-plus
+    logger::success "Homebrew tapped complete"
 }
 
 __brew_install_formulas() {
@@ -101,10 +97,12 @@ __brew_install_formulas() {
         "ruby-install"
         "redis"
         "postgresql"
+        "elixir"
 
         # Editors
         "vim --with-override-system-vim --with-python3"
         "neovim/neovim/neovim"
+        "emacs-plus"
 
         # Misc.
         "highlight"
@@ -154,10 +152,10 @@ __check_brew_installation() {
 __brew() {
     logger::action "Homebrew"
     __check_brew_installation
+    logger::action "Homebrew tap"
+    __brew_tap_repositories
     logger::action "Homebrew formulas"
     __brew_install_formulas
-    logger::action "Caskroom"
-    __check_caskroom_installation
     logger::action "Caskroom casks"
     __brew_install_casks
     logger::complete "[OK] brew.sh initilization complete"
