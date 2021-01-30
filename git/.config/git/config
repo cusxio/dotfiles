@@ -1,0 +1,86 @@
+[user]
+	name = Jonathan Chan
+	email = cusxio@gmail.com
+
+# [core]
+  # pager = diff-so-fancy | less --tabs=4 -RFX
+
+[core]
+  # pager = diff-so-fancy | less --tabs=4 -RFX
+  pager = delta
+  editor = $EDITOR
+
+[color]
+  ui = true
+
+# [alias]
+#   dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy | less --tabs=4 -RFX; }; f"
+
+# [pager]
+#   diff = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
+
+# [pager]
+  # show = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
+  # diff = diff-so-fancy | less --tabs=4 -RFX --pattern '^(Date|added|deleted|modified): '
+  # diff = diff-so-fancy | less --tabs=4 -RFX
+
+[push]
+  default = simple
+  followTags = true
+
+[pull]
+  rebase = true
+
+[rebase]
+  stat = true
+
+[diff]
+  mnemonicPrefix = true
+
+[fetch]
+  prune = true
+  pruneTags = true
+
+[merge]
+  conflictStyle = diff3
+
+[color "status"]
+  header = 240
+  added = green
+  changed = yellow
+  untracked = red
+
+[color "diff"]
+  meta = dim
+  frag = dim
+
+[alias]
+  # ammend = commit --amend -v
+
+	c = commit
+	ca = commit --amend
+	cm = commit -m
+  can = commit --amend --no-edit
+
+  d = diff --patch-with-stat
+  dc = d --cached
+  dn = diff --name-only
+
+  # no-edit = commit --amend --no-edit
+
+  # reword = commit --amend
+
+# [color]
+#   branch      = auto
+#   diff        = auto
+#   grep        = auto
+#   interactive = auto
+#   status      = auto
+#   ui          = auto
+#   pager       = true
+
+# [color "diff-highlight"]
+#   oldNormal    = red bold
+#   oldHighlight = red bold 52
+#   newNormal    = green bold
+#   newHighlight = green bold 22

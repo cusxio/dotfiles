@@ -1,0 +1,41 @@
+colors:
+  primary:
+    background: "0x222222"
+    foreground: "0xf7f1ff"
+
+  normal:
+    black: "0x222222"
+    red: "0xfc618d"
+    green: "0x7bd88f"
+    yellow: "0xfce566"
+    blue: "0xfd9353"
+    magenta: "0x948ae3"
+    cyan: "0x5ad4e6"
+    white: "0xf7f1ff"
+
+  bright:
+    black: "0x69676c"
+    red: "0xfc618d"
+    green: "0x7bd88f"
+    yellow: "0xfce566"
+    blue: "0xfd9353"
+    magenta: "0x948ae3"
+    cyan: "0x5ad4e6"
+    white: "0xf7f1ff"
+
+font:
+  normal:
+    family: JetBrains Mono
+    style: Regular
+  bold:
+    family: JetBrains Mono
+    style: Regular
+  italic:
+    family: JetBrains Mono
+    style: Italic
+  size: 14.0
+
+live_config_reload: true
+
+key_bindings:
+  - { key: N, mods: Command, action: SpawnNewInstance }

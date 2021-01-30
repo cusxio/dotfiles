@@ -1,5 +1,0 @@
-.zsh_history
-.zcompdump
-vim/plugged
-vim/autoload/plug.vim*
-vim/init.vim

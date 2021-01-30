@@ -1,0 +1,26 @@
+# https://mths.be/macos
+# https://macos-defaults.com
+
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
+# Disable press-and-hold for keys in favor of key repeat
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+# Set a blazingly fast keyboard repeat rate
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
+
+# Automatically hide and show the Dock
+defaults write com.apple.dock autohide -bool true
+# Remove the auto-hiding Dock delay
+defaults write com.apple.dock autohide-delay -float 0
+# Remove the animation when hiding/showing the Dock
+defaults write com.apple.dock autohide-time-modifier -float 0.5
+# Don’t show recent applications in Dock
+defaults write com.apple.dock show-recents -bool false
+
+# TextEdit
+defaults write com.apple.TextEdit RichText -int 0
+defaults write com.apple.TextEdit NSShowAppCentricOpenPanelInsteadOfUntitledFile -bool false
+
+defaults write com.apple.screencapture show-thumbnail -bool false
