@@ -10,6 +10,12 @@ if (( $+commands[exa] )); then
   alias tree="exa -T"
 fi
 
+# Podman
+# if (( $+commands[podman] )); then
+#   alias docker="podman"
+#   export DOCKER_HOST=ssh://root@localhost:61962
+# fi
+
 alias l='ls -F'
 alias ll='ls -laF'
 

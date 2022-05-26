@@ -14,7 +14,7 @@ function {
 
   if [[ ! -f "$__ZINIT" ]]; then
     if (( $+commands[git] )); then
-      git clone https://github.com/zdharma/zinit.git "$ZINIT[BIN_DIR]"
+      git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT[BIN_DIR]"
     else
       echo 'git not found' >&2
       exit 1
@@ -48,5 +48,8 @@ fi
 
 # fnm
 if (( $+commands[fnm] )); then
-  eval "$(fnm env)"
+  eval "$(fnm env --use-on-cd)"
 fi
+
+# zoxide
+eval "$(zoxide init zsh)"

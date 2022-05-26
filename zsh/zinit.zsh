@@ -34,7 +34,7 @@ zinit light "zsh-users/zsh-completions"
 
 zinit ice wait lucid atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" \
   atload"unset 'FAST_HIGHLIGHT[chroma-whatis]' 'FAST_HIGHLIGHT[chroma-man]'"
-zinit light "zdharma/fast-syntax-highlighting"
+zinit light "zdharma-continuum/fast-syntax-highlighting"
 
 zinit ice wait lucid atload"_zsh_autosuggest_start"
 zinit light "zsh-users/zsh-autosuggestions"
@@ -46,8 +46,14 @@ zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 # zinit ice wait lucid
 # zinit light lukechilds/zsh-nvm
 
-zinit ice wait lucid from'gh-r' as'program' mv'zoxide* -> zoxide' atclone'echo "unalias zi 2> /dev/null " > zhook.zsh && ./zoxide init zsh --hook pwd >> zhook.zsh' atpull'%atclone' src'zhook.zsh'
-zinit light ajeetdsouza/zoxide
+# zinit ice as"command" from"gh-r" lucid \
+#   mv"zoxide*/zoxide -> zoxide" \
+#   atclone"./zoxide init zsh > init.zsh" \
+#   atpull"%atclone" src"init.zsh" nocompile'!'
+# zinit ice wait lucid from'gh-r' as'program' mv'zoxide* -> zoxide' atclone'echo "unalias zi 2> /dev/null " > zhook.zsh && ./zoxide init zsh --hook pwd >> zhook.zsh' atpull'%atclone' src'zhook.zsh'
+# zinit light ajeetdsouza/zoxide
 
 zinit ice wait lucid as'command' pick'bin/git-fuzzy'
 zinit light bigH/git-fuzzy
+
+zinit load wfxr/forgit
