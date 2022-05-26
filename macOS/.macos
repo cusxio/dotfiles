@@ -24,3 +24,6 @@ defaults write com.apple.TextEdit RichText -int 0
 defaults write com.apple.TextEdit NSShowAppCentricOpenPanelInsteadOfUntitledFile -bool false
 
 defaults write com.apple.screencapture show-thumbnail -bool false
+
+# System Preferences > Mission Controll > Automatically rearrange Spaces based on most recent use
+defaults write com.apple.dock mru-spaces -bool false
