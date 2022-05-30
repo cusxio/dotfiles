@@ -29,3 +29,11 @@ export _ZO_DATA_DIR="${XDG_DATA_HOME}/zoxide"
 
 # git-fuzzy
 export GF_SNAPSHOT_DIRECTORY="${XDG_DATA_HOME}/git-fuzzy-snapshots"
+
+# rust
+export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
+export CARGO_HOME="${XDG_DATA_HOME}/cargo"
+
+if [[ -f "$XDG_DATA_HOME/cargo/env" ]]; then
+  source "$XDG_DATA_HOME/cargo/env"
+fi
