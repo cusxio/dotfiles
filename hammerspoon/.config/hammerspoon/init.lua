@@ -1,2 +1,2 @@
-require('launch')
-require('window-managment')
+require("launch")
+require("window-managment")

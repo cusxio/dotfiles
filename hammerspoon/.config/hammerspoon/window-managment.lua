@@ -1,5 +1,5 @@
-hs.grid.setGrid('12x12')
-hs.grid.setMargins('0x0')
+hs.grid.setGrid("12x12")
+hs.grid.setMargins("0x0")
 hs.window.animationDuration = 0
 
 -- local grid = {
@@ -25,22 +25,22 @@ hs.window.animationDuration = 0
 -- }
 
 local grid = {
-  rightHalf = '6,0 6x12',
-  rightThird = '8,0 4x12',
-  leftHalf = '0,0 6x12',
-  leftThird = '0,0 4x12',
-  middleHalf = '3,0 6x12',
-  middleThird = '4,0 4x12',
-  fullScreen = '0,0 12x12',
+  rightHalf = "6,0 6x12",
+  rightThird = "8,0 4x12",
+  leftHalf = "0,0 6x12",
+  leftThird = "0,0 4x12",
+  middleHalf = "3,0 6x12",
+  middleThird = "4,0 4x12",
+  fullScreen = "0,0 12x12",
 }
 
-local hyper = {'ctrl', 'alt'}
+local hyper = { "ctrl", "alt" }
 local lastSeenChain = nil
 local lastSeenWindow = nil
 local chain = nil
 local screenCount = #hs.screen.allScreens()
 
-chain = (function(movements)
+chain = function(movements)
   local chainResetInterval = 2 -- seconds
   local cycleLength = #movements
   local sequenceNumber = 1
@@ -51,14 +51,10 @@ chain = (function(movements)
     local now = hs.timer.secondsSinceEpoch()
     local screen = win:screen()
 
-    if
-      lastSeenChain ~= movements or
-      lastSeenAt < now - chainResetInterval or
-      lastSeenWindow ~= id
-    then
+    if lastSeenChain ~= movements or lastSeenAt < now - chainResetInterval or lastSeenWindow ~= id then
       sequenceNumber = 1
       lastSeenChain = movements
-    elseif (sequenceNumber == 1) then
+    elseif sequenceNumber == 1 then
       -- At end of chain, restart chain on next screen.
       screen = screen:next()
     end
@@ -68,7 +64,7 @@ chain = (function(movements)
     hs.grid.set(win, movements[sequenceNumber], screen)
     sequenceNumber = sequenceNumber % cycleLength + 1
   end
-end)
+end
 
 -- hs.hotkey.bind(hyper, 'up', chain({
 --   grid.topHalf,
@@ -76,11 +72,15 @@ end)
 --   grid.topTwoThirds,
 -- }))
 
-hs.hotkey.bind(hyper, 'l', chain({
-  grid.rightHalf,
-  grid.rightThird,
-  -- grid.rightTwoThirds,
-}))
+hs.hotkey.bind(
+  hyper,
+  "l",
+  chain({
+    grid.rightHalf,
+    grid.rightThird,
+    -- grid.rightTwoThirds,
+  })
+)
 
 -- hs.hotkey.bind(hyper, 'down', chain({
 --   grid.bottomHalf,
@@ -88,22 +88,34 @@ hs.hotkey.bind(hyper, 'l', chain({
 --   grid.bottomTwoThirds,
 -- }))
 
-hs.hotkey.bind(hyper, 'h', chain({
-  grid.leftHalf,
-  grid.leftThird,
-  -- grid.leftTwoThirds,
-}))
+hs.hotkey.bind(
+  hyper,
+  "h",
+  chain({
+    grid.leftHalf,
+    grid.leftThird,
+    -- grid.leftTwoThirds,
+  })
+)
 
 -- hs.hotkey.bind(hyper, 'c', chain({
 --   grid.centeredBig,
 --   grid.centeredSmall,
 -- }))
 
-hs.hotkey.bind(hyper, 'f', chain({
-  grid.fullScreen,
-}))
+hs.hotkey.bind(
+  hyper,
+  "f",
+  chain({
+    grid.fullScreen,
+  })
+)
 
-hs.hotkey.bind(hyper, 'c', chain({
-  grid.middleHalf,
-  grid.middleThird
-}))
+hs.hotkey.bind(
+  hyper,
+  "c",
+  chain({
+    grid.middleHalf,
+    grid.middleThird,
+  })
+)
