@@ -37,3 +37,7 @@ export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 if [[ -f "$XDG_DATA_HOME/cargo/env" ]]; then
   source "$XDG_DATA_HOME/cargo/env"
 fi
+
+# tree-sitter
+export TREE_SITTER_DIR="${XDG_CONFIG_HOME}/tree-sitter"
+

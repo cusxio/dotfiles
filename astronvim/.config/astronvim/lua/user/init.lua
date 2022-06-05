@@ -1,62 +1,41 @@
 local M = {
-  -- colorscheme = "nightfox",
+  colorscheme = "kanagawa",
   header = {
-    -- [[ ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-    -- [[ ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠋⠉⣉⣉⠙⠿⠋⣠⢴⣊⣙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-    -- [[ ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠋⠁⠀⢀⠔⡩⠔⠒⠛⠧⣾⠊⢁⣀⣀⣀⡙⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-    -- [[ ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠛⠁⠀⠀⠀⠀⠀⡡⠊⠀⠀⣀⣠⣤⣌⣾⣿⠏⠀⡈⢿⡜⣿⣿⣿⣿⣿⣿⣿⣿]],
-    -- [[ ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠡⣤⣶⠏⢁⠈⢻⡏⠙⠛⠀⣀⣁⣤⢢⣿⣿⣿⣿⣿⣿⣿⣿]],
-    -- [[ ⣿⣿⣿⣿⣿⣿⣿⣿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⣄⡀⠣⣌⡙⠀⣘⡁⠜⠈⠑⢮⡭⠴⠚⠉⠀⣿⣿⣿⣿⣿⣿⣿⣿]],
-    -- [[ ⣿⣿⣿⣿⣿⣿⣿⠁⠀⢀⠔⠁⣀⣤⣤⣤⣤⣤⣄⣀⠀⠉⠉⠉⠉⠉⠁⠀⠀⠀⠀⠀⠁⠀⢀⣠⢠⣿⣿⣿⣿⣿⣿⣿⣿]],
-    -- [[ ⣿⣿⣿⣿⣿⣿⣿⡀⠀⢸⠀⢼⣿⣿⣶⣭⣭⣭⣟⣛⣛⡿⠷⠶⠶⢶⣶⣤⣤⣤⣶⣶⣾⡿⠿⣫⣾⣿⣿⣿⣿⣿⣿⣿⣿]],
-    -- [[ ⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀⠀⠈⠉⠉⠉⠉⠉⠙⠛⠛⠻⠿⠿⠿⠷⣶⣶⣶⣶⣶⣶⣶⣶⡾⢗⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-    -- [[ ⣿⣿⣿⣿⣿⣿⣿⣦⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣴⣿⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-    -- [[ ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣤⣄⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣝⡻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-    -- [[ ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿]],
-    -- [[                                    ██████                                    ]],
-    -- [[                                ████▒▒▒▒▒▒████                                ]],
-    -- [[                              ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒██                              ]],
-    -- [[                            ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██                            ]],
-    -- [[                          ██▒▒▒▒▒▒▒▒    ▒▒▒▒▒▒▒▒                              ]],
-    -- [[                          ██▒▒▒▒▒▒  ▒▒▓▓▒▒▒▒▒▒  ▓▓▓▓                          ]],
-    -- [[                          ██▒▒▒▒▒▒  ▒▒▓▓▒▒▒▒▒▒  ▒▒▓▓                          ]],
-    -- [[                        ██▒▒▒▒▒▒▒▒▒▒    ▒▒▒▒▒▒▒▒    ██                        ]],
-    -- [[                        ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██                        ]],
-    -- [[                        ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██                        ]],
-    -- [[                        ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██                        ]],
-    -- [[                        ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██                        ]],
-    -- [[                        ██▒▒██▒▒▒▒▒▒██▒▒▒▒▒▒▒▒██▒▒▒▒██                        ]],
-    -- [[                        ████  ██▒▒██  ██▒▒▒▒██  ██▒▒██                        ]],
-    -- [[                        ██      ██      ████      ████                        ]],
-    "                                                     ",
-    "  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
-    "  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
-    "  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
-    "  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
-    "  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
-    "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
-    "                                                     ",
+    "39 2C 39",
+  },
+  default_theme = {
+    plugins = {
+      ["indent_blankline"] = false,
+    },
+  },
+  options = {
+    opt = {
+      relativenumber = false,
+      scrolloff = 15,
+      colorcolumn = "80",
+    },
   },
   plugins = {
     init = {
-      -- {
-      --   "EdenEast/nightfox.nvim",
-      -- },
-      -- {
-      --   "https://gitlab.com/__tpb/monokai-pro.nvim",
-      --   -- as = "monokai",
-      --   config = function()
-      --     vim.g.monokaipro_filter = "spectrum"
-      --     vim.cmd([[colorscheme monokaipro]])
-      --   end,
-      -- },
-      -- {
-      --   "catppuccin/nvim",
-      --   as = "catppuccin",
-      --   config = function()
-      --     require("catppuccin").setup({})
-      --   end,
-      -- },
+      {
+        "rebelot/kanagawa.nvim",
+        as = "kanagawa",
+        -- config = function()
+        --   require("kanagawa").setup({
+        --     commentStyle = "NONE",
+        --     keywordStyle = "NONE",
+        --     variablebuiltinStyle = "NONE",
+        --   })
+        -- end,
+      },
+    },
+    ["indent_blankline"] = {
+      show_first_indent_level = false,
+    },
+    cmp = {
+      completion = {
+        completeopt = "menu,menuone,noinsert",
+      },
     },
     ["neo-tree"] = {
       filesystem = {
@@ -88,6 +67,9 @@ local M = {
         "solidity",
         "vim",
       },
+      rainbow = {
+        enable = false,
+      },
     },
     ["null-ls"] = function(config)
       local null_ls = require("null-ls")
@@ -97,6 +79,9 @@ local M = {
         b.code_actions.eslint_d,
         b.diagnostics.eslint_d,
         b.formatting.eslint_d,
+
+        b.formatting.gofmt,
+        -- b.diagnostics.golangci_lint,
 
         b.formatting.prettier,
 
@@ -123,10 +108,18 @@ local M = {
   },
 
   lsp = {
+    ["server-settings"] = {
+      gopls = {
+        on_attach = function(client)
+          client.resolved_capabilities.document_formatting = false
+        end,
+      },
+    },
     servers = {
       "bashls",
       "cssls",
       "emmet_ls",
+      "gopls",
       "html",
       "rust_analyzer",
       "solidity_ls",
