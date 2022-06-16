@@ -3,40 +3,75 @@ local M = {
   header = {
     "39 2C 39",
   },
-  default_theme = {
-    plugins = {
-      ["indent_blankline"] = false,
-    },
-  },
   options = {
     opt = {
       relativenumber = false,
       scrolloff = 15,
       colorcolumn = "80",
+      -- list = true,
+      -- listchars = {
+      --   eol = "↲",
+      --   trail = "·",
+      --   tab = "» ",
+      --   nbsp = "␣",
+      --   extends= "<",
+      --   precedes = ">",
+      --   conceal= "┊",
+      --
+      -- },
     },
   },
   plugins = {
     init = {
-      {
-        "rebelot/kanagawa.nvim",
+      ["declancm/cinnamon.nvim"] = { disable = true },
+      ["Darazaki/indent-o-matic"] = { disable = true },
+      ["nmac427/guess-indent.nvim"] = {
+        event = "BufReadPost",
+        config = function()
+          require("guess-indent").setup()
+        end,
+      },
+      ["echasnovski/mini.nvim"] = {
+        event = "VimEnter",
+        config = function()
+          require("mini.surround").setup()
+        end,
+      },
+      ["rebelot/kanagawa.nvim"] = {
         as = "kanagawa",
-        -- config = function()
-        --   require("kanagawa").setup({
-        --     commentStyle = "NONE",
-        --     keywordStyle = "NONE",
-        --     variablebuiltinStyle = "NONE",
-        --   })
-        -- end,
+        config = function()
+          require("kanagawa").setup({
+            keywordStyle = {
+              italic = false,
+            },
+            statementStyle = {
+              italic = false,
+            },
+            variablebuiltinStyle = {
+              italic = false,
+            },
+          })
+        end,
+      },
+      ["jose-elias-alvarez/typescript.nvim"] = {
+        after = "nvim-lsp-installer",
+        config = function()
+          require("typescript").setup({
+            server = astronvim.lsp.server_settings("tsserver"),
+          })
+        end,
       },
     },
     ["indent_blankline"] = {
       show_first_indent_level = false,
+      char = "┊",
+      context_char = "┊",
     },
-    cmp = {
-      completion = {
-        completeopt = "menu,menuone,noinsert",
-      },
-    },
+    -- cmp = {
+    --   completion = {
+    --     completeopt = "menu,menuone,noinsert",
+    --   },
+    -- },
     ["neo-tree"] = {
       filesystem = {
         filtered_items = {
@@ -59,13 +94,17 @@ local M = {
         "go",
         "html",
         "javascript",
+        "json",
         "lua",
+        "markdown",
         "prisma",
+        "toml",
         "tsx",
         "typescript",
         "rust",
         "solidity",
         "vim",
+        "yaml",
       },
       rainbow = {
         enable = false,
@@ -97,8 +136,7 @@ local M = {
             group = augroup,
             buffer = bufnr,
             callback = function()
-              -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-              vim.lsp.buf.formatting_sync()
+              vim.lsp.buf.formatting_sync(nil, 10000)
             end,
           })
         end
@@ -114,6 +152,17 @@ local M = {
           client.resolved_capabilities.document_formatting = false
         end,
       },
+      emmet_ls = {
+        filetypes = {
+          "html",
+          "typescriptreact",
+          "javascriptreact",
+          "css",
+          "sass",
+          "scss",
+          "less",
+        },
+      },
     },
     servers = {
       "bashls",
@@ -124,8 +173,18 @@ local M = {
       "rust_analyzer",
       "solidity_ls",
       "tsserver",
+      -- "eslint",
     },
+    skip_setup = { "tsserver" },
   },
+
+  polish = function()
+    vim.filetype.add({
+      extension = {
+        conf = "config",
+      },
+    })
+  end,
 }
 
 return M
