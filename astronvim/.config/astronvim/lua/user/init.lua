@@ -1,5 +1,6 @@
 local M = {
   colorscheme = "kanagawa",
+  -- colorscheme = "oh-lucy",
   header = {
     "39 2C 39",
   },

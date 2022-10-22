@@ -1,4 +1,5 @@
 return {
+  update_in_insert = false,
   float = {
     format = function(diagnostic)
       if diagnostic.source == "eslint_d" then

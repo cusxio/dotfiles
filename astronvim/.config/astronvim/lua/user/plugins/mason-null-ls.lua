@@ -1,1 +1,1 @@
-return { automatic_installation = true }
+-- return { automatic_installation = true }

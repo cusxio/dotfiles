@@ -1,1 +1,21 @@
-return { automatic_installation = true }
+return {
+  -- automatic_installation = true,
+  ensure_installed = {
+    "astro",
+    "bashls",
+    "cssls",
+    -- "denols",
+    "emmet_ls",
+    "gopls",
+    "graphql",
+    "html",
+    "jsonls",
+    "marksman",
+    "rust_analyzer",
+    "sqls",
+    "solidity",
+    "sumneko_lua",
+    "svelte",
+    "tsserver",
+  },
+}

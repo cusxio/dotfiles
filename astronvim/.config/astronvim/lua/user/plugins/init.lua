@@ -1,6 +1,4 @@
 return {
-  ["declancm/cinnamon.nvim"] = { disable = true },
-
   -- ["Darazaki/indent-o-matic"] = { disable = true },
   -- ["nmac427/guess-indent.nvim"] = {
   --   event = "BufReadPost",
@@ -8,37 +6,11 @@ return {
   --     require("guess-indent").setup()
   --   end,
   -- },
-
+  ["nanotee/sqls.nvim"] = require("user.plugins.sqls"),
+  ["rebelot/kanagawa.nvim"] = require("user.plugins.kanagawa"),
   ["echasnovski/mini.nvim"] = require("user.plugins.mini"),
-  ["rebelot/kanagawa.nvim"] = {
-    as = "kanagawa",
-    config = function()
-      require("kanagawa").setup({
-        keywordStyle = {
-          italic = false,
-        },
-        statementStyle = {
-          italic = false,
-        },
-        variablebuiltinStyle = {
-          italic = false,
-        },
-      })
-    end,
-  },
-  ["jose-elias-alvarez/typescript.nvim"] = {
-    after = "mason-lspconfig.nvim",
-    config = function()
-      require("typescript").setup({
-        server = astronvim.lsp.server_settings("tsserver"),
-      })
-    end,
-  },
-  ["ggandor/leap.nvim"] = {
-    requires = { "tpope/vim-repeat" },
-    config = function()
-      require("leap").set_default_keymaps()
-    end,
-  },
+  ["jose-elias-alvarez/typescript.nvim"] = require("user.plugins.typescript"),
+  ["ggandor/leap.nvim"] = require("user.plugins.leap"),
   { "gpanders/editorconfig.nvim" },
+  -- { "Yazeed1s/oh-lucy.nvim" },
 }
