@@ -1,18 +1,15 @@
 return {
   ["declancm/cinnamon.nvim"] = { disable = true },
-  ["Darazaki/indent-o-matic"] = { disable = true },
-  ["nmac427/guess-indent.nvim"] = {
-    event = "BufReadPost",
-    config = function()
-      require("guess-indent").setup()
-    end,
-  },
-  ["echasnovski/mini.nvim"] = {
-    event = "VimEnter",
-    config = function()
-      require("mini.surround").setup()
-    end,
-  },
+
+  -- ["Darazaki/indent-o-matic"] = { disable = true },
+  -- ["nmac427/guess-indent.nvim"] = {
+  --   event = "BufReadPost",
+  --   config = function()
+  --     require("guess-indent").setup()
+  --   end,
+  -- },
+
+  ["echasnovski/mini.nvim"] = require("user.plugins.mini"),
   ["rebelot/kanagawa.nvim"] = {
     as = "kanagawa",
     config = function()
@@ -30,11 +27,18 @@ return {
     end,
   },
   ["jose-elias-alvarez/typescript.nvim"] = {
-    after = "nvim-lsp-installer",
+    after = "mason-lspconfig.nvim",
     config = function()
       require("typescript").setup({
         server = astronvim.lsp.server_settings("tsserver"),
       })
     end,
   },
+  ["ggandor/leap.nvim"] = {
+    requires = { "tpope/vim-repeat" },
+    config = function()
+      require("leap").set_default_keymaps()
+    end,
+  },
+  { "gpanders/editorconfig.nvim" },
 }

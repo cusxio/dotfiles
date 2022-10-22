@@ -18,6 +18,7 @@ return {
     "typescript",
     "rust",
     "solidity",
+    "svelte",
     "vim",
     "yaml",
   },
@@ -25,6 +26,9 @@ return {
     enable = false,
   },
   indent = {
+    enable = true,
+  },
+  matchup = {
     enable = true,
   },
 }
