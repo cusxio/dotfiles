@@ -1,4 +1,8 @@
 return {
   timeout_ms = 5000,
-  disabled = { "tsserver" },
+  disabled = {
+    "astro",
+    "jsonls",
+    "tsserver",
+  },
 }
