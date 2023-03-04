@@ -16,6 +16,7 @@ return {
     "solidity",
     "sumneko_lua",
     "svelte",
+    "tailwindcss",
     "tsserver",
   },
 }

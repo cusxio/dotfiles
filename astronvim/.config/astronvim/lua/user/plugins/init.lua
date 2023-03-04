@@ -6,11 +6,23 @@ return {
   --     require("guess-indent").setup()
   --   end,
   -- },
-  ["nanotee/sqls.nvim"] = require("user.plugins.sqls"),
-  ["rebelot/kanagawa.nvim"] = require("user.plugins.kanagawa"),
-  ["echasnovski/mini.nvim"] = require("user.plugins.mini"),
-  ["jose-elias-alvarez/typescript.nvim"] = require("user.plugins.typescript"),
+  ["andymass/vim-matchup"] = { after = "nvim-treesitter" },
   ["ggandor/leap.nvim"] = require("user.plugins.leap"),
   { "gpanders/editorconfig.nvim" },
+  ["jose-elias-alvarez/typescript.nvim"] = require("user.plugins.typescript"),
+  ["machakann/vim-sandwich"] = {
+    opt = true,
+    setup = function()
+      table.insert(astronvim.file_plugins, "vim-sandwich")
+    end,
+  },
+  ["nanotee/sqls.nvim"] = require("user.plugins.sqls"),
+  ["rebelot/kanagawa.nvim"] = require("user.plugins.kanagawa"),
+  ["sindrets/diffview.nvim"] = {
+    opt = true,
+    setup = function()
+      table.insert(astronvim.git_plugins, "diffview.nvim")
+    end,
+  },
   -- { "Yazeed1s/oh-lucy.nvim" },
 }
