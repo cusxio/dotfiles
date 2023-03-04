@@ -1,34 +1,18 @@
 return {
-  ensure_installed = {
-    "astro",
-    "bash",
-    "comment",
-    "css",
-    "dockerfile",
-    "graphql",
-    "go",
-    "html",
-    "javascript",
-    "json",
-    "lua",
-    "markdown",
-    "prisma",
-    "toml",
-    "tsx",
-    "typescript",
-    "rust",
-    "solidity",
-    "svelte",
-    "vim",
-    "yaml",
+  "nvim-treesitter/nvim-treesitter",
+  dependencies = {
+    {
+      "andymass/vim-matchup",
+      init = function()
+        vim.g.matchup_matchparen_deferred = 1
+      end,
+    },
+    "nvim-treesitter/nvim-treesitter-textobjects",
   },
-  rainbow = {
-    enable = false,
-  },
-  indent = {
-    enable = true,
-  },
-  matchup = {
-    enable = true,
+  opts = {
+    auto_install = vim.fn.executable("tree-sitter") == 1,
+    indent = { enable = true },
+    matchup = { enable = true },
+    rainbow = { enable = false },
   },
 }

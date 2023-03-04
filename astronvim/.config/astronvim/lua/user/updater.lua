@@ -1,3 +1,3 @@
--- return {
---   branch = "nightly",
--- }
+return {
+  channel = "nightly",
+}
