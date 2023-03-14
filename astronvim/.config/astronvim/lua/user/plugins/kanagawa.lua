@@ -12,7 +12,7 @@ return {
       theme = {
         all = {
           ui = {
-            bg = "#1b1d26",
+            bg = "#1B1D26",
           },
         },
       },
