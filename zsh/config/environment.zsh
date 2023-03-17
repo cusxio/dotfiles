@@ -19,4 +19,6 @@ if (( $+commands[brew] )); then
   # export HOMEBREW_CASK_OPTS="--require-sha"
 fi
 
+(( $+commands[bat] )) && export BAT_THEME="Catppuccin-mocha"
+
 export LANG='en_US.UTF-8'
