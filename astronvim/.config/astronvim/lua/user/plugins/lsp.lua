@@ -1,5 +1,4 @@
 return {
-  { "jose-elias-alvarez/typescript.nvim" },
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",

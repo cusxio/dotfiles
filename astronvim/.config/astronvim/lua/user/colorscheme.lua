@@ -1,1 +1,2 @@
+-- return "tokyonight"
 return "kanagawa"
