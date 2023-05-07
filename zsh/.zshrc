@@ -53,3 +53,9 @@ fi
 
 # zoxide
 eval "$(zoxide init zsh)"
+
+# pyenv
+if (( $+commands[pyenv] )); then
+  export PYENV_ROOT="${XDG_CONFIG_HOME}/pyenv"
+  eval "$(pyenv init -)"
+fi
