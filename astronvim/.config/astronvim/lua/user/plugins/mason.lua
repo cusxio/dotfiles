@@ -35,6 +35,11 @@ return {
         "shellcheck",
       },
       handlers = {
+        eslint_d = function()
+          local null_ls = require("null-ls")
+          null_ls.register(null_ls.builtins.diagnostics.eslint_d)
+          null_ls.register(null_ls.builtins.formatting.eslint_d)
+        end,
         prettierd = function()
           local null_ls = require("null-ls")
           null_ls.register(null_ls.builtins.formatting.prettierd.with({ extra_filetypes = { "astro" } }))

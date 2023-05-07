@@ -5,4 +5,6 @@ return function()
       conf = "config",
     },
   })
+
+  require("user.autocmds")
 end

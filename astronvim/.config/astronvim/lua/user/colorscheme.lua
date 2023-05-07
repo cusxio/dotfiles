@@ -1,2 +1,4 @@
 -- return "tokyonight"
-return "kanagawa"
+-- return "kanagawa"
+-- return "catppuccin"
+return "monokai-pro"
