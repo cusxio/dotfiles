@@ -63,7 +63,14 @@ return {
           },
         },
       },
-      { "j-hui/fidget.nvim", config = true },
+      {
+        "j-hui/fidget.nvim",
+        opts = {
+          text = {
+            spinner = "dots",
+          },
+        },
+      },
     },
     config = function()
       require("setup.lsp")

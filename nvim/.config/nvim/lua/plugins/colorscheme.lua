@@ -6,6 +6,12 @@ return {
     config = function()
       require("monokai-pro").setup({
         filter = "spectrum",
+        background_clear = {
+          "float_win",
+          "telescope",
+          "neo-tree",
+          "which-key",
+        },
         override = function(c)
           return {
             NeoTreeCursorLine = { bold = false },
@@ -13,9 +19,9 @@ return {
             NeoTreeRootName = { bold = false },
             NeoTreeGitConflict = { bold = false },
             NeoTreeTabActive = { bold = false },
-            StatusLine = {
-              bg = c.editor.background,
-            },
+            StatusLine = { bg = c.editor.background },
+            StatusLineNC = { bg = c.editor.background },
+            ColorColumn = { bg = c.base.dimmed5 },
           }
         end,
       })

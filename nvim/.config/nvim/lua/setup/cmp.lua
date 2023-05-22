@@ -1,6 +1,73 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 
+local lspkind = {
+  Namespace = "󰌗",
+  Text = "󰉿",
+  Method = "󰆧",
+  Function = "󰆧",
+  Constructor = "",
+  Field = "󰜢",
+  Variable = "󰀫",
+  Class = "󰠱",
+  Interface = "",
+  Module = "",
+  Property = "󰜢",
+  Unit = "󰑭",
+  Value = "󰎠",
+  Enum = "",
+  Keyword = "󰌋",
+  Snippet = "",
+  Color = "󰏘",
+  File = "󰈚",
+  Reference = "󰈇",
+  Folder = "󰉋",
+  EnumMember = "",
+  Constant = "󰏿",
+  Struct = "󰙅",
+  Event = "",
+  Operator = "󰆕",
+  TypeParameter = "󰊄",
+  Table = "",
+  Object = "󰅩",
+  Tag = "",
+  Array = "[]",
+  Boolean = "",
+  Number = "",
+  Null = "󰟢",
+  String = "󰉿",
+  Calendar = "",
+  Watch = "󰥔",
+  Package = "",
+  Copilot = "",
+  Codeium = "",
+  TabNine = "",
+}
+
+local formatting_style = {
+  fields = { "abbr", "kind", "menu" },
+
+  format = function(_, item)
+    local icon = lspkind[item.kind] or ""
+    item.kind = string.format(" %s  %s", icon, item.kind or "")
+
+    return item
+  end,
+}
+
+local function border(hl_name)
+  return {
+    { "╭", hl_name },
+    { "─", hl_name },
+    { "╮", hl_name },
+    { "│", hl_name },
+    { "╯", hl_name },
+    { "─", hl_name },
+    { "╰", hl_name },
+    { "│", hl_name },
+  }
+end
+
 local has_words_before = function()
   unpack = unpack or table.unpack
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -18,7 +85,18 @@ cmp.setup({
       luasnip.lsp_expand(args.body)
     end,
   },
-  -- TODO: Ca't find docs for this option
+  window = {
+    completion = {
+      border = border("SPFloatBorder"),
+      scrollbar = false,
+    },
+    documentation = {
+      side_padding = 1,
+      border = border("SPFloatBorder"),
+    },
+  },
+  formatting = formatting_style,
+  -- TODO: Can't find docs for this option
   -- confirm_opts = {
   --   behavior = cmp.ConfirmBehavior.Replace,
   --   select = false,

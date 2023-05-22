@@ -5,7 +5,7 @@ local c = monokai.setup("spectrum")
 
 local magenta = c.base.magenta
 local cyan = c.base.cyan
--- local blue = c.base.blue
+local blue = c.base.blue
 local yellow = c.base.yellow
 local red = c.base.red
 local green = c.base.green
@@ -201,8 +201,7 @@ statusline.LspDiagnostics = {
       },
       {
         provider = function(self)
-          return vim.fn.sign_getdefined("DiagnosticSignError")[1].text
-            .. self.errors
+          return ("  " .. self.errors .. " ")
         end,
       },
       {
@@ -223,8 +222,7 @@ statusline.LspDiagnostics = {
       },
       {
         provider = function(self)
-          return vim.fn.sign_getdefined("DiagnosticSignWarn")[1].text
-            .. self.warnings
+          return ("  " .. self.warnings .. " ")
         end,
       },
       {
@@ -238,14 +236,19 @@ statusline.LspDiagnostics = {
     condition = function(self)
       return self.hints > 0
     end,
-    hl = { fg = c.base.dimmed3, bg = "bg" },
+    hl = { fg = "bg", bg = blue },
     {
       {
+        provider = "",
+      },
+      {
         provider = function(self)
-          return " "
-            .. vim.fn.sign_getdefined("DiagnosticSignHint")[1].text
-            .. self.hints
+          return (" 󰌵 " .. self.hints .. " ")
         end,
+      },
+      {
+        provider = "",
+        hl = { bg = "bg", fg = blue },
       },
     },
   },
@@ -254,14 +257,19 @@ statusline.LspDiagnostics = {
     condition = function(self)
       return self.info > 0
     end,
-    hl = { fg = c.base.dimmed3, bg = "bg" },
+    hl = { fg = "bg", bg = blue },
     {
       {
+        provider = "",
+      },
+      {
         provider = function(self)
-          return " "
-            .. vim.fn.sign_getdefined("DiagnosticSignInfo")[1].text
-            .. self.info
+          return (" 󰋼 " .. self.info .. " ")
         end,
+      },
+      {
+        provider = "",
+        hl = { bg = "bg", fg = blue },
       },
     },
   },
@@ -330,6 +338,48 @@ statusline.SearchResults = {
 }
 
 --
+-- statusline.LspProgress = {
+--   condition = conditions.lsp_attached,
+-- update = {
+--   "User",
+--   pattern = "LspProgressUpdate, LspRequest",
+--   callback = vim.schedule_wrap(function()
+--     vim.cmd.redrawstatus()
+--   end),
+-- },
+--   update = {
+--     "LspAttach",
+--     "LspDetach",
+--     "User LspProgressUpdate"
+--     "User LspRequest",
+--   },
+--   provider = function()
+--     if not rawget(vim, "lsp") then
+--       return ""
+--     end
+--
+--     local Lsp = vim.lsp.util.get_progress_messages()[1]
+--
+--     local msg = Lsp.message or ""
+--     local percentage = Lsp.percentage or 0
+--     local title = Lsp.title or ""
+--     local spinners =
+--       { "", "󰪞", "󰪟", "󰪠", "󰪢", "󰪣", "󰪤", "󰪥" }
+--     local ms = vim.loop.hrtime() / 1000000
+--     local frame = math.floor(ms / 120) % #spinners
+--     local content = string.format(
+--       " %%<%s %s %s (%s%%%%) ",
+--       spinners[frame + 1],
+--       title,
+--       msg,
+--       percentage
+--     )
+--
+--     return content
+--   end,
+--   hl = { bg = yellow, fg = "bg" },
+-- }
+--
 
 statusline.Ruler = {
   condition = function(self)
@@ -365,17 +415,9 @@ require("heirline").setup({
     statusline.FileNameBlock,
     statusline.LspAttached,
     statusline.LspDiagnostics,
+    -- statusline.LspProgress,
     align,
-    -- statusline.GitBranch,
-    -- statusline.FileNameBlock,
-    -- align,
-    -- statusline.Overseer,
-    -- statusline.Dap,
-    -- statusline.Lazy,
     statusline.FileType,
-    -- statusline.FileEncoding,
-    -- statusline.Session,
-    -- statusline.MacroRecording,
     statusline.SearchResults,
     statusline.Ruler,
   },

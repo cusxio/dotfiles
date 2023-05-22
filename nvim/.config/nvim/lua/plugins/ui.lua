@@ -1,5 +1,26 @@
 return {
   {
+    "nvim-neo-tree/neo-tree.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+    cmd = "Neotree",
+    init = function()
+      vim.g.neo_tree_remove_legacy_commands = true
+    end,
+
+    opts = {
+      close_if_last_window = true,
+      window = {
+        width = 30,
+      },
+      filesystem = {
+        use_libuv_file_watcher = true,
+      },
+    },
+  },
+  {
     "folke/which-key.nvim",
     keys = { "<leader>" },
     config = true,
@@ -29,7 +50,9 @@ return {
   },
   {
     "rebelot/heirline.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
     event = "UIEnter",
     config = function()
       require("setup/heirline")
