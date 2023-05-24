@@ -48,9 +48,7 @@ require("lualine").setup({
     theme = theme,
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
-    disabled_filetypes = {
-      "lazy",
-    },
+    disabled_filetypes = { statusline = { "lazy", "alpha" } },
     ignore_focus = {
       "help",
       "TelescopePrompt",

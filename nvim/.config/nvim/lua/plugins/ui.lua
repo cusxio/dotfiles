@@ -2,6 +2,14 @@ local get_icon = require("utils").get_icon
 
 return {
   {
+    "goolord/alpha-nvim",
+    event = "VimEnter",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("setup.alpha")
+    end,
+  },
+  {
     "nvim-neo-tree/neo-tree.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -11,7 +19,6 @@ return {
     init = function()
       vim.g.neo_tree_remove_legacy_commands = true
     end,
-
     opts = {
       close_if_last_window = true,
       window = {
@@ -59,8 +66,8 @@ return {
   },
   {
     "lewis6991/gitsigns.nvim",
-    enabled = vim.fn.executable("git") == 1,
     event = { "BufRead", "BufNewFile" },
+    enabled = vim.fn.executable("git") == 1,
     opts = {
       signs = {
         add = { text = "▎" },
@@ -84,11 +91,11 @@ return {
   -- },
   {
     "nvim-lualine/lualine.nvim",
+    event = "BufRead",
     dependencies = {
       "nvim-tree/nvim-web-devicons",
       "WhoIsSethDaniel/lualine-lsp-progress.nvim",
     },
-    event = "UIEnter",
     config = function()
       require("setup.lualine")
     end,

@@ -16,7 +16,28 @@ return {
   },
   {
     "kylechui/nvim-surround",
-    event = "VeryLazy",
+    event = "InsertEnter",
+    config = true,
+  },
+  {
+    "junegunn/vim-slash",
+    event = "BufRead",
+    config = function()
+      vim.cmd([[noremap <plug>(slash-after) zz]])
+    end,
+  },
+  {
+    "ggandor/flit.nvim",
+    event = "BufRead",
+    dependencies = {
+      {
+        "ggandor/leap.nvim",
+        dependencies = { "tpope/vim-repeat" },
+        config = function()
+          require("leap").add_default_mappings()
+        end,
+      },
+    },
     config = true,
   },
   {
