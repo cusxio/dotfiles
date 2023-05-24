@@ -51,7 +51,11 @@ chain = function(movements)
     local now = hs.timer.secondsSinceEpoch()
     local screen = win:screen()
 
-    if lastSeenChain ~= movements or lastSeenAt < now - chainResetInterval or lastSeenWindow ~= id then
+    if
+      lastSeenChain ~= movements
+      or lastSeenAt < now - chainResetInterval
+      or lastSeenWindow ~= id
+    then
       sequenceNumber = 1
       lastSeenChain = movements
     elseif sequenceNumber == 1 then
