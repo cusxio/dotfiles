@@ -1,33 +1,37 @@
-local servers = {
-  tsserver = {},
-  lua_ls = {
-    Lua = {
-      runtime = {
-        version = "LuaJIT",
-      },
-      telemetry = { enable = false },
-    },
-  },
-}
+local get_icon = require("utils").get_icon
 
-vim.keymap.set(
-  "n",
-  "[d",
-  vim.diagnostic.goto_prev,
-  { desc = "Go to previous diagnostic message" }
-)
-vim.keymap.set(
-  "n",
-  "]d",
-  vim.diagnostic.goto_next,
-  { desc = "Go to next diagnostic message" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>ld",
-  vim.diagnostic.open_float,
-  { desc = "Open floating diagnostic message" }
-)
+local diagnostics_setup = function()
+  local signs = {
+    {
+      name = "DiagnosticSignError",
+      text = get_icon("DiagnosticError"),
+      texthl = "DiagnosticSignError",
+    },
+    {
+      name = "DiagnosticSignWarn",
+      text = get_icon("DiagnosticWarn"),
+      texthl = "DiagnosticSignWarn",
+    },
+    {
+      name = "DiagnosticSignHint",
+      text = get_icon("DiagnosticHint"),
+      texthl = "DiagnosticSignHint",
+    },
+    {
+      name = "DiagnosticSignInfo",
+      text = get_icon("DiagnosticInfo"),
+      texthl = "DiagnosticSignInfo",
+    },
+  }
+
+  for _, sign in ipairs(signs) do
+    vim.fn.sign_define(sign.name, sign)
+  end
+
+  -- vim.diagnostic.config
+end
+
+diagnostics_setup()
 
 local on_attach = function(client, bufnr)
   local capabilities = client.server_capabilities
@@ -36,47 +40,70 @@ local on_attach = function(client, bufnr)
   capabilities.documentRangeFormattingProvider = false
 
   local nmap = function(keys, func, desc)
-    if desc then
-      desc = "LSP: " .. desc
-    end
-
     vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
   end
 
+  nmap("<leader>ld", vim.diagnostic.open_float, "Hover diagnostic")
+  nmap("[d", vim.diagnostic.goto_prev, "Previous diagnostic")
+  nmap("d]", vim.diagnostic.goto_next, "Next diagnostic")
+
   if capabilities.renameProvider then
-    nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+    nmap("<leader>lr", vim.lsp.buf.rename, "Rename current symbol")
   end
   if capabilities.codeActionProvider then
-    nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+    nmap("<leader>la", vim.lsp.buf.code_action, "LSP code action")
   end
 
   if capabilities.definitionProvider then
-    nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+    nmap("gd", vim.lsp.buf.definition, "Show the definition of current symbol")
   end
 
   if capabilities.declarationProvider then
-    nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+    nmap("gD", vim.lsp.buf.declaration, "Declaration of current symbol")
   end
 
   if capabilities.implementationProvider then
-    nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
+    nmap("gI", vim.lsp.buf.implementation, "Implementation of current symbol")
   end
 
   if capabilities.typeDefinitionProvider then
-    nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
+    nmap("gT", vim.lsp.buf.type_definition, "Definition of current type")
   end
 
   if capabilities.hoverProvider then
-    nmap("K", vim.lsp.buf.hover, "Hover Documentation")
+    nmap("K", vim.lsp.buf.hover, "Hover symbol details")
   end
 
   if capabilities.signatureHelpProvider then
-    nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
+    nmap("<leader>lh", vim.lsp.buf.signature_help, "Signature help")
   end
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
+local servers = {
+  tsserver = {},
+  lua_ls = {
+    Lua = {
+      diagnostics = {
+        globals = {
+          "vim",
+        },
+      },
+      telemetry = {
+        enable = false,
+      },
+      workspace = {
+        library = {
+          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+          [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+          [vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy"] = true,
+        },
+      },
+    },
+  },
+}
 
 local mason_lspconfig = require("mason-lspconfig")
 mason_lspconfig.setup({
