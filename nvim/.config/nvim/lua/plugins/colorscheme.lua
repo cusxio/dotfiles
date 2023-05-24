@@ -19,9 +19,16 @@ return {
             NeoTreeRootName = { bold = false },
             NeoTreeGitConflict = { bold = false },
             NeoTreeTabActive = { bold = false },
+            TelescopeSelection = {
+              bg = "#2b2b2b",
+              fg = c.base.white,
+            },
+            TelescopeMatching = {
+              fg = c.base.cyan,
+            },
             StatusLine = { bg = c.editor.background },
             StatusLineNC = { bg = c.editor.background },
-            ColorColumn = { bg = c.base.dimmed5 },
+            ColorColumn = { bg = "#2b2b2b" },
           }
         end,
       })

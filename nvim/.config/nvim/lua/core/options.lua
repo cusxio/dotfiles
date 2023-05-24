@@ -5,7 +5,8 @@ g.mapleader = " "
 g.maplocalleader = " "
 
 opt.clipboard = "unnamedplus"
--- opt.cmdheight = 0
+opt.cmdheight = 0
+opt.showmode = false
 opt.colorcolumn = { "80", "120" }
 opt.scrolloff = 15
 opt.cursorline = true
@@ -37,7 +38,7 @@ opt.breakindent = true
 opt.linebreak = true
 
 -- disable nvim intro
-opt.shortmess:append("sI")
+opt.shortmess:append({ s = true, I = true })
 
 opt.updatetime = 250
 opt.timeout = true

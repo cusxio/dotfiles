@@ -1,3 +1,5 @@
+local get_icon = require("utils").get_icon
+
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -15,8 +17,30 @@ return {
       window = {
         width = 30,
       },
+      default_component_configs = {
+        indent = { padding = 0, indent_size = 1 },
+        modified = { symbol = get_icon("FileModified") },
+        git_status = {
+          symbols = {
+            added = get_icon("GitAdd"),
+            deleted = get_icon("GitDelete"),
+            modified = get_icon("GitChange"),
+            renamed = get_icon("GitRenamed"),
+            untracked = get_icon("GitUntracked"),
+            ignored = get_icon("GitIgnored"),
+            unstaged = get_icon("GitUnstaged"),
+            staged = get_icon("GitStaged"),
+            conflict = get_icon("GitConflict"),
+          },
+        },
+      },
       filesystem = {
+        follow_current_file = true,
         use_libuv_file_watcher = true,
+        filtered_items = {
+          hide_dotfiles = false,
+          hide_gitignored = false,
+        },
       },
     },
   },
@@ -48,14 +72,25 @@ return {
       },
     },
   },
+  -- {
+  --   "rebelot/heirline.nvim",
+  --   dependencies = {
+  --     "nvim-tree/nvim-web-devicons",
+  --   },
+  --   event = "UIEnter",
+  --   config = function()
+  --     require("setup/heirline")
+  --   end,
+  -- },
   {
-    "rebelot/heirline.nvim",
+    "nvim-lualine/lualine.nvim",
     dependencies = {
       "nvim-tree/nvim-web-devicons",
+      "WhoIsSethDaniel/lualine-lsp-progress.nvim",
     },
     event = "UIEnter",
     config = function()
-      require("setup/heirline")
+      require("setup.lualine")
     end,
   },
   {
