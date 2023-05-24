@@ -1,0 +1,44 @@
+[colors]
+ansi = [
+  "#16161d",
+  "#c34043",
+  "#76946a",
+  "#c0a36e",
+  "#7e9cd8",
+  "#957fb8",
+  "#6a9589",
+  "#c8c093",
+]
+brights = [
+  "#727169",
+  "#e82424",
+  "#98bb6c",
+  "#e6c384",
+  "#7fb4ca",
+  "#938aa9",
+  "#7aa89f",
+  "#dcd7ba",
+]
+
+background = "#1b1d26"
+cursor_border = "#e6c384"
+cursor_bg = "#e6c384"
+cursor_fg = "#16161d"
+
+[colors.tab_bar]
+background = "#1b1d26"
+
+[colors.tab_bar.inactive_tab]
+bg_color = "#1b1d26"
+fg_color = "#dcd7ba"
+
+[colors.tab_bar.active_tab]
+bg_color = "#e6c384"
+fg_color = "#16161d"
+
+[colors.tab_bar.new_tab]
+bg_color = "#1b1d26"
+fg_color = "#dcd7ba"
+
+[metadata]
+name = "kanagawa"
