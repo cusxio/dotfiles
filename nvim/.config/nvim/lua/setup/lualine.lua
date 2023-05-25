@@ -1,6 +1,6 @@
 local get_icon = require("utils").get_icon
-local monokai = require("monokai-pro.colorscheme")
-local c = monokai.setup("spectrum")
+-- local monokai = require("monokai-pro.colorscheme")
+-- local c = monokai.setup("spectrum")
 
 local active_clients = function()
   local clients = vim.lsp.buf_get_clients()
@@ -19,33 +19,33 @@ local active_clients = function()
   return ""
 end
 
-local colors = {
-  -- bg = c.editor.bg,
-  bg = "#2b2b2b",
-  fg = c.base.dimmed3,
-}
+-- local colors = {
+--   -- bg = c.editor.bg,
+--   bg = "#2b2b2b",
+--   fg = c.base.dimmed3,
+-- }
 
-local theme = {
-  normal = {
-    a = { fg = colors.fg, bg = colors.bg },
-    b = { fg = colors.fg, bg = colors.bg },
-    c = { fg = colors.fg, bg = colors.bg },
-  },
-  insert = { a = { fg = colors.fg, bg = colors.bg } },
-  visual = { a = { fg = colors.fg, bg = colors.bg } },
-  command = { a = { fg = colors.fg, bg = colors.bg } },
-  replace = { a = { fg = colors.fg, bg = colors.bg } },
-  inactive = {
-    a = { fg = colors.fg, bg = colors.bg },
-    b = { fg = colors.fg, bg = colors.bg },
-    c = { fg = colors.fg, bg = colors.bg },
-  },
-}
+-- local theme = {
+--   normal = {
+--     a = { fg = colors.fg, bg = colors.bg },
+--     b = { fg = colors.fg, bg = colors.bg },
+--     c = { fg = colors.fg, bg = colors.bg },
+--   },
+--   insert = { a = { fg = colors.fg, bg = colors.bg } },
+--   visual = { a = { fg = colors.fg, bg = colors.bg } },
+--   command = { a = { fg = colors.fg, bg = colors.bg } },
+--   replace = { a = { fg = colors.fg, bg = colors.bg } },
+--   inactive = {
+--     a = { fg = colors.fg, bg = colors.bg },
+--     b = { fg = colors.fg, bg = colors.bg },
+--     c = { fg = colors.fg, bg = colors.bg },
+--   },
+-- }
 
 require("lualine").setup({
   options = {
     icons_enabled = true,
-    theme = theme,
+    -- theme = theme,
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
     disabled_filetypes = { statusline = { "lazy", "alpha" } },
@@ -106,23 +106,24 @@ require("lualine").setup({
           info = get_icon("DiagnosticInfo" .. " "),
           hint = get_icon("DiagnosticHint") .. " ",
         },
-        color = {
-          bg = c.inputValidation.errorForeground,
-        },
-        diagnostics_color = {
-          error = { bg = colors.bg, fg = c.inputValidation.errorForeground },
-          warn = { bg = colors.bg, fg = c.inputValidation.warningForeground },
-          info = { bg = colors.bg, fg = c.inputValidation.infoForeground },
-          hint = { bg = colors.bg, fg = c.inputValidation.infoForeground },
-          -- error = "DiagnosticError",
-          -- warn = "DiagnosticWarn",
-          -- info = "DiagnosticInfo",
-          -- hint = "DiagnosticHint",
-        },
+        -- color = {
+        --   bg = c.inputValidation.errorForeground,
+        -- },
+        -- diagnostics_color = {
+        -- error = { bg = colors.bg, fg = c.inputValidation.errorForeground },
+        -- warn = { bg = colors.bg, fg = c.inputValidation.warningForeground },
+        -- info = { bg = colors.bg, fg = c.inputValidation.infoForeground },
+        -- hint = { bg = colors.bg, fg = c.inputValidation.infoForeground },
+        -- error = "DiagnosticError",
+        -- warn = "DiagnosticWarn",
+        -- info = "DiagnosticInfo",
+        -- hint = "DiagnosticHint",
+        -- },
         -- colored = false,
         disabled_buftypes = { "neo-tree" },
         -- always_visible = true,
       },
+      { "searchcount" },
     },
     lualine_y = {
       {

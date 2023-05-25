@@ -1,24 +1,22 @@
 local get_icon = require("utils").get_icon
 
 return {
-  {
-    "goolord/alpha-nvim",
-    event = "VimEnter",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      require("setup.alpha")
-    end,
-  },
+  -- {
+  --   "goolord/alpha-nvim",
+  --   event = "VimEnter",
+  --   dependencies = { "nvim-tree/nvim-web-devicons" },
+  --   config = function()
+  --     require("setup.alpha")
+  --   end,
+  -- },
   {
     "nvim-neo-tree/neo-tree.nvim",
+    event = { "BufRead", "BufNewFile" },
     dependencies = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
     },
     cmd = "Neotree",
-    init = function()
-      vim.g.neo_tree_remove_legacy_commands = true
-    end,
     opts = {
       close_if_last_window = true,
       window = {
@@ -50,11 +48,18 @@ return {
         },
       },
     },
+    config = function()
+      vim.g.neo_tree_remove_legacy_commands = true
+    end,
   },
   {
     "folke/which-key.nvim",
     keys = { "<leader>" },
-    config = true,
+    opts = {
+      window = {
+        border = "single",
+      },
+    },
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -91,7 +96,7 @@ return {
   -- },
   {
     "nvim-lualine/lualine.nvim",
-    event = "BufRead",
+    event = "UiEnter",
     dependencies = {
       "nvim-tree/nvim-web-devicons",
       "WhoIsSethDaniel/lualine-lsp-progress.nvim",
