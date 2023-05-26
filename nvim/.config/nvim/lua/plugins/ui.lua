@@ -48,8 +48,10 @@ return {
         },
       },
     },
-    config = function()
+    config = function(_, opts)
       vim.g.neo_tree_remove_legacy_commands = true
+
+      require("neo-tree").setup(opts)
     end,
   },
   {

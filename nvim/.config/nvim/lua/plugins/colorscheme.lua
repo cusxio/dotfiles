@@ -36,32 +36,4 @@ return {
       vim.cmd.colorscheme("monokai-pro")
     end,
   },
-  -- {
-  --   "rebelot/kanagawa.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     require("kanagawa").setup({
-  --       theme = "wave",
-  --     })
-  --
-  --     vim.cmd.colorscheme("kanagawa")
-  --   end,
-  -- },
-  -- {
-  -- "aktersnurra/no-clown-fiesta.nvim",
-  -- lazy = false,
-  -- priority = 1000,
-  -- config = function()
-  -- vim.cmd.colorscheme("no-clown-fiesta")
-  -- end,
-  -- },
-  -- {
-  --   "Alexis12119/nightly.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     vim.cmd.colorscheme("nightly")
-  --   end,
-  -- },
 }
