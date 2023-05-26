@@ -1,14 +1,6 @@
 local get_icon = require("utils").get_icon
 
 return {
-  -- {
-  --   "goolord/alpha-nvim",
-  --   event = "VimEnter",
-  --   dependencies = { "nvim-tree/nvim-web-devicons" },
-  --   config = function()
-  --     require("setup.alpha")
-  --   end,
-  -- },
   {
     "nvim-neo-tree/neo-tree.nvim",
     event = { "BufRead", "BufNewFile" },
