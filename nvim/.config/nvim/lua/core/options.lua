@@ -7,7 +7,7 @@ g.maplocalleader = " "
 opt.clipboard = "unnamedplus"
 opt.cmdheight = 0
 opt.showmode = false
-opt.colorcolumn = { "80", "120" }
+-- opt.colorcolumn = { "80" }
 opt.scrolloff = 15
 opt.cursorline = true
 opt.mouse = "a"
@@ -32,6 +32,7 @@ opt.numberwidth = 2
 
 opt.undofile = true
 opt.whichwrap:append("<>[]hl")
+opt.fillchars = { eob = " " }
 
 -- opt.wrap = false
 opt.breakindent = true

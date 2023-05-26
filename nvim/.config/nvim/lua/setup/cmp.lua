@@ -87,12 +87,12 @@ cmp.setup({
   },
   window = {
     completion = {
-      border = border("SPFloatBorder"),
+      -- border = border("CmpBorder"),
       scrollbar = false,
     },
     documentation = {
       side_padding = 1,
-      border = border("SPFloatBorder"),
+      -- border = border("CmpBorder"),
     },
   },
   formatting = formatting_style,
