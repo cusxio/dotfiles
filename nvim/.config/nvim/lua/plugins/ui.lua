@@ -78,16 +78,6 @@ return {
       },
     },
   },
-  -- {
-  --   "rebelot/heirline.nvim",
-  --   dependencies = {
-  --     "nvim-tree/nvim-web-devicons",
-  --   },
-  --   event = "UIEnter",
-  --   config = function()
-  --     require("setup/heirline")
-  --   end,
-  -- },
   {
     "nvim-lualine/lualine.nvim",
     event = "UiEnter",
