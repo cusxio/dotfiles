@@ -8,10 +8,11 @@ opt.clipboard = "unnamedplus"
 opt.cmdheight = 0
 opt.showmode = false
 -- opt.colorcolumn = { "80" }
-opt.scrolloff = 15
-opt.cursorline = true
+opt.scrolloff = 8
+-- opt.cursorline = true
 opt.mouse = "a"
 opt.laststatus = 3
+opt.pumheight = 15
 
 opt.ignorecase = true
 opt.smartcase = true
