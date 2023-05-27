@@ -56,7 +56,7 @@ return {
     left = 0,
   },
   -- force_reverse_video_cursor = true,
-  color_scheme = "monokai-pro-spectrum",
+  color_scheme = "kanagawa",
   window_decorations = "RESIZE",
   default_cursor_style = "SteadyBar",
 }

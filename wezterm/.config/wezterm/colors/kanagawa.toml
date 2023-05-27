@@ -1,6 +1,6 @@
 [colors]
 ansi = [
-  "#16161d",
+  "#090618",
   "#c34043",
   "#76946a",
   "#c0a36e",
@@ -20,10 +20,19 @@ brights = [
   "#dcd7ba",
 ]
 
-background = "#1b1d26"
-cursor_border = "#e6c384"
-cursor_bg = "#e6c384"
-cursor_fg = "#16161d"
+background = "#1f1f28"
+foreground = "#dcd7ba"
+
+# cursor_border = "#e6c384"
+# cursor_bg = "#e6c384"
+# cursor_fg = "#16161d"
+
+# cursor_bg = "#c8c093"
+# cursor_fg = "#c8c093"
+# cursor_border = "#c8c093"
+
+selection_fg = "#c8c093"
+selection_bg = "#2d4f67"
 
 [colors.tab_bar]
 background = "#1b1d26"
