@@ -23,7 +23,10 @@ require("lualine").setup({
     theme = "kanagawa",
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
-    disabled_filetypes = { statusline = { "lazy", "alpha" } },
+    disabled_filetypes = {
+      statusline = { "lazy" },
+      winbar = { "NvimTree" },
+    },
     ignore_focus = {
       "help",
       "TelescopePrompt",
@@ -37,7 +40,7 @@ require("lualine").setup({
       {
         "b:gitsigns_head",
         icon = get_icon("Git"),
-        disabled_buftypes = { "neo-tree" },
+        disabled_buftypes = { "neo-tree", "nofile" },
       },
       {
         "diff",
@@ -52,7 +55,7 @@ require("lualine").setup({
         --   removed = "DiffDelete",
         -- },
         -- colored = false,
-        disabled_buftypes = { "neo-tree" },
+        disabled_buftypes = { "neo-tree", "nofile" },
       },
     },
     lualine_c = {},
@@ -69,7 +72,6 @@ require("lualine").setup({
       },
       {
         active_clients,
-        disabled_buftypes = { "neo-tree" },
       },
       {
         "diagnostics",
@@ -82,7 +84,7 @@ require("lualine").setup({
           hint = get_icon("DiagnosticHint") .. " ",
         },
         -- colored = false,
-        disabled_buftypes = { "neo-tree" },
+        disabled_buftypes = { "neo-tree", "nofile" },
       },
       { "searchcount" },
     },
@@ -102,5 +104,23 @@ require("lualine").setup({
     lualine_x = {},
     lualine_y = {},
     lualine_z = { { "location" }, { "progress" } },
+  },
+  winbar = {
+    lualine_x = {
+      {
+        "filename",
+        file_status = true,
+        path = 4,
+      },
+    },
+  },
+  inactive_winbar = {
+    lualine_x = {
+      {
+        "filename",
+        file_status = true,
+        path = 4,
+      },
+    },
   },
 })
