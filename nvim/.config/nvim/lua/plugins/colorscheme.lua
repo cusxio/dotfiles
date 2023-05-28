@@ -8,6 +8,7 @@ return {
       local palette = wave_colors.palette
 
       require("kanagawa").setup({
+        compile = true,
         theme = "wave",
         colors = {
           theme = {
