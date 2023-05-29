@@ -4,6 +4,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = { "BufRead", "BufNewFile" },
+    init = require("setup.lsp").init,
     dependencies = {
       { "williamboman/mason.nvim", build = ":MasonUpdate", config = true },
       {
@@ -64,8 +65,6 @@ return {
         },
       },
     },
-    config = function()
-      require("setup.lsp")
-    end,
+    config = require("setup.lsp").config,
   },
 }
