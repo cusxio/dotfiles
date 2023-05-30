@@ -1,7 +1,6 @@
 local get_icon = require("utils").get_icon
 local conditions = require("heirline.conditions")
 -- local utils = require("heirline.utils")
-
 local Align = { provider = "%=" }
 local Space = { provider = " " }
 
@@ -269,6 +268,84 @@ local Statusline = {
   DefaultStatusline,
 }
 
+--
+local function filename_and_parent(path, sep)
+  local segments = vim.split(path, sep)
+  if #segments == 0 then
+    return path
+  elseif #segments == 1 then
+    return segments[#segments]
+  else
+    return table.concat({ segments[#segments - 1], segments[#segments] }, sep)
+  end
+end
+
+local FileName = {
+  Space,
+  {
+    init = function(self)
+      local filename = vim.api.nvim_buf_get_name(0)
+      local extension = vim.fn.fnamemodify(filename, ":e")
+      self.icon, self.icon_color = require("nvim-web-devicons").get_icon_color(
+        filename,
+        extension,
+        { default = true }
+      )
+    end,
+    provider = function(self)
+      return self.icon and (self.icon .. " ")
+    end,
+    hl = function(self)
+      return { fg = self.icon_color }
+    end,
+  },
+  {
+    provider = function()
+      local path_separator = package.config:sub(1, 1)
+      local display =
+        filename_and_parent(vim.fn.expand("%:p:~"), path_separator)
+
+      return display
+    end,
+  },
+  {
+    condition = function()
+      return vim.bo.modified
+    end,
+    provider = " [+]",
+  },
+  Space,
+}
+
+local WinBar = {
+  hl = function()
+    if conditions.is_active() then
+      return "Winbar"
+    else
+      return "WinbarNC"
+    end
+  end,
+  Align,
+  FileName,
+}
+
+--
+
 require("heirline").setup({
   statusline = Statusline,
+  winbar = WinBar,
+  opts = {
+    disable_winbar_cb = function(args)
+      return conditions.buffer_matches({
+        buftype = {
+          "nofile",
+          "prompt",
+          "help",
+          "quickfix",
+          "nofile",
+        },
+        filetype = { "NvimTree" },
+      }, args.buf)
+    end,
+  },
 })

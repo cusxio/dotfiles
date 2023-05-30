@@ -35,6 +35,12 @@ return {
             StatusLineNC = { link = "Normal" },
             MsgArea = { link = "Normal" },
 
+            Winbar = {
+              bg = theme_colors.ui.bg,
+              fg = theme_colors.ui.fg_dim,
+            },
+            WinbarNC = { link = "StatusLine" },
+
             IndentBlanklineContextChar = { fg = "#43434c" },
             IndentBlanklineContextStart = {
               link = "CursorLine",
