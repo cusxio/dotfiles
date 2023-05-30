@@ -5,7 +5,7 @@ g.mapleader = " "
 g.maplocalleader = " "
 
 opt.clipboard = "unnamedplus"
-opt.cmdheight = 0
+-- opt.cmdheight = 0
 opt.showmode = false
 -- opt.colorcolumn = { "80" }
 opt.scrolloff = 8

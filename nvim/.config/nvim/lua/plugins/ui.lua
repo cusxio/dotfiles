@@ -25,6 +25,7 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     init = function()
       local set = vim.keymap.set
       set(
@@ -99,16 +100,29 @@ return {
     },
   },
   {
-    "nvim-lualine/lualine.nvim",
-    event = "UiEnter",
+    "rebelot/heirline.nvim",
+    event = "BufEnter",
     dependencies = {
-      "nvim-tree/nvim-web-devicons",
-      "WhoIsSethDaniel/lualine-lsp-progress.nvim",
+      {
+        "linrongbin16/lsp-progress.nvim",
+        config = true,
+      },
     },
     config = function()
-      require("setup.lualine")
+      require("setup.heirline")
     end,
   },
+  -- {
+  --   "nvim-lualine/lualine.nvim",
+  --   event = "UiEnter",
+  --   dependencies = {
+  --     "nvim-tree/nvim-web-devicons",
+  --     "WhoIsSethDaniel/lualine-lsp-progress.nvim",
+  --   },
+  --   config = function()
+  --     require("setup.lualine")
+  --   end,
+  -- },
   {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",

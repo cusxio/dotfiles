@@ -19,10 +19,16 @@ local icons = {
   GitStaged = "✓",
   GitUnstaged = "✗",
   GitUntracked = "★",
+  --
+  LSPLoaded = "",
+  LSPLoading1 = "",
+  LSPLoading2 = "󰀚",
+  LSPLoading3 = "",
 }
 
-function M.get_icon(kind)
-  return icons[kind] or ""
+function M.get_icon(kind, padding)
+  local icon = icons[kind]
+  return icon and icon .. string.rep(" ", padding or 0) or ""
 end
 
 function M.is_available(plugin)

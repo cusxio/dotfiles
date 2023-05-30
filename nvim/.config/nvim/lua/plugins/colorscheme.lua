@@ -8,7 +8,7 @@ return {
       local palette = wave_colors.palette
 
       require("kanagawa").setup({
-        compile = true,
+        compile = false,
         theme = "wave",
         colors = {
           theme = {
@@ -24,9 +24,17 @@ return {
             },
           },
         },
-        overrides = function()
-          -- local theme = colors.theme
+        overrides = function(colors)
+          local palette_colors = colors.palette
+          local theme_colors = colors.theme
           return {
+            StatusLine = {
+              bg = theme_colors.ui.bg,
+              fg = palette_colors.fujiGray,
+            },
+            StatusLineNC = { link = "Normal" },
+            MsgArea = { link = "Normal" },
+
             IndentBlanklineContextChar = { fg = "#43434c" },
             IndentBlanklineContextStart = {
               link = "CursorLine",
