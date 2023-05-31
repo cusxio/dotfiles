@@ -61,6 +61,12 @@ return {
           show = {
             git = false,
           },
+          glyphs = {
+            folder = {
+              default = "",
+              open = "",
+            },
+          },
         },
       },
     },

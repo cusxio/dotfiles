@@ -101,4 +101,20 @@ return {
       })
     end,
   },
+  {
+    "ethanholz/nvim-lastplace",
+    event = "BufWinEnter",
+    config = function()
+      require("nvim-lastplace").setup({
+        lastplace_ignore_buftype = {
+          "nofile",
+          "prompt",
+          "help",
+          "quickfix",
+          "nofile",
+        },
+        lastplace_open_folds = true,
+      })
+    end,
+  },
 }
