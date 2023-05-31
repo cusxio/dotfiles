@@ -8,7 +8,7 @@ return {
       local palette = wave_colors.palette
 
       require("kanagawa").setup({
-        compile = false,
+        compile = true,
         theme = "wave",
         colors = {
           theme = {
@@ -33,18 +33,37 @@ return {
               fg = palette_colors.fujiGray,
             },
             StatusLineNC = { link = "Normal" },
-            MsgArea = { link = "Normal" },
-
             Winbar = {
               bg = theme_colors.ui.bg,
               fg = theme_colors.ui.fg_dim,
             },
             WinbarNC = { link = "StatusLine" },
-
+            MsgArea = { link = "Normal" },
+            --
             IndentBlanklineContextChar = { fg = "#43434c" },
             IndentBlanklineContextStart = {
               link = "CursorLine",
               underline = false,
+            },
+            --
+            TelescopeTitle = { fg = theme_colors.ui.special, bold = true },
+            TelescopePromptNormal = { bg = theme_colors.ui.bg_p1 },
+            TelescopePromptBorder = {
+              fg = theme_colors.ui.bg_p1,
+              bg = theme_colors.ui.bg_p1,
+            },
+            TelescopeResultsNormal = {
+              fg = theme_colors.ui.fg_dim,
+              bg = theme_colors.ui.bg_m1,
+            },
+            TelescopeResultsBorder = {
+              fg = theme_colors.ui.bg_m1,
+              bg = theme_colors.ui.bg_m1,
+            },
+            TelescopePreviewNormal = { bg = theme_colors.ui.bg_dim },
+            TelescopePreviewBorder = {
+              bg = theme_colors.ui.bg_dim,
+              fg = theme_colors.ui.bg_dim,
             },
           }
         end,

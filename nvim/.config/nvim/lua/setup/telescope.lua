@@ -33,16 +33,38 @@ M.config = function()
       file_ignore_patterns = { "node_modules", ".git" },
 
       sorting_strategy = "ascending",
-      layout_strategy = "bottom_pane",
+      layout_strategy = "horizontal",
+      preview = false,
+
       layout_config = {
-        height = 25,
+        prompt_position = "top",
+        width = function(_, max_columns, _)
+          return math.min(max_columns, 80)
+        end,
+
+        height = function(_, _, max_lines)
+          return math.min(max_lines, 20)
+        end,
       },
-      border = true,
-      borderchars = {
-        prompt = { "─", " ", " ", " ", "─", "─", " ", " " },
-        results = { " " },
-        preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-      },
+
+      -- border = true,
+      -- borderchars = {
+      --   prompt = { "─", "│", " ", "│", "╭", "╮", "│", "│" },
+      --   results = { "─", "│", "─", "│", "├", "┤", "╯", "╰" },
+      --   preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+      -- },
+
+      -- sorting_strategy = "ascending",
+      -- layout_strategy = "bottom_pane",
+      -- layout_config = {
+      --   height = 25,
+      -- },
+      -- border = true,
+      -- borderchars = {
+      --   prompt = { "─", " ", " ", " ", "─", "─", " ", " " },
+      --   results = { " " },
+      --   preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+      -- },
 
       -- results_title = false,
       -- sorting_strategy = "ascending",
