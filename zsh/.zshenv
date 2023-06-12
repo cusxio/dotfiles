@@ -41,3 +41,5 @@ fi
 # tree-sitter
 export TREE_SITTER_DIR="${XDG_CONFIG_HOME}/tree-sitter"
 
+# neovim
+export NVIM_APPNAME="nvim"
