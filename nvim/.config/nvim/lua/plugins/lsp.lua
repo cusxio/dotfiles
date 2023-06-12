@@ -6,6 +6,7 @@ return {
     event = { "BufRead", "BufNewFile" },
     init = require("setup.lsp").init,
     dependencies = {
+      { "jose-elias-alvarez/typescript.nvim" },
       { "williamboman/mason.nvim", build = ":MasonUpdate", config = true },
       {
         "williamboman/mason-lspconfig.nvim",
@@ -15,6 +16,9 @@ return {
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
           require("null-ls").setup({
+            sources = {
+              require("typescript.extensions.null-ls.code-actions"),
+            },
             debug = true,
             on_attach = function(client, bufnr)
               if client.supports_method("textDocument/formatting") then

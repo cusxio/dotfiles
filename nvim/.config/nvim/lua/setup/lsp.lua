@@ -86,7 +86,65 @@ M.config = function()
   capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
   local servers = {
+    astro = {},
+    cssls = {
+      css = {
+        lint = {
+          unknownAtRules = "ignore",
+        },
+      },
+    },
+    emmet_ls = {},
+    tailwindcss = {
+      tailwindCSS = {
+        experimental = {
+          classRegex = {
+            -- https://github.com/paolotiu/tailwind-intellisense-regex-list
+            { "clsx\\(([^)]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)" },
+            { "cx\\(([^)]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)" },
+            -- https://cva.style/docs/installation#intellisense
+            { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+          },
+        },
+        validate = true,
+      },
+    },
     tsserver = {},
+    jsonls = {
+      json = {
+        schemas = {
+          {
+            fileMatch = { "package.json" },
+            url = "https://json.schemastore.org/package.json",
+          },
+          {
+            fileMatch = { "tsconfig*.json" },
+            url = "https://json.schemastore.org/tsconfig.json",
+          },
+          {
+            fileMatch = {
+              ".prettierrc",
+              ".prettierrc.json",
+              "prettier.config.json",
+            },
+            url = "https://json.schemastore.org/prettierrc.json",
+          },
+          {
+            fileMatch = { ".eslintrc", ".eslintrc.json" },
+            url = "https://json.schemastore.org/eslintrc.json",
+          },
+          {
+            fileMatch = { ".babelrc", ".babelrc.json", "babel.config.json" },
+            url = "https://json.schemastore.org/babelrc.json",
+          },
+          {
+            fileMatch = { "now.json", "vercel.json" },
+            url = "https://json.schemastore.org/now.json",
+          },
+        },
+      },
+    },
+    yamlls = {},
     lua_ls = {
       Lua = {
         diagnostics = {
@@ -117,6 +175,18 @@ M.config = function()
           capabilities = capabilities,
           on_attach = on_attach,
           settings = servers[server_name],
+        })
+      end,
+      tsserver = function()
+        require("typescript").setup({
+          go_to_source_definition = {
+            fallback = true,
+          },
+          server = {
+            capabilities = capabilities,
+            on_attach = on_attach,
+            settings = servers["tsserver"],
+          },
         })
       end,
     },
