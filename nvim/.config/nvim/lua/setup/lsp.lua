@@ -1,5 +1,44 @@
 local get_icon = require("utils").get_icon
 
+local function add_buffer_autocmd(augroup, bufnr, autocmds)
+  if not vim.tbl_islist(autocmds) then
+    autocmds = { autocmds }
+  end
+  local cmds_found, cmds =
+    pcall(vim.api.nvim_get_autocmds, { group = augroup, buffer = bufnr })
+  if not cmds_found or vim.tbl_isempty(cmds) then
+    vim.api.nvim_create_augroup(augroup, { clear = false })
+    for _, autocmd in ipairs(autocmds) do
+      local events = autocmd.events
+      autocmd.events = nil
+      autocmd.group = augroup
+      autocmd.buffer = bufnr
+      vim.api.nvim_create_autocmd(events, autocmd)
+    end
+  end
+end
+
+local function del_buffer_autocmd(augroup, bufnr)
+  local cmds_found, cmds =
+    pcall(vim.api.nvim_get_autocmds, { group = augroup, buffer = bufnr })
+  if cmds_found then
+    vim.tbl_map(function(cmd)
+      vim.api.nvim_del_autocmd(cmd.id)
+    end, cmds)
+  end
+end
+
+local function has_capability(capability, filter)
+  for _, client in ipairs(vim.lsp.get_active_clients(filter)) do
+    if client.supports_method(capability) then
+      return true
+    end
+  end
+  return false
+end
+
+--
+
 local M = {}
 
 M.init = function()
@@ -46,14 +85,14 @@ M.config = function()
     nmap("[d", vim.diagnostic.goto_prev, "Previous diagnostic")
     nmap("d]", vim.diagnostic.goto_next, "Next diagnostic")
 
-    if capabilities.renameProvider then
+    if client.supports_method("textDocument/rename") then
       nmap("<leader>lr", vim.lsp.buf.rename, "Rename current symbol")
     end
-    if capabilities.codeActionProvider then
+    if client.supports_method("textDocument/codeAction") then
       nmap("<leader>la", vim.lsp.buf.code_action, "LSP code action")
     end
 
-    if capabilities.definitionProvider then
+    if client.supports_method("textDocument/definition") then
       nmap(
         "gd",
         vim.lsp.buf.definition,
@@ -61,24 +100,52 @@ M.config = function()
       )
     end
 
-    if capabilities.declarationProvider then
+    if client.supports_method("textDocument/declaration") then
       nmap("gD", vim.lsp.buf.declaration, "Declaration of current symbol")
     end
 
-    if capabilities.implementationProvider then
+    if client.supports_method("textDocument/implementation") then
       nmap("gI", vim.lsp.buf.implementation, "Implementation of current symbol")
     end
 
-    if capabilities.typeDefinitionProvider then
+    if client.supports_method("textDocument/typeDefinition") then
       nmap("gT", vim.lsp.buf.type_definition, "Definition of current type")
     end
 
-    if capabilities.hoverProvider then
+    if client.supports_method("textDocument/hover") then
       nmap("K", vim.lsp.buf.hover, "Hover symbol details")
     end
 
-    if capabilities.signatureHelpProvider then
+    if client.supports_method("textDocument/signatureHelp") then
       nmap("<leader>lh", vim.lsp.buf.signature_help, "Signature help")
+    end
+
+    if client.supports_method("textDocument/documentHighlight") then
+      add_buffer_autocmd("lsp_document_highlight", bufnr, {
+        {
+          events = { "CursorHold", "CursorHoldI" },
+          desc = "highlight references when cursor holds",
+          callback = function()
+            if
+              not has_capability(
+                "textDocument/documentHighlight",
+                { bufnr = bufnr }
+              )
+            then
+              del_buffer_autocmd("lsp_document_highlight", bufnr)
+              return
+            end
+            vim.lsp.buf.document_highlight()
+          end,
+        },
+        {
+          events = { "CursorMoved", "CursorMovedI" },
+          desc = "clear references when cursor moves",
+          callback = function()
+            vim.lsp.buf.clear_references()
+          end,
+        },
+      })
     end
   end
 
