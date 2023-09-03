@@ -23,8 +23,8 @@ M.config = function()
     window = {
       width = 30,
       mappings = {
-        ["S"] = "split_with_window_picker",
-        ["s"] = "vsplit_with_window_picker",
+        ["<C-s>"] = "split_with_window_picker",
+        ["<C-v>"] = "vsplit_with_window_picker",
       },
     },
     default_component_configs = {
@@ -45,7 +45,9 @@ M.config = function()
       },
     },
     filesystem = {
-      follow_current_file = true,
+      follow_current_file = {
+        enabled = true,
+      },
       use_libuv_file_watcher = true,
       filtered_items = {
         hide_dotfiles = false,

@@ -10,6 +10,7 @@ return {
       require("kanagawa").setup({
         compile = true,
         theme = "wave",
+        dimInactive = true,
         colors = {
           theme = {
             wave = {

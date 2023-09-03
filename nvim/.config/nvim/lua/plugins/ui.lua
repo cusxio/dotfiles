@@ -1,83 +1,88 @@
 return {
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      {
+        "s1n7ax/nvim-window-picker",
+        version = "2.*",
+        opts = {
+          hint = "floating-big-letter",
+        },
+        -- opts = {
+        --   filter_rules = {
+        --     bo = { filetype = { "neo-tree" }, buftype = { "quickfix" } },
+        --   },
+        --   use_winbar = "always",
+        --   fg_color = "#7fb4ca",
+        --   current_win_hl_color = "#1a1a22",
+        --   other_win_hl_color = "#1a1a22",
+        -- },
+      },
+    },
+    cmd = "Neotree",
+    init = require("setup.neo-tree").init,
+    config = require("setup.neo-tree").config,
+  },
   -- {
-  --   "nvim-neo-tree/neo-tree.nvim",
-  --   event = { "BufRead", "BufNewFile" },
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "MunifTanjim/nui.nvim",
-  --     {
-  --       "s1n7ax/nvim-window-picker",
-  --       opts = {
-  --         filter_rules = {
-  --           bo = { filetype = { "neo-tree" }, buftype = { "quickfix" } },
+  --   "nvim-tree/nvim-tree.lua",
+  --   cmd = { "NvimTreeToggle", "NvimTreeFocus" },
+  --   dependencies = { "nvim-tree/nvim-web-devicons" },
+  --   init = function()
+  --     local set = vim.keymap.set
+  --     set(
+  --       "n",
+  --       "<leader>e",
+  --       "<cmd>NvimTreeToggle<cr>",
+  --       { desc = "Toggle Explorer" }
+  --     )
+  --     set(
+  --       "n",
+  --       "<leader>o",
+  --       "<cmd>NvimTreeFocus<cr>",
+  --       { desc = "Focus Explorer" }
+  --     )
+  --   end,
+  --   opts = {
+  --     disable_netrw = true,
+  --     hijack_cursor = true,
+  --     hijack_netrw = true,
+  --
+  --     view = {
+  --       side = "left",
+  --       width = 30,
+  --       signcolumn = "auto",
+  --       preserve_window_proportions = false,
+  --     },
+  --     update_focused_file = {
+  --       enable = true,
+  --     },
+  --     renderer = {
+  --       highlight_git = true,
+  --       icons = {
+  --         show = {
+  --           git = false,
   --         },
-  --         use_winbar = "always",
-  --         fg_color = "#7fb4ca",
-  --         current_win_hl_color = "#1a1a22",
-  --         other_win_hl_color = "#1a1a22",
+  --         -- glyphs = {
+  --         --   folder = {
+  --         --     default = "",
+  --         --     open = "",
+  --         --   },
+  --         -- },
+  --       },
+  --     },
+  --     actions = {
+  --       open_file = {
+  --         window_picker = {
+  --           enable = false,
+  --         },
   --       },
   --     },
   --   },
-  --   cmd = "Neotree",
-  --   init = require("setup.neo-tree").init,
-  --   config = require("setup.neo-tree").config,
   -- },
-  {
-    "nvim-tree/nvim-tree.lua",
-    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    init = function()
-      local set = vim.keymap.set
-      set(
-        "n",
-        "<leader>e",
-        "<cmd>NvimTreeToggle<cr>",
-        { desc = "Toggle Explorer" }
-      )
-      set(
-        "n",
-        "<leader>o",
-        "<cmd>NvimTreeFocus<cr>",
-        { desc = "Focus Explorer" }
-      )
-    end,
-    opts = {
-      disable_netrw = true,
-      hijack_cursor = true,
-      hijack_netrw = true,
-
-      view = {
-        side = "left",
-        width = 30,
-        signcolumn = "auto",
-        preserve_window_proportions = false,
-      },
-      update_focused_file = {
-        enable = true,
-      },
-      renderer = {
-        highlight_git = true,
-        icons = {
-          show = {
-            git = false,
-          },
-          -- glyphs = {
-          --   folder = {
-          --     default = "",
-          --     open = "",
-          --   },
-          -- },
-        },
-      },
-      actions = {
-        open_file = {
-          window_picker = {
-            enable = false,
-          },
-        },
-      },
-    },
-  },
   {
     "mrjones2014/smart-splits.nvim",
     dependencies = { "kwkarlwang/bufresize.nvim" },
