@@ -37,7 +37,23 @@ return {
     config = function(_, opts)
       require("nvim-autopairs").setup(opts)
       local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-      require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+      local ts_utils = require("nvim-treesitter.ts_utils")
+      -- require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+      -- https://github.com/windwp/nvim-autopairs/issues/242
+      require("cmp").event:on("confirm_done", function(evt)
+        local filetypes =
+          { "javascript", "typescript", "javascriptreact", "typescriptreact" }
+        local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+
+        if vim.tbl_contains(filetypes, filetype) then
+          local node_type = ts_utils.get_node_at_cursor():type()
+          if node_type ~= "named_imports" then
+            cmp_autopairs.on_confirm_done()(evt)
+          end
+        else
+          cmp_autopairs.on_confirm_done()(evt)
+        end
+      end)
     end,
   },
   -- {
@@ -111,6 +127,7 @@ return {
           "typescript",
           "tsx",
           "lua",
+          "comment",
         },
         highlight = {
           enable = true,
@@ -120,6 +137,8 @@ return {
         },
         autotag = {
           enable = true,
+          -- https://github.com/windwp/nvim-ts-autotag/issues/125
+          enable_close_on_slash = false,
         },
         context_commentstring = {
           enable = true,

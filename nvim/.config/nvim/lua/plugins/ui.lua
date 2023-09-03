@@ -50,7 +50,7 @@ return {
         side = "left",
         width = 30,
         signcolumn = "auto",
-        preserve_window_proportions = true,
+        preserve_window_proportions = false,
       },
       update_focused_file = {
         enable = true,
@@ -77,6 +77,41 @@ return {
         },
       },
     },
+  },
+  {
+    "mrjones2014/smart-splits.nvim",
+    dependencies = { "kwkarlwang/bufresize.nvim" },
+    opts = {
+      ignored_filetypes = { "nofile", "quickfix", "qf", "prompt" },
+      ignored_buftypes = { "nofile" },
+      -- resize_mode = {
+      --   hooks = {
+      --     on_leave = require("bufresize").register,
+      --   },
+    },
+    init = function()
+      local set = vim.keymap.set
+      set("n", "<C-w>h", function()
+        require("smart-splits").move_cursor_left()
+      end, {
+        desc = "Go to the left window",
+      })
+      set("n", "<C-w>j", function()
+        require("smart-splits").move_cursor_down()
+      end, {
+        desc = "Go to the down window",
+      })
+      set("n", "<C-w>k", function()
+        require("smart-splits").move_cursor_up()
+      end, {
+        desc = "Go to the up window",
+      })
+      set("n", "<C-w>l", function()
+        require("smart-splits").move_cursor_right()
+      end, {
+        desc = "Go to the right window",
+      })
+    end,
   },
   {
     "folke/which-key.nvim",
