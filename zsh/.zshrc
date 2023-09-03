@@ -59,3 +59,9 @@ if (( $+commands[pyenv] )); then
   export PYENV_ROOT="${XDG_CONFIG_HOME}/pyenv"
   eval "$(pyenv init -)"
 fi
+
+# ngrok
+# if (( $+commands[ngrok] )); then
+#   echo "here"
+#   eval "$(ngrok completion)"
+# fi

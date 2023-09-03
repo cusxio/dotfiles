@@ -13,6 +13,7 @@ path=(
   ${DOTFILES}/bin(N-/)
   # ${BREW_PREFIX:-/usr/local}/opt/{coreutils,findutils}/libexec/gnubin(N-/)
   ${HOME}/.yarn/bin(N-/)
+  ${PNPM_HOME}(N-/)
   # seems to be required by homebrew
   /usr/local/sbin
   $path

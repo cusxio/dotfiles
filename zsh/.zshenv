@@ -21,6 +21,9 @@ export FNM_DIR="${XDG_CONFIG_HOME}/fnm"
 # yarn
 export YARN_CACHE_FOLDER="${XDG_CACHE_HOME}/yarn"
 
+# pnpm
+export PNPM_HOME="${XDG_DATA_HOME}/pnpm"
+
 # babel
 export BABEL_CACHE_PATH="${XDG_CACHE_HOME}/babe/babel.json"
 

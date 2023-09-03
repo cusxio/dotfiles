@@ -15,9 +15,9 @@ xcode:
 rust:
 	curl https://sh.rustup.rs -fsS | sh -s -- --no-modify-path
 
-node:
+# node:
 	# requires nvm to be sourced after install, requires brew installation of yarn too
-	yarn global add now surge speed-test trash-cli
+	# yarn global add now surge speed-test trash-cli
 
 symlink:
 	stow --target=$(HOME) \
