@@ -1,0 +1,13 @@
+
+fish/conf.d/*
+!fish/conf.d/0.fish
+!fish/conf.d/1.fish
+
+fish/completions/*
+
+fish/functions/*
+!fish/functions/mkcd.fish
+
+fish/themes/*
+
+fish_variables
