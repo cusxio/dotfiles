@@ -120,6 +120,10 @@ M.config = function()
       nmap("<leader>lh", vim.lsp.buf.signature_help, "Signature help")
     end
 
+    if client.supports_method("textDocument/references") then
+      nmap("gr", vim.lsp.buf.references, "References of current symbol")
+    end
+
     if client.supports_method("textDocument/documentHighlight") then
       add_buffer_autocmd("lsp_document_highlight", bufnr, {
         {

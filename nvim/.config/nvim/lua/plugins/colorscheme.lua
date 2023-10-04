@@ -41,11 +41,11 @@ return {
             WinbarNC = { link = "StatusLine" },
             MsgArea = { link = "Normal" },
             --
-            IndentBlanklineContextChar = { fg = "#43434c" },
-            IndentBlanklineContextStart = {
-              link = "CursorLine",
-              underline = false,
-            },
+            -- IndentBlanklineContextChar = { fg = "#43434c" },
+            -- IndentBlanklineContextStart = {
+            --   link = "CursorLine",
+            --   underline = false,
+            -- },
             --
             TelescopeTitle = { fg = theme_colors.ui.special, bold = true },
             TelescopePromptNormal = { bg = theme_colors.ui.bg_p1 },

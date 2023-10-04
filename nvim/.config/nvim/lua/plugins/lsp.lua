@@ -7,7 +7,15 @@ return {
     init = require("setup.lsp").init,
     dependencies = {
       { "jose-elias-alvarez/typescript.nvim" },
-      { "williamboman/mason.nvim", build = ":MasonUpdate", config = true },
+      {
+        "williamboman/mason.nvim",
+        build = ":MasonUpdate",
+        config = true,
+        cmd = {
+          "Mason",
+          "MasonUpdate",
+        },
+      },
       {
         "williamboman/mason-lspconfig.nvim",
         cmd = { "LspInstall", "LspUninstall" },
@@ -15,9 +23,12 @@ return {
       {
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
-          require("null-ls").setup({
+          local null_ls = require("null-ls")
+          null_ls.setup({
             sources = {
               require("typescript.extensions.null-ls.code-actions"),
+              null_ls.builtins.diagnostics.fish,
+              null_ls.builtins.formatting.fish_indent,
             },
             debug = true,
             on_attach = function(client, bufnr)

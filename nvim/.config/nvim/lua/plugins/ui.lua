@@ -26,8 +26,7 @@ return {
     cmd = "Neotree",
     init = require("setup.neo-tree").init,
     config = require("setup.neo-tree").config,
-  },
-  -- {
+  }, -- {
   --   "nvim-tree/nvim-tree.lua",
   --   cmd = { "NvimTreeToggle", "NvimTreeFocus" },
   --   dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -130,12 +129,32 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     event = { "BufRead", "BufNewFile" },
-    opts = {
-      show_first_indent_level = false,
-      show_trailing_blankline_indent = false,
-      -- show_current_context = true,
-      -- show_current_context_start = true,
-    },
+    config = function()
+      require("ibl").setup({
+        indent = { char = "│" },
+        scope = {
+          show_start = false,
+          show_end = false,
+          highlight = { "IndentBlanklineContextChar" },
+        },
+        exclude = {
+          buftypes = {
+            "nofile",
+            "terminal",
+          },
+          filetypes = {
+            "help",
+            "neo-tree",
+          },
+        },
+      })
+
+      local hooks = require("ibl.hooks")
+      hooks.register(
+        hooks.type.WHITESPACE,
+        hooks.builtin.hide_first_space_indent_level
+      )
+    end,
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -143,12 +162,24 @@ return {
     enabled = vim.fn.executable("git") == 1,
     opts = {
       signs = {
-        add = { text = "▎" },
-        change = { text = "▎" },
-        delete = { text = "▎" },
-        topdelete = { text = "󰐊" },
-        changedelete = { text = "▎" },
-        untracked = { text = "▎" },
+        add = {
+          text = "▎",
+        },
+        change = {
+          text = "▎",
+        },
+        delete = {
+          text = "▎",
+        },
+        topdelete = {
+          text = "󰐊",
+        },
+        changedelete = {
+          text = "▎",
+        },
+        untracked = {
+          text = "▎",
+        },
       },
     },
   },
@@ -164,8 +195,7 @@ return {
     config = function()
       require("setup.heirline")
     end,
-  },
-  -- {
+  }, -- {
   --   "nvim-lualine/lualine.nvim",
   --   event = "UiEnter",
   --   dependencies = {
@@ -181,7 +211,10 @@ return {
     cmd = "Telescope",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+      },
     },
     init = require("setup.telescope").init,
     config = require("setup.telescope").config,
