@@ -3,6 +3,7 @@ local opt = vim.opt
 
 g.mapleader = " "
 g.maplocalleader = " "
+g.skip_ts_context_commentstring_module = true
 
 opt.clipboard = "unnamedplus"
 -- opt.cmdheight = 0

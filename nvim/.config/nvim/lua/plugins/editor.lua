@@ -128,6 +128,7 @@ return {
           "tsx",
           "lua",
           "comment",
+          "astro",
         },
         highlight = {
           enable = true,
@@ -139,9 +140,6 @@ return {
           enable = true,
           -- https://github.com/windwp/nvim-ts-autotag/issues/125
           enable_close_on_slash = false,
-        },
-        context_commentstring = {
-          enable = true,
         },
         matchup = {
           enable = true,
