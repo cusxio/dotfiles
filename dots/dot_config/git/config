@@ -1,0 +1,37 @@
+[user]
+	name = Jonathan Chan
+	email = cusxio@gmail.com
+
+[color]
+  ui = true
+
+[init]
+  defaultBranch = main
+
+[core]
+  pager = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  line-numbers = true
+  navigate = true
+
+[merge]
+  conflictstyle = zdiff3
+
+[diff]
+  mnemonicPrefix = true
+  colorMoved = default
+  algorithm = histogram
+
+[fetch]
+  prune = true
+  pruneTags = true
+
+[rerere]
+  enabled = true
+
+# [url "git@github.com:"]
+# insteadOf = "https://github.com/"
