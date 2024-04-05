@@ -21,9 +21,21 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     opts = overrides.indent,
   },
+  {
+    "numToStr/Comment.nvim",
+    dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+    },
+    config = function()
+      require("Comment").setup({
+        pre_hook = require(
+          "ts_context_commentstring.integrations.comment_nvim"
+        ).create_pre_hook(),
+      })
+    end,
+  },
   -- lsp
   {
-    -- "neovim/nvim-lspconfig",
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("configs.lsp")
@@ -32,7 +44,6 @@ return {
     dependencies = {
       {
         "nvimtools/none-ls.nvim",
-        dependencies = { "nvimtools/none-ls-extras.nvim" },
         config = function()
           local null_ls = require("null-ls")
           local augroup = vim.api.nvim_create_augroup("format_on_save", {})
@@ -67,6 +78,10 @@ return {
       },
       {
         "jay-babu/mason-null-ls.nvim",
+        dependencies = {
+          "nvimtools/none-ls.nvim",
+          "nvimtools/none-ls-extras.nvim",
+        },
         opts = {
           ensure_installed = {
             "prettierd",
@@ -78,9 +93,9 @@ return {
           handlers = {
             eslint_d = function()
               local null_ls = require("null-ls")
-              null_ls.register("none-ls.diagnostics.eslint_d")
-              null_ls.register("none-ls.formatting.eslint_d")
-              null_ls.register("none-ls.code_actions.eslint_d")
+              null_ls.register(require("none-ls.diagnostics.eslint_d"))
+              null_ls.register(require("none-ls.formatting.eslint_d"))
+              null_ls.register(require("none-ls.code_actions.eslint_d"))
             end,
             prettierd = function()
               local null_ls = require("null-ls")
@@ -98,5 +113,39 @@ return {
     "max397574/better-escape.nvim",
     event = "InsertCharPre",
     opts = { timeout = 300 },
+  },
+  {
+    "junegunn/vim-slash",
+    event = "BufRead",
+    config = function()
+      vim.cmd([[noremap <plug>(slash-after) zz]])
+    end,
+  },
+  {
+    "ggandor/leap.nvim",
+    event = "VeryLazy",
+    config = function()
+      local leap = require("leap")
+      vim.keymap.set("n", "s", function()
+        require("leap").leap({
+          target_windows = { vim.api.nvim_get_current_win() },
+        })
+      end)
+      leap.add_default_mappings(true)
+    end,
+  },
+  {
+    "ggandor/flit.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("flit").setup({
+        keys = { f = "f", F = "F", t = "t", T = "T" },
+        labeled_modes = "n",
+      })
+    end,
+    dependencies = {
+      "ggandor/leap.nvim",
+      "tpope/vim-repeat",
+    },
   },
 }

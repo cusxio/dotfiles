@@ -42,7 +42,9 @@ return {
         end,
         prettierd = function()
           local null_ls = require("null-ls")
-          null_ls.register(null_ls.builtins.formatting.prettierd.with({ extra_filetypes = { "astro" } }))
+          null_ls.register(null_ls.builtins.formatting.prettierd.with({
+            extra_filetypes = { "astro" },
+          }))
         end,
       },
     },
