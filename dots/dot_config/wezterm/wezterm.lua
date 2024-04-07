@@ -4,7 +4,9 @@ local fontFamily = "JetBrains Mono"
 local fontWeight = "Medium"
 
 return {
-  color_scheme = "Monokai Pro (Spectrum)",
+  -- color_scheme = "Kanagawa (Gogh)",
+  color_scheme = "Material Darker (base16)",
+  -- color_scheme = "Monokai Pro (Spectrum)",
   default_cwd = wezterm.home_dir .. "/Documents/dev",
   default_prog = {
     "/opt/homebrew/bin/fish",

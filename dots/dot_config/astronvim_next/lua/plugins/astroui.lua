@@ -3,8 +3,8 @@ return {
   "AstroNvim/astroui",
   ---@type AstroUIOpts
   opts = {
-    colorscheme = "monokai-pro",
-    -- colorscheme = "material",
     -- colorscheme = "catppuccin",
+    colorscheme = "material",
+    -- colorscheme = "monokai-pro",
   },
 }

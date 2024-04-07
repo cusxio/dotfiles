@@ -30,56 +30,56 @@ return {
   --   },
   -- },
   {
-    "loctvl842/monokai-pro.nvim",
-    config = function()
-      require("monokai-pro").setup({
-        devicons = true,
-        filter = "spectrum",
-        ---@param c Colorscheme
-        override = function(c)
-          return {
-            IblIndent = { fg = c.base.dimmed5 },
-          }
-        end,
-      })
+    "marko-cerovac/material.nvim",
+    init = function()
+      vim.g.material_style = "darker"
     end,
+    opts = {
+      plugins = {
+        -- "coc"
+        -- "dap",
+        -- "dashboard",
+        -- "eyeliner",
+        -- "fidget",
+        -- "flash",
+        "gitsigns",
+        -- "harpoon",
+        -- "hop",
+        "illuminate",
+        "indent-blankline",
+        -- "lspsaga",
+        "mini",
+        -- "neogit",
+        -- "neotest",
+        "neo-tree",
+        -- "neorg",
+        "noice",
+        "nvim-cmp",
+        -- "nvim-navic",
+        -- "nvim-tree",
+        "nvim-web-devicons",
+        -- "rainbow-delimiters",
+        -- "sneak",
+        "telescope",
+        -- "trouble",
+        "which-key",
+        "nvim-notify",
+      },
+    },
   },
   -- {
-  --   "marko-cerovac/material.nvim",
-  --   init = function()
-  --     vim.g.material_style = "darker"
+  --   "loctvl842/monokai-pro.nvim",
+  --   config = function()
+  --     require("monokai-pro").setup({
+  --       devicons = true,
+  --       filter = "spectrum",
+  --       ---@param c Colorscheme
+  --       override = function(c)
+  --         return {
+  --           IblIndent = { fg = c.base.dimmed5 },
+  --         }
+  --       end,
+  --     })
   --   end,
-  --   opts = {
-  --     plugins = {
-  --       -- "coc"
-  --       -- "dap",
-  --       -- "dashboard",
-  --       -- "eyeliner",
-  --       -- "fidget",
-  --       -- "flash",
-  --       "gitsigns",
-  --       -- "harpoon",
-  --       -- "hop",
-  --       "illuminate",
-  --       "indent-blankline",
-  --       -- "lspsaga",
-  --       "mini",
-  --       -- "neogit",
-  --       -- "neotest",
-  --       "neo-tree",
-  --       -- "neorg",
-  --       "noice",
-  --       "nvim-cmp",
-  --       -- "nvim-navic",
-  --       -- "nvim-tree",
-  --       "nvim-web-devicons",
-  --       -- "rainbow-delimiters",
-  --       -- "sneak",
-  --       "telescope",
-  --       -- "trouble",
-  --       "which-key",
-  --       "nvim-notify",
-  --     },
-  --   },
   -- },
 }
