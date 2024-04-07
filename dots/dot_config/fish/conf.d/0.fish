@@ -18,7 +18,8 @@ set PNPM_HOME $XDG_DATA_HOME/pnpm
 
 if type -q nvim
     set --export EDITOR nvim
-    set --export NVIM_APPNAME nvchad_next
+    abbr --add astro "set --export NVIM_APPNAME astronvim_next; and nvim"
+    abbr --add nvchad "set --export NVIM_APPNAME nvchad_next; and nvim"
 end
 
 abbr --add c clear

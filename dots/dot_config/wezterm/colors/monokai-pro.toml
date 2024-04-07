@@ -1,0 +1,29 @@
+[colors]
+ansi = [
+  "#222222",
+  "#fc618d",
+  "#7bd88f",
+  "#fce566",
+  "#fd9353",
+  "#948ae3",
+  "#5ad4e6",
+  "#f7f1ff",
+]
+brights = [
+  "#69676c",
+  "#fc618d",
+  "#7bd88f",
+  "#fce566",
+  "#fd9353",
+  "#948ae3",
+  "#5ad4e6",
+  "#f7f1ff",
+]
+
+background = "#222222"
+# cursor_border = "#fce566"
+# cursor_bg = "#fce566"
+# cursor_fg = "#101317"
+
+[metadata]
+name = "Monokai Pro (Spectrum)"
