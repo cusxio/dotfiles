@@ -71,6 +71,58 @@ return {
           },
         },
       },
+      vtsls = {
+        settings = {
+          vtsls = {
+            typescript = {
+              inlayHints = {
+                parameterNames = {
+                  enabled = "all",
+                  suppressWhenArgumentMatchesName = false,
+                },
+                parameterTypes = { enabled = true },
+                variableTypes = {
+                  enabled = true,
+                  suppressWhenTypeMatchesName = false,
+                },
+                propertyDeclarationTypes = { enabled = true },
+                functionLikeReturnTypes = { enabled = true },
+                enumMemberValues = { enabled = true },
+              },
+              updateImportsOnFileMove = { enabled = "always" },
+            },
+            javascript = {
+              inlayHints = {
+                parameterNames = {
+                  enabled = "all",
+                  suppressWhenArgumentMatchesName = false,
+                },
+                parameterTypes = { enabled = true },
+                variableTypes = {
+                  enabled = true,
+                  suppressWhenTypeMatchesName = false,
+                },
+                propertyDeclarationTypes = { enabled = true },
+                functionLikeReturnTypes = { enabled = true },
+                enumMemberValues = { enabled = true },
+              },
+              updateImportsOnFileMove = { enabled = "always" },
+            },
+            autoUseWorkspaceTsdk = true,
+          },
+        },
+      },
+      mappings = {
+        i = {
+          ["<C-l>"] = {
+            function()
+              vim.lsp.buf.signature_help()
+            end,
+            desc = "Signature help",
+            cond = "textDocument/signatureHelp",
+          },
+        },
+      },
     },
   },
 }

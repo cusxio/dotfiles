@@ -5,5 +5,6 @@ return {
   opts = {
     colorscheme = "monokai-pro",
     -- colorscheme = "material",
+    -- colorscheme = "catppuccin",
   },
 }

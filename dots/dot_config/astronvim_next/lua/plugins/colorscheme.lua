@@ -1,11 +1,48 @@
 ---@type LazySpec
 return {
+  -- {
+  --   "catppuccin/nvim",
+  --   name = "catppuccin",
+  --   ---@type CatppuccinOptions
+  --   opts = {
+  --     flavour = "macchiato",
+  --     default_integrations = false,
+  --     integrations = {
+  --       cmp = true,
+  --       gitsigns = true,
+  --       illuminate = { enabled = true, lsp = true },
+  --       indent_blankline = true,
+  --       mason = true,
+  --       mini = true,
+  --       -- native_lsp = {
+  --       --   enabled = true,
+  --       -- },
+  --       neotree = true,
+  --       -- noice = true,
+  --       notify = true,
+  --       semantic_tokens = true,
+  --       symbols_outline = true,
+  --       telescope = { enabled = true, style = "classic" },
+  --       treesitter = true,
+  --       which_key = true,
+  --       window_picker = true,
+  --     },
+  --   },
+  -- },
   {
     "loctvl842/monokai-pro.nvim",
-    opts = {
-      devicons = true,
-      filter = "spectrum",
-    },
+    config = function()
+      require("monokai-pro").setup({
+        devicons = true,
+        filter = "spectrum",
+        ---@param c Colorscheme
+        override = function(c)
+          return {
+            IblIndent = { fg = c.base.dimmed5 },
+          }
+        end,
+      })
+    end,
   },
   -- {
   --   "marko-cerovac/material.nvim",
