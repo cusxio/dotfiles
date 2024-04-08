@@ -10,6 +10,9 @@ return {
         scrolloff = 15,
       },
     },
-    diagnostics = { update_in_insert = false },
+    diagnostics = {
+      update_in_insert = false,
+      virtual_text = false,
+    },
   },
 }

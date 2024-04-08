@@ -35,6 +35,12 @@ return {
       vim.g.material_style = "darker"
     end,
     opts = {
+      contrast = {
+        lsp_virtual_text = true,
+      },
+      high_visibility = {
+        darker = true,
+      },
       plugins = {
         -- "coc"
         -- "dap",
