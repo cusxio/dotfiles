@@ -26,13 +26,13 @@ return {
         "lua_ls",
         "marksman",
         "tailwindcss",
+        "taplo",
         "vtsls",
         "yamlls",
 
         -- Linters
         "selene",
         "shellcheck",
-        -- "eslint",
         "eslint_d",
 
         -- Formatters
