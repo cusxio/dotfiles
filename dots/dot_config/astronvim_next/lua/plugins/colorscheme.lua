@@ -29,63 +29,65 @@ return {
   --     },
   --   },
   -- },
-  {
-    "marko-cerovac/material.nvim",
-    init = function()
-      vim.g.material_style = "darker"
-    end,
-    opts = {
-      contrast = {
-        lsp_virtual_text = true,
-      },
-      high_visibility = {
-        darker = true,
-      },
-      plugins = {
-        -- "coc"
-        -- "dap",
-        -- "dashboard",
-        -- "eyeliner",
-        -- "fidget",
-        -- "flash",
-        "gitsigns",
-        -- "harpoon",
-        -- "hop",
-        "illuminate",
-        "indent-blankline",
-        -- "lspsaga",
-        "mini",
-        -- "neogit",
-        -- "neotest",
-        "neo-tree",
-        -- "neorg",
-        "noice",
-        "nvim-cmp",
-        -- "nvim-navic",
-        -- "nvim-tree",
-        "nvim-web-devicons",
-        -- "rainbow-delimiters",
-        -- "sneak",
-        "telescope",
-        -- "trouble",
-        "which-key",
-        "nvim-notify",
-      },
-    },
-  },
   -- {
-  --   "loctvl842/monokai-pro.nvim",
-  --   config = function()
-  --     require("monokai-pro").setup({
-  --       devicons = true,
-  --       filter = "spectrum",
-  --       ---@param c Colorscheme
-  --       override = function(c)
-  --         return {
-  --           IblIndent = { fg = c.base.dimmed5 },
-  --         }
-  --       end,
-  --     })
+  --   "marko-cerovac/material.nvim",
+  --   init = function()
+  --     vim.g.material_style = "darker"
   --   end,
+  --   opts = {
+  --     contrast = {
+  --       lsp_virtual_text = true,
+  --     },
+  --     high_visibility = {
+  --       darker = true,
+  --     },
+  --     plugins = {
+  --       -- "coc"
+  --       -- "dap",
+  --       -- "dashboard",
+  --       -- "eyeliner",
+  --       -- "fidget",
+  --       -- "flash",
+  --       "gitsigns",
+  --       -- "harpoon",
+  --       -- "hop",
+  --       "illuminate",
+  --       "indent-blankline",
+  --       -- "lspsaga",
+  --       "mini",
+  --       -- "neogit",
+  --       -- "neotest",
+  --       "neo-tree",
+  --       -- "neorg",
+  --       "noice",
+  --       "nvim-cmp",
+  --       -- "nvim-navic",
+  --       -- "nvim-tree",
+  --       "nvim-web-devicons",
+  --       -- "rainbow-delimiters",
+  --       -- "sneak",
+  --       "telescope",
+  --       -- "trouble",
+  --       "which-key",
+  --       "nvim-notify",
+  --     },
+  --   },
   -- },
+  {
+    "loctvl842/monokai-pro.nvim",
+    config = function()
+      require("monokai-pro").setup({
+        devicons = true,
+        filter = "spectrum",
+        ---@param c Colorscheme
+        override = function(c)
+          return {
+            IblIndent = { fg = c.base.dimmed5 },
+            MiniStarterHeader = { fg = c.base.dimmed2 },
+            StatusLine = { fg = c.base.dimmed3 },
+          }
+        end,
+      })
+    end,
+  },
 }

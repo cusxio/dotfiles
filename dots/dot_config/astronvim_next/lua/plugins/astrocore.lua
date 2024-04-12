@@ -5,7 +5,6 @@ return {
   opts = {
     options = {
       opt = {
-        showtabline = 0,
         colorcolumn = { "80" },
         scrolloff = 15,
       },

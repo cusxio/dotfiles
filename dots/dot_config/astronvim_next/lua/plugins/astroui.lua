@@ -1,31 +1,21 @@
 ---@type LazySpec
--- return {
---   "AstroNvim/astroui",
---   opts = function(_, opts)
---     local colors = require("material.colors")
---     return require("astrocore").extend_tbl(opts, {
---       colorscheme = "material",
---       -- status = {
---       --   colors = {
---       --     normal = colors.main.blue,
---       --   },
---       -- },
---     })
---   end,
--- }
-
 return {
   "AstroNvim/astroui",
   ---@type AstroUIOpts
   opts = {
-    colorscheme = "material",
-    highlights = {
-      material = function()
-        local colors = require("material.colors")
-        return {
-          HeirlineNormal = { bg = colors.main.blue },
-        }
-      end,
+    colorscheme = "monokai-pro",
+    icons = {
+      -- configure the loading of the lsp in the status line
+      LSPLoading1 = "⠋",
+      LSPLoading2 = "⠙",
+      LSPLoading3 = "⠹",
+      LSPLoading4 = "⠸",
+      LSPLoading5 = "⠼",
+      LSPLoading6 = "⠴",
+      LSPLoading7 = "⠦",
+      LSPLoading8 = "⠧",
+      LSPLoading9 = "⠇",
+      LSPLoading10 = "⠏",
     },
   },
 }
