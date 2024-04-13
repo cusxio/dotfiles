@@ -118,14 +118,23 @@ return {
         end,
       }
 
-      -- prettier filetypes
       vim.tbl_map(function(ft)
-        opts.formatters_by_ft[ft] = { "prettierd" }
+        opts.formatters_by_ft[ft] = { "prettierd", "eslint_d" }
       end, {
         "javascript",
         "javascriptreact",
         "typescript",
         "typescriptreact",
+      })
+
+      -- prettier filetypes
+      vim.tbl_map(function(ft)
+        opts.formatters_by_ft[ft] = { "prettierd" }
+      end, {
+        -- "javascript",
+        -- "javascriptreact",
+        -- "typescript",
+        -- "typescriptreact",
         "vue",
         "css",
         "scss",

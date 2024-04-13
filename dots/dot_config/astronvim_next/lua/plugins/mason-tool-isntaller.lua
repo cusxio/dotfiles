@@ -33,6 +33,7 @@ return {
         -- Linters
         "selene",
         "shellcheck",
+        "eslint",
         "eslint_d",
 
         -- Formatters
