@@ -41,6 +41,11 @@ return {
 
     ---@type trouble.Config
     return {
+      win = {
+        wo = {
+          colorcolumn = "",
+        },
+      },
       icons = {
         indent = {
           fold_open = get_icon("FoldOpened"),
