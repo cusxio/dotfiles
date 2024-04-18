@@ -1,3 +1,4 @@
 [tools]
-node = "20"
+bun = "latest"
+node = "latest"
 usage = "latest"
