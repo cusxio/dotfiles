@@ -7,4 +7,5 @@ end, {
   "jay-babu/mason-null-ls.nvim",
   "nvimtools/none-ls.nvim",
   "stevearc/aerial.nvim",
+  "stevearc/resession.nvim",
 })

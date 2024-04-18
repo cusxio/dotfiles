@@ -5,8 +5,10 @@ return {
   opts = {
     options = {
       opt = {
+        cmdheight = 1,
         colorcolumn = { "80" },
         scrolloff = 15,
+        wrap = true,
       },
     },
     diagnostics = {
