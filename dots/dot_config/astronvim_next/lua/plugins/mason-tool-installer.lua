@@ -5,30 +5,35 @@ local setup_without_ensure_installed = function(main, opts)
   require(main).setup(opts)
 end
 
-local noop = function() end
-
----@type LazySpec
 return {
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    cmd = { "MasonToolsInstall", "MasonToolsUpdate", "MasonToolsClean" },
+    cmd = {
+      "MasonToolsInstall",
+      "MasonToolsInstallSync",
+      "MasonToolsUpdate",
+      "MasonToolsUpdateSync",
+      "MasonToolsClean",
+    },
     dependencies = { "williamboman/mason.nvim" },
     init = function(plugin)
       require("astrocore").on_load("mason.nvim", plugin.name)
     end,
+    opts_extend = { "ensure_installed" },
     opts = {
       ensure_installed = {
         -- Language Servers
-        "astro",
-        "cssls",
-        "html",
-        "jsonls",
-        "lua_ls",
+        "astro-language-server",
+        "css-lsp",
+        "html-lsp",
+        "json-lsp",
+        "lua-language-server",
         "marksman",
-        "tailwindcss",
+        "tailwindcss-language-server",
         "taplo",
+        "typos-lsp",
         "vtsls",
-        "yamlls",
+        "yaml-language-server",
 
         -- Linters
         "selene",
@@ -40,18 +45,25 @@ return {
         "shfmt",
         "stylua",
       },
+      integrations = {
+        -- ["mason-lspconfig"] = false,
+        ["mason-null-ls"] = false,
+        ["mason-nvim-dap"] = false,
+      },
     },
     config = function(_, opts)
       local mason_tool_installer = require("mason-tool-installer")
       mason_tool_installer.setup(opts)
-      mason_tool_installer.run_on_start()
+      if opts.run_on_start ~= false then
+        mason_tool_installer.run_on_start()
+      end
     end,
   },
   -- disable init and ensure installed of other plugins
   {
     "jay-babu/mason-nvim-dap.nvim",
     optional = true,
-    init = noop,
+    init = false,
     config = function(_, opts)
       setup_without_ensure_installed("mason-nvim-dap", opts)
     end,
@@ -59,9 +71,17 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     optional = true,
-    init = noop,
+    init = false,
     config = function(_, opts)
       setup_without_ensure_installed("mason-lspconfig", opts)
+    end,
+  },
+  {
+    "jay-babu/mason-null-ls.nvim",
+    optional = true,
+    init = false,
+    config = function(_, opts)
+      setup_without_ensure_installed("mason-null-ls", opts)
     end,
   },
 }
