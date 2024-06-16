@@ -14,10 +14,12 @@ set --query XDG_DATA_HOME || set --export XDG_DATA_HOME $HOME/.local/share
 
 set --export MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
-set PNPM_HOME $XDG_DATA_HOME/pnpm
+set --export PNPM_HOME $XDG_DATA_HOME/pnpm
+fish_add_path $PNPM_HOME
 
 if type -q nvim
     set --export EDITOR nvim
+    set --export NVIM_APPNAME astronvim_next
     abbr --add astro "set --export NVIM_APPNAME astronvim_next; and nvim"
     abbr --add nvchad "set --export NVIM_APPNAME nvchad_next; and nvim"
 end
@@ -37,3 +39,5 @@ abbr --add gcob git checkout -b
 abbr --add gd git diff
 abbr --add gdup git diff @{upstream}
 abbr --add gp git push
+
+abbr --add gb git branch
