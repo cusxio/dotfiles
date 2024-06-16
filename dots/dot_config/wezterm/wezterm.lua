@@ -13,6 +13,10 @@ return {
     "-l",
   },
   font_size = 15,
+  font = wezterm.font_with_fallback({
+    { family = fontFamily, weight = fontWeight },
+    { family = "Symbols Nerd Font Mono", scale = 0.60 },
+  }),
   font_rules = {
     {
       -- italic
