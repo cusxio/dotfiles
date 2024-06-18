@@ -31,7 +31,7 @@ return {
                 end
                 require("conform").format({
                   async = true,
-                  lsp_fallback = true,
+                  lsp_format = "fallback",
                   range = range,
                 })
               end,
@@ -92,6 +92,7 @@ return {
         },
       },
     },
+    ---@param opts conform.setupOpts
     opts = function(_, opts)
       opts.format_on_save = function(bufnr)
         if vim.g.autoformat == nil then
@@ -102,7 +103,7 @@ return {
           autoformat = vim.g.autoformat
         end
         if autoformat then
-          return { timeout_ms = 2000, lsp_fallback = true }
+          return { timeout_ms = 2000, lsp_format = "fallback" }
         end
       end
 
