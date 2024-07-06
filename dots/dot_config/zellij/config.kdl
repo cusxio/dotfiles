@@ -1,1 +1,3 @@
-theme "kanagawa"
+default_shell "/opt/homebrew/bin/fish"
+
+theme "material"

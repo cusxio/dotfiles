@@ -1,0 +1,45 @@
+themes {
+    material {
+        fg "#B0BEC5"
+        bg "#212121"
+        red "#FF5370"
+        green "#C3E88D"
+        yellow "#FFCB6B"
+        blue "#82AAFF"
+        magenta "#C792EA"
+        orange "#F78C6C"
+        cyan "#89DDFF"
+        black "#000000"
+        white "#EEFFFF"
+    }
+}
+
+// base00: "#212121"
+// base01: "#303030"
+// base02: "#353535"
+// base03: "#4A4A4A"
+// base04: "#B2CCD6"
+// base05: "#EEFFFF"
+// base06: "#EEFFFF"
+// base07: "#FFFFFF"
+// base08: "#F07178"
+// base09: "#F78C6C"
+// base0A: "#FFCB6B"
+// base0B: "#C3E88D"
+// base0C: "#89DDFF"
+// base0D: "#82AAFF"
+// base0E: "#C792EA"
+// base0F: "#FF5370"
+//
+//     white      = "#EEFFFF",
+//         gray       = "#717CB4",
+//         black      = "#000000",
+//         red        = "#F07178",
+//         green      = "#C3E88D",
+//         yellow     = "#FFCB6B",
+//         blue       = "#82AAFF",
+//         paleblue   = "#B0C9FF",
+//         cyan       = "#89DDFF",
+//         purple     = "#C792EA",
+//         orange     = "#F78C6C",
+//         -- pink       = "#FF9CAC",
