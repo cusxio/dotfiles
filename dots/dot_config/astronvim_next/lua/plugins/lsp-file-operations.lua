@@ -4,7 +4,7 @@ return {
   init = function(plugin)
     require("astrocore").on_load("neo-tree.nvim", plugin.name)
   end,
-  dependencies = {
+  specs = {
     "AstroNvim/astrolsp",
     opts = function(_, opts)
       local operations = vim.tbl_get(

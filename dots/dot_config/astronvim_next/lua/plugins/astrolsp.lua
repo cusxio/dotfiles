@@ -37,42 +37,39 @@ return {
       },
       vtsls = {
         settings = {
-          vtsls = {
-            typescript = {
-              inlayHints = {
-                parameterNames = {
-                  enabled = "all",
-                  suppressWhenArgumentMatchesName = false,
-                },
-                parameterTypes = { enabled = true },
-                variableTypes = {
-                  enabled = true,
-                  suppressWhenTypeMatchesName = false,
-                },
-                propertyDeclarationTypes = { enabled = true },
-                functionLikeReturnTypes = { enabled = true },
-                enumMemberValues = { enabled = true },
+          typescript = {
+            inlayHints = {
+              parameterNames = {
+                enabled = "all",
+                suppressWhenArgumentMatchesName = false,
               },
-              updateImportsOnFileMove = { enabled = "always" },
-            },
-            javascript = {
-              inlayHints = {
-                parameterNames = {
-                  enabled = "all",
-                  suppressWhenArgumentMatchesName = false,
-                },
-                parameterTypes = { enabled = true },
-                variableTypes = {
-                  enabled = true,
-                  suppressWhenTypeMatchesName = false,
-                },
-                propertyDeclarationTypes = { enabled = true },
-                functionLikeReturnTypes = { enabled = true },
-                enumMemberValues = { enabled = true },
+              parameterTypes = { enabled = true },
+              variableTypes = {
+                enabled = true,
+                suppressWhenTypeMatchesName = false,
               },
-              updateImportsOnFileMove = { enabled = "always" },
+              propertyDeclarationTypes = { enabled = true },
+              functionLikeReturnTypes = { enabled = true },
+              enumMemberValues = { enabled = true },
             },
-            autoUseWorkspaceTsdk = true,
+            updateImportsOnFileMove = { enabled = "always" },
+          },
+          javascript = {
+            inlayHints = {
+              parameterNames = {
+                enabled = "all",
+                suppressWhenArgumentMatchesName = false,
+              },
+              parameterTypes = { enabled = true },
+              variableTypes = {
+                enabled = true,
+                suppressWhenTypeMatchesName = false,
+              },
+              propertyDeclarationTypes = { enabled = true },
+              functionLikeReturnTypes = { enabled = true },
+              enumMemberValues = { enabled = true },
+            },
+            updateImportsOnFileMove = { enabled = "always" },
           },
         },
       },
