@@ -3,6 +3,7 @@ return {
   "AstroNvim/astroui",
   ---@type AstroUIOpts
   opts = {
+    -- colorscheme = "roseprime",
     colorscheme = "material",
     highlights = {
       material = function()

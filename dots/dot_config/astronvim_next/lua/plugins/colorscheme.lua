@@ -29,6 +29,15 @@ return {
   --     },
   --   },
   -- },
+  -- {
+  --   "cdmill/neomodern.nvim",
+  --   config = function()
+  --     require("neomodern").setup({
+  --       style = "roseprime",
+  --     })
+  --     require("neomodern").load()
+  --   end,
+  -- },
   {
     "marko-cerovac/material.nvim",
     config = function()
