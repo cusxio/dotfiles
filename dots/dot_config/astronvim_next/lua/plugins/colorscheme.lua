@@ -31,6 +31,8 @@ return {
   -- },
   -- {
   --   "cdmill/neomodern.nvim",
+  --   lazy = false,
+  --   priority = 1000,
   --   config = function()
   --     require("neomodern").setup({
   --       style = "roseprime",
@@ -39,49 +41,56 @@ return {
   --   end,
   -- },
   {
-    "marko-cerovac/material.nvim",
-    config = function()
-      vim.g.material_style = "darker"
-    end,
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    ---@class tokyonight.Config
     opts = {
-      contrast = {
-        lsp_virtual_text = true,
-      },
-      high_visibility = {
-        darker = true,
-      },
-      plugins = {
-        -- "coc"
-        -- "dap",
-        -- "dashboard",
-        -- "eyeliner",
-        -- "fidget",
-        -- "flash",
-        "gitsigns",
-        -- "harpoon",
-        -- "hop",
-        "illuminate",
-        "indent-blankline",
-        -- "lspsaga",
-        "mini",
-        -- "neogit",
-        -- "neotest",
-        "neo-tree",
-        -- "neorg",
-        "noice",
-        "nvim-cmp",
-        -- "nvim-navic",
-        -- "nvim-tree",
-        "nvim-web-devicons",
-        -- "rainbow-delimiters",
-        -- "sneak",
-        "telescope",
-        -- "trouble",
-        "which-key",
-        "nvim-notify",
-      },
+      style = "night",
+      on_highlights = function(hl, c)
+        hl.NeoTreeGitUnstaged = {
+          fg = c.red,
+        }
+        hl.NeoTreeTabActive = { fg = c.blue, bg = c.bg_dark }
+      end,
     },
+    -- opts = {},
   },
+  -- {
+  --   "marko-cerovac/material.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = {
+  --     contrast = {
+  --       lsp_virtual_text = true,
+  --     },
+  --     high_visibility = {
+  --       darker = true,
+  --     },
+  --     plugins = {
+  --       "flash",
+  --       "gitsigns",
+  --       "illuminate",
+  --       "indent-blankline",
+  --       "mini",
+  --       "neo-tree",
+  --       "noice",
+  --       "nvim-cmp",
+  --       "nvim-web-devicons",
+  --       "telescope",
+  --       "trouble",
+  --       "which-key",
+  --       "nvim-notify",
+  --     },
+  --     custom_highlights = {
+  --       NeoTreeTabActive = { bold = false },
+  --     },
+  --   },
+  --   config = function(_, opts)
+  --     require("material").setup(opts)
+  --     vim.g.material_style = "deep ocean"
+  --   end,
+  -- },
   -- {
   --   "loctvl842/monokai-pro.nvim",
   --   config = function()
