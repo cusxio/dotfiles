@@ -14,9 +14,9 @@ local servers = {
         classRegex = {
           -- https://github.com/paolotiu/tailwind-intellisense-regex-list
           { "clsx\\(([^)]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)" },
-          { "cx\\(([^)]*)\\)",   "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)" },
+          { "cx\\(([^)]*)\\)", "(?:'|\"|`)([^\"'`]*)(?:'|\"|`)" },
           -- https://cva.style/docs/installation#intellisense
-          { "cva\\(([^)]*)\\)",  "[\"'`]([^\"'`]*).*?[\"'`]" },
+          { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
         },
       },
       validate = true,
@@ -60,9 +60,8 @@ local servers = {
   yamlls = {},
 }
 
-local configs = require("plugins.configs.lspconfig")
-local on_attach = configs.on_attach
-local capabilities = configs.capabilities
+local on_attach = require("nvchad.configs.lspconfig").on_attach
+local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local mason_lspconfig = require("mason-lspconfig")
 mason_lspconfig.setup({
@@ -71,7 +70,7 @@ mason_lspconfig.setup({
     function(server_name)
       -- lua_ls setup by nvchad
       if server_name ~= "lua_ls" then
-        require("lspconfig")[server_name].setup({
+        require("dots.dot_config.lazyvim.lua.plugins.nvim-lspconfig")[server_name].setup({
           capabilities = capabilities,
           on_attach = on_attach,
           settings = servers[server_name],
