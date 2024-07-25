@@ -11,4 +11,6 @@ return {
   { import = "lazyvim.plugins.extras.lang.typescript" },
   { import = "lazyvim.plugins.extras.lang.prisma" },
   { import = "lazyvim.plugins.extras.lang.yaml" },
+
+  { import = "lazyvim.plugins.extras.coding.mini-surround" },
 }
