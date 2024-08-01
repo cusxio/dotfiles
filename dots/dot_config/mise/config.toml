@@ -2,3 +2,5 @@
 bun = "latest"
 node = "latest"
 usage = "latest"
+go = "latest"
+python = "latest"
