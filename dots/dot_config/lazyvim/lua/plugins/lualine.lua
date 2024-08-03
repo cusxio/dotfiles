@@ -42,7 +42,7 @@ return {
           b = { bg = bg, fg = fg },
           c = { bg = bg, fg = fg },
         },
-        temrinal = {
+        terminal = {
           a = { bg = bg, fg = colors.green1 },
           b = { bg = bg, fg = fg },
           c = { bg = bg, fg = fg },
