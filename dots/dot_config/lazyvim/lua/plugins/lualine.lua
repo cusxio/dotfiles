@@ -4,7 +4,7 @@ return {
   opts = function(_, opts)
     local icons = LazyVim.config.icons
     local colors = require("tokyonight.colors").setup({
-      style = "moon",
+      style = "night",
     })
 
     local bg = colors.bg_dark
