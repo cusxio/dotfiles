@@ -185,3 +185,12 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Python
+__pycache__/
+.venv/
+
+# mise
+.mise.toml
+.mise.local.toml
+.mise.*.local.toml
