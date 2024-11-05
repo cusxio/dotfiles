@@ -9,3 +9,5 @@ set --global tide_git_color_branch brblack
 set --global tide_git_color_dirty bryellow
 set --global tide_git_color_staged brgreen
 set --global tide_git_color_untracked brred
+
+set --global tide_right_prompt_suffix " "
