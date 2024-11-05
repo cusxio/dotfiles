@@ -41,3 +41,16 @@ abbr --add gdup git diff @{upstream}
 abbr --add gp git push
 
 abbr --add gb git branch
+
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
+if test -d $HOME/Library/Android/sdk
+    set --export ANDROID_HOME $HOME/Library/Android/sdk
+    fish_add_path $ANDROID_HOME/emulator
+    fish_add_path $ANDROID_HOME/platform-tools
+end
+
+if test -d $GHOSTTY_RESOURCES_DIR
+    source $GHOSTTY_RESOURCES_DIR/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish
+end
