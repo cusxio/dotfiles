@@ -45,5 +45,8 @@
 [rerere]
   enabled = true
 
+[alias]
+  diff-last = log --stat --oneline HEAD~1..HEAD
+
 # [url "git@github.com:"]
 # insteadOf = "https://github.com/"
