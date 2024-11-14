@@ -1,14 +1,18 @@
 font-family = JetBrains Mono
+font-style = Medium
+
+font-family-bold = JetBrains Mono
+font-style-bold = SemiBold
+
+font-family-italic = JetBrains Mono
+font-style-italic = Medium Italic
+
+font-family-bold-italic = JetBrains Mono
+font-style-bold-italic = SemiBold Italic
+
 font-size = 15
-font-variation = wght=600
 
-# font-style-bold = false
-# font-style-italic = false
-# font-style-bold-italic = false
-
-# font-family-bold = JetBrains Mono
-# font-family-italic = JetBrains Mono
-# font-family-bold-italic = JetBrains Mono
+# font-variation = wght=600
 
 working-directory = home
 # macos-titlebar-style = hidden
