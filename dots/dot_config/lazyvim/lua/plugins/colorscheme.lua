@@ -10,4 +10,15 @@ return {
       }
     end,
   },
+  -- {
+  --   "wnkz/monoglow.nvim",
+  --   lazy = false,
+  --   opts = {},
+  -- },
+  -- {
+  --   "LazyVim/LazyVim",
+  --   opts = {
+  --     colorscheme = "monoglow",
+  --   },
+  -- },
 }
