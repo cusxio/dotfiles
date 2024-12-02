@@ -19,4 +19,6 @@ return {
   { import = "lazyvim.plugins.extras.coding.mini-surround" },
 
   { import = "lazyvim.plugins.extras.editor.mini-files" },
+
+  { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
 }
