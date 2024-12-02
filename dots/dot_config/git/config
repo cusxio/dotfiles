@@ -47,6 +47,7 @@
 
 [alias]
   diff-last = log --stat --oneline HEAD~1..HEAD
+  show-untracked = "!git ls-files --others --exclude-standard -z | xargs -0 bat --paging=always"
 
 # [url "git@github.com:"]
 # insteadOf = "https://github.com/"
