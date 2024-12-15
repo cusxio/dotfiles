@@ -5,6 +5,12 @@
 [color]
   ui = true
 
+[color "status"]
+  header = dim
+  added = green
+  changed = yellow
+  untracked = red
+
 [init]
   defaultBranch = main
 
