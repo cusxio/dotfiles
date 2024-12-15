@@ -3,6 +3,18 @@ return {
   "nvim-lualine/lualine.nvim",
   opts = function(_, opts)
     local icons = LazyVim.config.icons
+    -- local colors = require("tokyonight.colors").setup({
+    --   style = "night",
+    --   ---@type fun(colors: ColorScheme)
+    --   on_colors = function(c)
+    --     c.bg = "#121212"
+    --     c.bg_sidebar = "#121212"
+    --   end,
+    --   ---@type fun(hl: tokyonight.Highlights, c: ColorScheme)
+    --   on_highlights = function(hl, c)
+    --     hl.NeoTreeGitUnstaged = { fg = c.red }
+    --   end,
+    -- })
 
     opts.options = {
       theme = "auto",

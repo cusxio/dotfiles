@@ -20,5 +20,7 @@ return {
 
   { import = "lazyvim.plugins.extras.editor.mini-files" },
 
+  { import = "lazyvim.plugins.extras.ui.treesitter-context" },
+
   { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
 }

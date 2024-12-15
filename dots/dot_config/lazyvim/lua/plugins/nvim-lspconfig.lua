@@ -3,12 +3,12 @@ return {
   "nvim-lspconfig",
   opts = {
     servers = {
-      eslint = {
-        settings = {
-          -- experimental = { useFlatConfig = true },
-          workingDirectories = { mode = "auto" },
-        },
-      },
+      -- eslint = {
+      --   settings = {
+      --     -- experimental = { useFlatConfig = true },
+      --     workingDirectories = { mode = "auto" },
+      --   },
+      -- },
       yamlls = {
         settings = {
           yaml = {
