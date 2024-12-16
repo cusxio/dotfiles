@@ -40,101 +40,44 @@ macos-titlebar-proxy-icon = hidden
 cursor-style = block
 shell-integration-features = no-cursor
 
-# tokyonight
-# palette = 0=#15161e
-# palette = 1=#f7768e
-# palette = 2=#9ece6a
-# palette = 3=#e0af68
-# palette = 4=#7aa2f7
-# palette = 5=#bb9af7
-# palette = 6=#7dcfff
-# palette = 7=#a9b1d6
-# palette = 8=#414868
-# palette = 9=#ff899d
-# palette = 10=#9fe044
-# palette = 11=#faba4a
-# palette = 12=#8db0ff
-# palette = 13=#c7a9ff
-# palette = 14=#a4daff
-# palette = 15=#c0caf5
-#
-# background = #1a1b26
-# foreground = #c0caf5
-# cursor-color = #c0caf5
-# selection-background = #283457
-# selection-foreground = #c0caf5
-
-# monoglow
-# palette = 0=#2a2a2a
-# palette = 1=#deeeed
-# palette = 2=#1bfd9c
-# palette = 3=#b4b4b4
-# palette = 4=#7a7a7a
-# palette = 5=#66b2b2
-# palette = 6=#cccccc
-# palette = 7=#f1f1f1
-# palette = 8=#4a4a4a
-# palette = 9=#708090
-# palette = 10=#a6ffc9
-# palette = 11=#dddddd
-# palette = 12=#aaaaaa
-# palette = 13=#49c4c4
-# palette = 14=#d3d3d3
-# palette = 15=#ffffff
-#
-# background = #121212
-# foreground = #cccccc
-# cursor-color = #1bfd9c
-# cursor-text = #121212
-# selection-background = #2a2a2a
-# selection-foreground = #dddddd
-
 # custom
+# black
 palette = 0=#2a2a2a
-palette = 1=#fc618d
-palette = 2=#1bfd9c
-palette = 3=#fce566
-palette = 4=#7a7a7a
-palette = 5=#66b2b2
-palette = 6=#cccccc
-palette = 7=#f1f1f1
 palette = 8=#4a4a4a
-palette = 9=#fc618d
+
+# red
+palette = 1=#fc618d
+palette = 9=#fda0ba
+
+# green
+palette = 2=#1bfd9c
 palette = 10=#a6ffc9
-palette = 11=#fce566
-palette = 12=#aaaaaa
-palette = 13=#49c4c4
-palette = 14=#d3d3d3
+
+# yellow
+palette = 3=#fce566
+palette = 11=#fdefa3
+
+# blue
+# palette = 4=#4e7eff
+# palette = 12=#87adff
+palette = 4=#7aa2f7
+palette = 12=#8db0ff
+
+# magenta
+palette = 5=#948ae3
+palette = 13=#beb8ee
+
+# cyan
+palette = 6=#5ad4e6
+palette = 14=#9ce5f0
+
+# white
+palette = 7=#f1f1f1
 palette = 15=#ffffff
 
 background = #121212
 foreground = #cccccc
 cursor-color = #1bfd9c
 cursor-text = #121212
-selection-background = #000000
-selection-foreground = #fce566
-
-# monokai pro (spectrum)
-# palette = 0=#101317
-# palette = 1=#fc618d
-# palette = 2=#1bfd9c
-# palette = 3=#fce566
-# palette = 4=#fd9353
-# palette = 5=#948ae3
-# palette = 6=#5ad4e6
-# palette = 7=#f7f1ff
-# palette = 8=#69676c
-# palette = 9=#fc618d
-# palette = 10=#a6ffc9
-# palette = 11=#fce566
-# palette = 12=#fd9353
-# palette = 13=#948ae3
-# palette = 14=#5ad4e6
-# palette = 15=#f7f1ff
-#
-# background = #121212
-# foreground = #cccccc
-# cursor-color = #1bfd9c
-# cursor-text = #121212
-# selection-background = #000000
-# selection-foreground = #fce566
+selection-background = #2a2a2a
+selection-foreground = #dddddd
