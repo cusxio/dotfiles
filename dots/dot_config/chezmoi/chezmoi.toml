@@ -1,2 +1,6 @@
 [cd]
-    command = "/opt/homebrew/bin/fish"
+command = "/opt/homebrew/bin/fish"
+
+[diff]
+command = "delta"
+pager = "delta"
