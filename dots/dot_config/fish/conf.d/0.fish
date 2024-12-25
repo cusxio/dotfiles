@@ -31,8 +31,8 @@ abbr --add gl git log
 
 abbr --add gc git clone
 
-abbr --add gcam git commit --amend -m
-abbr --add gcm git commit -m
+abbr --add --set-cursor='%' gcam 'git commit --amend -m "%"'
+abbr --add --set-cursor='%' gcm 'git commit -m "%"'
 
 abbr --add gco git checkout
 abbr --add gcob git checkout -b
