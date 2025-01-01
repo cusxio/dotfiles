@@ -22,5 +22,6 @@ return {
 
   { import = "lazyvim.plugins.extras.ui.treesitter-context" },
 
+  { import = "lazyvim.plugins.extras.util.chezmoi" },
   { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
 }
