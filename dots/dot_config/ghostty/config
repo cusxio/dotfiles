@@ -1,3 +1,5 @@
+theme = monoglow
+
 font-family = JetBrains Mono
 font-style = Medium
 
@@ -34,50 +36,18 @@ font-size = 15
 # font-variation = wght=600
 
 working-directory = home
-# macos-titlebar-style = hidden
-macos-titlebar-proxy-icon = hidden
 
 cursor-style = block
+copy-on-select = true
+cursor-style-blink = true
+mouse-hide-while-typing = true
+
 shell-integration-features = no-cursor
 
-# custom
-# black
-palette = 0=#2a2a2a
-palette = 8=#4a4a4a
+macos-titlebar-style = hidden
+macos-titlebar-proxy-icon = hidden
+# macos-window-shadow = false
 
-# red
-palette = 1=#fc618d
-palette = 9=#fda0ba
-
-# green
-palette = 2=#1bfd9c
-palette = 10=#a6ffc9
-
-# yellow
-palette = 3=#fce566
-palette = 11=#fdefa3
-
-# blue
-# palette = 4=#4e7eff
-# palette = 12=#87adff
-palette = 4=#7aa2f7
-palette = 12=#8db0ff
-
-# magenta
-palette = 5=#948ae3
-palette = 13=#beb8ee
-
-# cyan
-palette = 6=#5ad4e6
-palette = 14=#9ce5f0
-
-# white
-palette = 7=#f1f1f1
-palette = 15=#ffffff
-
-background = #121212
-foreground = #cccccc
-cursor-color = #1bfd9c
-cursor-text = #121212
-selection-background = #2a2a2a
-selection-foreground = #dddddd
+macos-icon = custom-style
+macos-icon-ghost-color = #f1f1f1
+macos-icon-screen-color = #121212
