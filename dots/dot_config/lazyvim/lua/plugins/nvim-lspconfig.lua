@@ -3,12 +3,13 @@ return {
   "neovim/nvim-lspconfig",
   opts = {
     servers = {
-      -- eslint = {
-      --   settings = {
-      --     -- experimental = { useFlatConfig = true },
-      --     workingDirectories = { mode = "auto" },
-      --   },
-      -- },
+      vtsls = {
+        -- https://github.com/yioneko/vtsls/issues/167#issuecomment-2162166505
+        root_dir = function()
+          local lazyvimRoot = require("lazyvim.util.root")
+          return lazyvimRoot.git()
+        end,
+      },
       yamlls = {
         settings = {
           yaml = {
