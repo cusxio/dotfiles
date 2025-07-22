@@ -1,4 +1,7 @@
 jorgebucaran/fisher
 jorgebucaran/autopair.fish
-ilancosman/tide@v6
+# ilancosman/tide@v6
 patrickf1/fzf.fish
+
+# https://github.com/IlanCosman/tide/pull/566#issuecomment-2779727374
+plttn/tide@main

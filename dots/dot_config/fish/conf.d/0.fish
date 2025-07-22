@@ -33,6 +33,7 @@ abbr --add gc git clone
 
 abbr --add --set-cursor='%' gcam 'git commit --amend -m "%"'
 abbr --add --set-cursor='%' gcm 'git commit -m "%"'
+abbr --add gcane git commit --amend --no-edit
 
 abbr --add gco git checkout
 abbr --add gcob git checkout -b
