@@ -195,19 +195,19 @@ esc = 'mode main'
 
 [[on-window-detected]]
 if.app-id = 'com.tdesktop.Telegram'
-run = 'move-node-to-workspace 2'
+run = 'move-node-to-workspace 5'
 
 [[on-window-detected]]
 if.app-id = 'net.whatsapp.WhatsApp'
-run = 'move-node-to-workspace 2'
+run = 'move-node-to-workspace 5'
 
 [[on-window-detected]]
 if.app-id = 'com.hnc.Discord'
-run = 'move-node-to-workspace 2'
+run = 'move-node-to-workspace 5'
 
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
-run = 'move-node-to-workspace 3'
+run = 'move-node-to-workspace 4'
 
 [[on-window-detected]]
 if.app-id = 'org.qbittorrent.qBittorrent'
@@ -239,4 +239,20 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'io.canarymail.mac'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.electron.ollama'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'dev.kdrag0n.MacVirt'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.tinyapp.TablePlus'
+run = 'layout floating'
+[[on-window-detected]]
+
+if.app-id = 'app.yaak.desktop'
 run = 'layout floating'
