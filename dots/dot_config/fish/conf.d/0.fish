@@ -20,8 +20,8 @@ fish_add_path $PNPM_HOME
 if type -q nvim
     set --export EDITOR nvim
     set --export NVIM_APPNAME lazyvim
-    abbr --add astro "set --export NVIM_APPNAME astronvim_next; and nvim"
-    abbr --add nvchad "set --export NVIM_APPNAME nvchad_next; and nvim"
+    abbr --add astro "env NVIM_APPNAME=astronvim nvim"
+    abbr --add nvchad "env NVIM_APPNAME=nvchad nvim"
 end
 
 abbr --add c clear
