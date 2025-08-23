@@ -20,5 +20,3 @@ set --global tide_git_color_branch brblack
 set --global tide_git_color_dirty yellow
 set --global tide_git_color_staged green
 set --global tide_git_color_untracked red
-
-# set --global tide_right_prompt_suffix " "

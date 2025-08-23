@@ -6,11 +6,21 @@ if test -d $HOME/.local/bin
     fish_add_path $HOME/.local/bin
 end
 
+if test -d $HOME/.lmstudio/bin
+    fish_add_path $HOME/.lmstudio/bin
+end
+
+if test -d $FORGIT_INSTALL_DIR/bin
+    fish_add_path $FORGIT_INSTALL_DIR/bin
+end
+
 set --global fish_greeting
 
 set --query XDG_CONFIG_HOME || set --export XDG_CONFIG_HOME $HOME/.config
 set --query XDG_CACHE_HOME || set --export XDG_CACHE_HOME $HOME/.cache
 set --query XDG_DATA_HOME || set --export XDG_DATA_HOME $HOME/.local/share
+
+set --export MOON_HOME $XDG_DATA_HOME/moon
 
 set --export MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
@@ -55,3 +65,6 @@ end
 if test -d $GHOSTTY_RESOURCES_DIR
     source $GHOSTTY_RESOURCES_DIR/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish
 end
+
+# Needs to be initialize before fisher initialize it
+set --export FORGIT_NO_ALIASES 1
