@@ -184,9 +184,9 @@ equal = ['balance-sizes', 'mode main']
 esc = 'mode main'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-t = 'layout tiles horizontal vertical'
-a = 'layout accordion horizontal vertical'
-f = 'layout floating tiling'
+t = ['layout tiles horizontal vertical', 'mode main']
+a = ['layout accordion horizontal vertical', 'mode main']
+f = ['layout floating tiling', 'mode main']
 
 [mode.service.binding]
 r = ['reload-config', 'mode main']
@@ -252,7 +252,15 @@ run = 'layout floating'
 [[on-window-detected]]
 if.app-id = 'com.tinyapp.TablePlus'
 run = 'layout floating'
-[[on-window-detected]]
 
+[[on-window-detected]]
 if.app-id = 'app.yaak.desktop'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.luckymarmot.Paw'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'ai.elementlabs.lmstudio'
 run = 'layout floating'
