@@ -28,4 +28,7 @@ return {
   { import = "astrocommunity.lsp.nvim-lint" },
 
   { import = "astrocommunity.recipes.cache-colorscheme" },
+
+  { import = "astrocommunity.search.grug-far-nvim" },
+  { import = "astrocommunity.utility.noice-nvim" },
 }

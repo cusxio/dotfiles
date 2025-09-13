@@ -5,9 +5,9 @@ return {
   opts = {
     options = {
       opt = {
-        cmdheight = 1,
+        -- cmdheight = 1,
         colorcolumn = { "80" },
-        foldcolumn = "0",
+        -- foldcolumn = "0",
         scrolloff = 15,
         wrap = true,
       },
