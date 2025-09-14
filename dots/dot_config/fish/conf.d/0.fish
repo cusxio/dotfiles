@@ -22,10 +22,16 @@ set --query XDG_DATA_HOME || set --export XDG_DATA_HOME $HOME/.local/share
 
 set --export MOON_HOME $XDG_DATA_HOME/moon
 
+set --export BUN_INSTALL_CACHE_DIR $XDG_CACHE_HOME/bun
+
 set --export MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
 set --export PNPM_HOME $XDG_DATA_HOME/pnpm
 fish_add_path $PNPM_HOME
+
+if type -q rg
+ set --export RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/config
+end
 
 if type -q nvim
     set --export EDITOR nvim
