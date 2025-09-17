@@ -1,24 +1,40 @@
-theme = monoglow
+# theme = monoglow
+theme = TokyoNight Night
 
-font-family = JetBrains Mono
-font-style = Medium
+font-family = CommitMono
+font-style = 500Regular
 
-font-family-bold = JetBrains Mono
-font-style-bold = SemiBold
+font-family-bold = CommitMono
+font-style-bold = 600Regular
 
-font-family-italic = JetBrains Mono
-font-style-italic = Medium Italic
+font-family-italic = CommitMono
+font-style-italic = 500Italic
 
-font-family-bold-italic = JetBrains Mono
-font-style-bold-italic = SemiBold Italic
+font-family-bold-italic = CommitMono
+font-style-bold-italic = 600Italic
 
-font-feature = calt
+adjust-cell-width = -2%
+adjust-cell-height = 20%
+
+# font-family = JetBrains Mono
+# font-style = Medium
+#
+# font-family-bold = JetBrains Mono
+# font-style-bold = SemiBold
+#
+# font-family-italic = JetBrains Mono
+# font-style-italic = Medium Italic
+#
+# font-family-bold-italic = JetBrains Mono
+# font-style-bold-italic = SemiBold Italic
+
+# font-feature = calt
 # https://github.com/JetBrains/JetBrainsMono/issues/669
 # font-feature = frac
-font-feature = zero
-font-feature = cv11
-font-feature = cv14
-font-feature = cv12
+# font-feature = zero
+# font-feature = cv11
+# font-feature = cv14
+# font-feature = cv12
 
 # font-family = Input Mono
 # font-style = Regular
