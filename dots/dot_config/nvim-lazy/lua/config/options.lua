@@ -53,29 +53,18 @@ opt.shortmess:append("WcC") -- Reduce command line messages
 o.statuscolumn     = [[%!v:lua.require'snacks.statuscolumn'.get()]]
 -- stylua: ignore end
 
-local gr = vim.api.nvim_create_augroup("MiniBasicsAutocommands", {})
+local gr = vim.api.nvim_create_augroup("Autocommands", {})
 local au = function(event, pattern, callback, desc)
   vim.api.nvim_create_autocmd(event, { group = gr, pattern = pattern, callback = callback, desc = desc })
 end
 
-au(
-  "ModeChanged",
-  -- Show relative numbers only when they matter (linewise and blockwise
-  -- selection) and 'number' is set (avoids horizontal flickering)
-  "*:[V\x16]*",
-  function()
-    vim.wo.relativenumber = vim.wo.number
-  end,
-  "Show relative line numbers"
-)
-au(
-  "ModeChanged",
-  "[V\x16]*:*",
-  -- Hide relative numbers when neither linewise/blockwise mode is on
-  function()
-    vim.wo.relativenumber = string.find(vim.fn.mode(), "^[V\22]") ~= nil
-  end,
-  "Hide relative line numbers"
-)
+-- https://github.com/nvim-mini/mini.nvim/blob/cf515dd765665d51086e418e587a4f7ebc650ba1/lua/mini/basics.lua#L721-L735
+au("ModeChanged", "*:[iV\x16]*", function()
+  vim.wo.relativenumber = vim.wo.number
+end, "Show relative line numbers")
+
+au("ModeChanged", "[iV\x16]*:*", function()
+  vim.wo.relativenumber = string.find(vim.fn.mode(), "^[iV\22]") ~= nil
+end, "Hide relative line numbers")
 
 vim.g.lazy_file_events = { "BufReadPost", "BufNewFile" }
