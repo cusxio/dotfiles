@@ -1,0 +1,130 @@
+---@type LazySpec
+return {
+  -- colorscheme
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      style = "night",
+      on_colors = function(colors)
+        colors.git.add = "#a6e22e"
+        colors.git.change = "#ffd700"
+        colors.git.delete = "#f92672"
+      end,
+    },
+    config = function(_, opts)
+      require("tokyonight").setup(opts)
+      vim.g.tokyo_colors = require("tokyonight.colors").setup(opts)
+
+      vim.cmd([[colorscheme tokyonight]])
+    end,
+  },
+  --
+  {
+    "nvim-mini/mini.icons",
+    lazy = true,
+    opts = {},
+  },
+  {
+    "nvim-mini/mini.cursorword",
+    event = vim.g.lazy_file_events,
+    opts = {},
+  },
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+    opts = {
+      presets = {
+        bottom_search = true,
+        command_palette = true,
+        long_message_to_split = true,
+      },
+      messages = {
+        view_search = "mini",
+      },
+      lsp = {
+        hover = {
+          silent = true,
+        },
+        overrides = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+        },
+      },
+    },
+  },
+  -- statusline
+  {
+    "nvim-lualine/lualine.nvim",
+    lazy = false,
+    event = "VeryLazy",
+    opts = function()
+      local kirby_default = "(>*-*)>"
+      local mode_kirby = {
+        n = "<(•ᴗ•)>",
+        i = "<(•o•)>",
+        v = "(v•-•)v",
+        [""] = "(v•-•)>",
+        V = "(>•-•)>",
+        c = kirby_default,
+        no = "<(•ᴗ•)>",
+        s = kirby_default,
+        S = kirby_default,
+        [""] = kirby_default,
+        ic = kirby_default,
+        R = kirby_default,
+        Rv = kirby_default,
+        cv = "<(•ᴗ•)>",
+        ce = "<(•ᴗ•)>",
+        r = kirby_default,
+        rm = kirby_default,
+        ["r?"] = kirby_default,
+        ["!"] = "<(•ᴗ•)>",
+        t = "<(•ᴗ•)>",
+      }
+
+      local theme = require("lualine.themes.tokyonight-night")
+      local modes =
+        { "normal", "insert", "command", "visual", "replace", "terminal" }
+
+      local colors = vim.g.tokyo_colors
+      for _, mode in ipairs(modes) do
+        theme[mode].b.bg = colors.bg
+        theme[mode].b.fg = colors.dark5
+      end
+
+      theme.normal.c.bg = colors.bg
+
+      local sections = {
+        lualine_a = {
+          {
+            "mode",
+            fmt = function()
+              return mode_kirby[vim.fn.mode()] or vim.api.nvim_get_mode().mode
+            end,
+            separator = { right = "" },
+          },
+        },
+        lualine_b = { { "branch" }, { "diagnostics" } },
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = { { "filename", path = 0 }, { "location" } },
+        lualine_z = {
+          { "progress", separator = { left = "" } },
+        },
+      }
+      return {
+        options = {
+          theme = theme,
+          section_separators = "",
+          component_separators = "",
+        },
+        sections = sections,
+      }
+    end,
+  },
+}
