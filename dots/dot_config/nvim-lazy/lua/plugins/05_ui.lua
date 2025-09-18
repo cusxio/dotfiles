@@ -5,8 +5,15 @@ return {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
+    ---@module "tokyonight"
+    ---@type tokyonight.Config
     opts = {
       style = "night",
+      on_highlights = function(highlights, colors)
+        highlights["LualineFilename"] = { fg = colors.fg, bg = colors.bg }
+        highlights["LualineFilenameModified"] =
+          { fg = colors.orange, bg = colors.bg }
+      end,
       on_colors = function(colors)
         colors.git.add = "#a6e22e"
         colors.git.change = "#ffd700"
@@ -99,34 +106,6 @@ return {
 
       theme.normal.c.bg = colors.bg
 
-      -- local pretty_path = function()
-      --   local path = vim.fn.expand("%:p")
-      --   local cwd = vim.fn.getcwd()
-      --   local home = vim.env.HOME
-      --
-      --   if path:find(cwd, 1, true) then
-      --     path = path:sub(#cwd + 2)
-      --   end
-      --
-      --   path = path:gsub(home, "~")
-      --
-      --   local parts = {}
-      --   for part in path:gmatch("[^/]+") do
-      --     table.insert(parts, part)
-      --   end
-      --
-      --   local filename = table.remove(parts)
-      --   local final_path = ""
-      --
-      --   if #parts > 2 then
-      --     final_path = parts[1] .. "/…/" .. parts[#parts] .. "/"
-      --   else
-      --     final_path = table.concat(parts, "/") .. "/"
-      --   end
-      --
-      --   return final_path .. "%#LualineFilename#" .. filename
-      -- end
-
       local function pretty_path()
         local path = vim.fn.expand("%:p")
 
@@ -159,7 +138,7 @@ return {
 
         local hl = "%#LualineFilename#"
         if vim.bo.modified then
-          hl = "%#MatchParen#"
+          hl = "%#LualineFilenameModified#"
         end
 
         return final_path .. hl .. filename
@@ -175,9 +154,9 @@ return {
             separator = { right = "" },
           },
         },
-        lualine_b = { { "branch" }, { "diff" } },
+        lualine_b = { { "branch" }, { "diff" }, { "diagnostics" } },
         lualine_c = {},
-        lualine_x = { { "diagnostics" } },
+        lualine_x = {},
         lualine_y = {
           {
             pretty_path,
