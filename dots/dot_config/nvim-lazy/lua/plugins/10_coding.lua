@@ -20,6 +20,11 @@ return {
     opts = {},
   },
   {
+    "nvim-mini/mini.align",
+    event = vim.g.lazy_file_events,
+    opts = {},
+  },
+  {
     "nvim-mini/mini.bracketed",
     event = vim.g.lazy_file_events,
     opts = {

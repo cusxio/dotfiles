@@ -52,22 +52,22 @@ return {
         },
       },
     },
-    keys = {
-      {
-        "<leader>/",
-        function()
-          Snacks.picker.grep()
-        end,
-        desc = "Grep",
-      },
-      {
-        "<leader>ff",
-        function()
-          Snacks.picker.files()
-        end,
-        desc = "Find Files",
-      },
-    },
+    -- keys = {
+    --   {
+    --     "<leader>/",
+    --     function()
+    --       Snacks.picker.grep()
+    --     end,
+    --     desc = "Grep",
+    --   },
+    --   {
+    --     "<leader>ff",
+    --     function()
+    --       Snacks.picker.files()
+    --     end,
+    --     desc = "Find Files",
+    --   },
+    -- },
   },
   {
     "nvim-mini/mini.diff",
