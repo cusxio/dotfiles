@@ -99,6 +99,72 @@ return {
 
       theme.normal.c.bg = colors.bg
 
+      -- local pretty_path = function()
+      --   local path = vim.fn.expand("%:p")
+      --   local cwd = vim.fn.getcwd()
+      --   local home = vim.env.HOME
+      --
+      --   if path:find(cwd, 1, true) then
+      --     path = path:sub(#cwd + 2)
+      --   end
+      --
+      --   path = path:gsub(home, "~")
+      --
+      --   local parts = {}
+      --   for part in path:gmatch("[^/]+") do
+      --     table.insert(parts, part)
+      --   end
+      --
+      --   local filename = table.remove(parts)
+      --   local final_path = ""
+      --
+      --   if #parts > 2 then
+      --     final_path = parts[1] .. "/…/" .. parts[#parts] .. "/"
+      --   else
+      --     final_path = table.concat(parts, "/") .. "/"
+      --   end
+      --
+      --   return final_path .. "%#LualineFilename#" .. filename
+      -- end
+
+      local function pretty_path()
+        local path = vim.fn.expand("%:p")
+
+        if path == "" then
+          return ""
+        end
+
+        local cwd = vim.fn.getcwd()
+        local home = vim.env.HOME
+
+        if cwd ~= "/" and path:find(cwd, 1, true) then
+          path = path:sub(#cwd + 2)
+        end
+
+        path = path:gsub(home, "~")
+
+        local parts = {}
+        for part in path:gmatch("[^/]+") do
+          table.insert(parts, part)
+        end
+
+        local filename = table.remove(parts) or ""
+
+        local final_path = ""
+        if #parts > 2 then
+          final_path = parts[1] .. "/…/" .. parts[#parts] .. "/"
+        else
+          final_path = table.concat(parts, "/") .. (#parts > 0 and "/" or "")
+        end
+
+        local hl = "%#LualineFilename#"
+        if vim.bo.modified then
+          hl = "%#MatchParen#"
+        end
+
+        return final_path .. hl .. filename
+      end
+
       local sections = {
         lualine_a = {
           {
@@ -109,14 +175,32 @@ return {
             separator = { right = "" },
           },
         },
-        lualine_b = { { "branch" }, { "diagnostics" } },
+        lualine_b = { { "branch" }, { "diff" } },
         lualine_c = {},
-        lualine_x = {},
-        lualine_y = { { "filename", path = 0 }, { "location" } },
+        lualine_x = { { "diagnostics" } },
+        lualine_y = {
+          {
+            pretty_path,
+            cond = function()
+              return vim.fn.expand("%:p") ~= ""
+            end,
+          },
+        },
         lualine_z = {
           { "progress", separator = { left = "" } },
+          { "location" },
         },
       }
+
+      local inactive_sections = {
+        lualine_a = { { "mode" } },
+        lualine_b = {},
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = { { "progress", "location" } },
+      }
+
       return {
         options = {
           theme = theme,
@@ -124,6 +208,12 @@ return {
           component_separators = "",
         },
         sections = sections,
+        inactive_sections = inactive_sections,
+        extensions = {
+          "lazy",
+          "mason",
+          "oil",
+        },
       }
     end,
   },
