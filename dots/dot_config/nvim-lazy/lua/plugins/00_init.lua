@@ -8,11 +8,7 @@ local function mason_tools_install(tools)
 
       p:install():once("closed", function()
         if p:is_installed() then
-          vim.notify(
-            "Successfully installed " .. tool,
-            vim.log.levels.INFO,
-            opts
-          )
+          vim.notify("Successfully installed " .. tool, vim.log.levels.INFO, opts)
         else
           vim.notify("Failed to install " .. tool, vim.log.levels.ERROR, opts)
         end
@@ -85,10 +81,7 @@ return {
 
       -- https://github.com/echasnovski/nvim/blob/5d0a752aad40b08f88aee45fdcd25dc970aeb0a3/plugin/21_plugins.lua#L23-L31
       local isnt_installed = function(lang)
-        return #vim.api.nvim_get_runtime_file(
-            "parser/" .. lang .. ".*",
-            false
-          ) == 0
+        return #vim.api.nvim_get_runtime_file("parser/" .. lang .. ".*", false) == 0
       end
       local to_install = vim.tbl_filter(isnt_installed, ensure_installed)
       if #to_install > 0 then
@@ -96,19 +89,12 @@ return {
       end
 
       -- Ensure enabled
-      local filetypes = vim
-        .iter(ensure_installed)
-        :map(vim.treesitter.language.get_filetypes)
-        :flatten()
-        :totable()
+      local filetypes = vim.iter(ensure_installed):map(vim.treesitter.language.get_filetypes):flatten():totable()
 
       local ts_start = function(ev)
         vim.treesitter.start(ev.buf)
       end
-      vim.api.nvim_create_autocmd(
-        "FileType",
-        { pattern = filetypes, callback = ts_start }
-      )
+      vim.api.nvim_create_autocmd("FileType", { pattern = filetypes, callback = ts_start })
     end,
   },
   {

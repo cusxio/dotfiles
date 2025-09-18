@@ -1,6 +1,11 @@
 ---@type LazySpec
 return {
   {
+    "dmmulroy/ts-error-translator.nvim",
+    event = vim.g.lazy_file_events,
+    opts = {},
+  },
+  {
     "rachartier/tiny-inline-diagnostic.nvim",
     event = vim.g.lazy_file_events,
     opts = {
@@ -34,15 +39,12 @@ return {
         end
       end
 
-      vim.api.nvim_create_autocmd(
-        { "BufWritePost", "BufReadPost", "InsertLeave" },
-        {
-          group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
-          callback = debounce(100, function()
-            lint.try_lint()
-          end),
-        }
-      )
+      vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
+        group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
+        callback = debounce(100, function()
+          lint.try_lint()
+        end),
+      })
     end,
   },
   {
