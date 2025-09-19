@@ -50,3 +50,4 @@ require("lazy").setup({
 })
 
 require("config.mappings")
+require("config.autocommands")
