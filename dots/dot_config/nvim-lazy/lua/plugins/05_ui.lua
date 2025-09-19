@@ -11,8 +11,7 @@ return {
       style = "night",
       on_highlights = function(highlights, colors)
         highlights["LualineFilename"] = { fg = colors.fg, bg = colors.bg }
-        highlights["LualineFilenameModified"] =
-          { fg = colors.orange, bg = colors.bg }
+        highlights["LualineFilenameModified"] = { fg = colors.orange, bg = colors.bg }
       end,
       on_colors = function(colors)
         colors.git.add = "#a6e22e"
@@ -67,7 +66,6 @@ return {
   -- statusline
   {
     "nvim-lualine/lualine.nvim",
-    lazy = false,
     event = "VeryLazy",
     opts = function()
       local kirby_default = "(>*-*)>"
@@ -95,8 +93,7 @@ return {
       }
 
       local theme = require("lualine.themes.tokyonight-night")
-      local modes =
-        { "normal", "insert", "command", "visual", "replace", "terminal" }
+      local modes = { "normal", "insert", "command", "visual", "replace", "terminal" }
 
       local colors = vim.g.tokyo_colors
       for _, mode in ipairs(modes) do

@@ -12,9 +12,9 @@ return {
       view_options = {
         show_hidden = true,
       },
-    },
-    keys = {
-      { "<leader>-", "<cmd>Oil --float<cr>", desc = "Open parent directory" },
+      lsp_file_methods = {
+        autosave_changes = true,
+      },
     },
   },
   {
@@ -52,22 +52,6 @@ return {
         },
       },
     },
-    -- keys = {
-    --   {
-    --     "<leader>/",
-    --     function()
-    --       Snacks.picker.grep()
-    --     end,
-    --     desc = "Grep",
-    --   },
-    --   {
-    --     "<leader>ff",
-    --     function()
-    --       Snacks.picker.files()
-    --     end,
-    --     desc = "Find Files",
-    --   },
-    -- },
   },
   {
     "nvim-mini/mini.diff",

@@ -78,7 +78,7 @@ return {
       -- "CmdlineEnter"
     },
     opts = {
-      keymap = { preset = "enter" },
+      -- keymap = { preset = "enter" },
       sources = {
         providers = {
           lazydev = {

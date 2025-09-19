@@ -46,8 +46,12 @@ map("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search R
 map("x", "N", "'nN'[v:searchforward]",      { expr = true, desc = "Prev Search Result" })
 map("o", "N", "'nN'[v:searchforward]",      { expr = true, desc = "Prev Search Result" })
 
+-- o is for oil
+nmap_leader("oc", "<Cmd>Oil<CR>",                                      { desc = "Open [c]urrent directory" })
+nmap_leader("ow", "<Cmd>lua require('oil').open(vim.fn.getcwd())<CR>", { desc = "Open [w]orkspace directory" })
+
 -- f is for 'fuzzy find'
-nmap_leader("f/", "<Cmd>lua Snacks.picker.grep()<CR>",    { desc = "Grep Files" })
+nmap_leader("fw", "<Cmd>lua Snacks.picker.grep()<CR>",    { desc = "Grep Files" })
 nmap_leader("fb", "<Cmd>lua Snacks.picker.buffers()<CR>", { desc = "Buffers" })
 nmap_leader("ff", "<Cmd>lua Snacks.picker.files()<CR>",   { desc = "Find Files" })
 
