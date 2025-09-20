@@ -1,7 +1,6 @@
+local o, opt = vim.o, vim.opt
+
 local gr = vim.api.nvim_create_augroup("Autocommands", {})
-
-local opt = vim.opt
-
 local au = function(event, pattern, callback, desc)
   vim.api.nvim_create_autocmd(event, { group = gr, pattern = pattern, callback = callback, desc = desc })
 end
@@ -23,3 +22,35 @@ au({ "VimLeave", "VimSuspend" }, "*", function()
   opt.guicursor = ""
   vim.fn.chansend(vim.v.stderr, "\x1b[ q")
 end, "Restore terminal cursor")
+
+-- https://github.com/AstroNvim/AstroNvim/blob/8379e70578bb2f4b2227d55ccc1ae4fd2ab8bb51/lua/astronvim/plugins/_astrocore_autocmds.lua#L269-L280
+local search_keys = {
+  ["<CR>"] = true,
+  ["n"] = true,
+  ["N"] = true,
+  ["*"] = true,
+  ["#"] = true,
+  ["?"] = true,
+  ["/"] = true,
+}
+local mid_mapping = false
+opt.hlsearch = false
+
+vim.on_key(function(char)
+  if vim.fn.mode() ~= "n" or mid_mapping then
+    return
+  end
+
+  local key = vim.fn.keytrans(char)
+
+  local new_hlsearch_state = search_keys[key] or false
+
+  if o.hlsearch ~= new_hlsearch_state then
+    opt.hlsearch = new_hlsearch_state
+  end
+
+  mid_mapping = true
+  vim.schedule(function()
+    mid_mapping = false
+  end)
+end, vim.api.nvim_create_namespace("auto_hlsearch"))

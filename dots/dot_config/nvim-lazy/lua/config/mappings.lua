@@ -26,8 +26,8 @@ end
 
 -- stylua: ignore start
 -- better up/down
-map({ "n", "x" }, "j",    "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
-map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up",   expr = true, silent = true })
+map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
+map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
 -- move to window using the <ctrl> hjkl keys
 map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window",  remap = true })
@@ -46,14 +46,16 @@ map("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search R
 map("x", "N", "'nN'[v:searchforward]",      { expr = true, desc = "Prev Search Result" })
 map("o", "N", "'nN'[v:searchforward]",      { expr = true, desc = "Prev Search Result" })
 
--- o is for oil
-nmap_leader("oc", "<Cmd>Oil<CR>",                                      { desc = "Open [c]urrent directory" })
-nmap_leader("ow", "<Cmd>lua require('oil').open(vim.fn.getcwd())<CR>", { desc = "Open [w]orkspace directory" })
+-- b is for buffer
+nmap_leader("bd", "<Cmd>lua Snacks.bufdelete()<CR>",       { desc = "Delete Buffer" })
+nmap_leader("bo", "<Cmd>lua Snacks.bufdelete.other()<CR>", { desc = "Delete Other Buffer" })
+
 
 -- f is for 'fuzzy find'
 nmap_leader("fw", "<Cmd>lua Snacks.picker.grep()<CR>",    { desc = "Grep Files" })
-nmap_leader("fb", "<Cmd>lua Snacks.picker.buffers()<CR>", { desc = "Buffers" })
-nmap_leader("ff", "<Cmd>lua Snacks.picker.files()<CR>",   { desc = "Find Files" })
+nmap_leader("fb", "<Cmd>lua Snacks.picker.buffers()<CR>", { desc = "Buffers"    })
+nmap_leader("ff", "<Cmd>lua Snacks.picker.files()<CR>",   { desc = "Find Files"       })
+-- nmap_leader("ff", "<Cmd>lua require('fff').find_files()<CR>", { desc = "Find Files" })
 
 -- l is for lsp
 local formatting_cmd = '<Cmd>lua require("conform").format({ lsp_fallback = true })<CR>'
@@ -70,6 +72,21 @@ map("n", "gd", "<Cmd>lua Snacks.picker.lsp_definitions()<CR>",      { desc = "Go
 map("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>",            { desc = "Go to Declaration" })
 map("n", "gK", "<Cmd>lua vim.lsp.buf.signature_help()<CR>",         { desc = "Signature Help" })
 
+-- map("n", "K", vim.lsp.buf.hover,                                    { desc = "Hover" })
+-- map("n", "gI", function() Snacks.picker.lsp_implementations() end,  { desc = "Go to Implementation" })
+-- map("n", "gr", function() Snacks.picker.lsp_references() end,       { desc = "References" })
+-- map("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Go to T[y]pe Definition" })
+-- map("n", "gd", function() Snacks.picker.lsp_definitions() end,      { desc = "Go to Definition" })
+-- map("n", "gD", vim.lsp.buf.declaration,                             { desc = "Go to Declaration" })
+-- map("n", "gK", vim.lsp.buf.signature_help,                          { desc = "Signature Help" })
+
+-- o is for open/oil
+nmap_leader("oc", "<Cmd>Oil<CR>",                                      { desc = "Open [c]urrent directory" })
+nmap_leader("ow", "<Cmd>lua require('oil').open(vim.fn.getcwd())<CR>", { desc = "Open [w]orkspace directory" })
+
 -- s is for search
 nmap_leader("sH", "<Cmd>lua Snacks.picker.highlights()<CR>", { desc = "Highlights" })
+map({"n", "x", "o"}, 's', function() require("flash").jump() end,       { desc = "Flash" })
+map({"n", "x", "o"}, 'S', function() require("flash").treesitter() end, { desc = "Flash Treesitter" })
+
 -- stylua: ignore end

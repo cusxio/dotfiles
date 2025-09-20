@@ -33,6 +33,17 @@ return {
       } },
     },
   },
+  -- probably the only comment plugin that support blockwise comments
+  {
+    "numToStr/Comment.nvim",
+    event = vim.g.lazy_file_events,
+    dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
+    config = function()
+      require("Comment").setup({
+        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+      })
+    end,
+  },
   {
     "nvim-mini/mini.ai",
     dependencies = { { "nvim-mini/mini.extra" } },
@@ -56,6 +67,11 @@ return {
     event = vim.g.lazy_file_events,
     opts = {},
   },
+  {
+    "folke/flash.nvim",
+    event = vim.g.lazy_file_events,
+    opts = {},
+  },
   -- completion
   {
     "saghen/blink.cmp",
@@ -75,10 +91,9 @@ return {
     },
     event = {
       "InsertEnter",
-      -- "CmdlineEnter"
+      "CmdlineEnter",
     },
     opts = {
-      -- keymap = { preset = "enter" },
       sources = {
         providers = {
           lazydev = {

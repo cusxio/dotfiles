@@ -24,7 +24,7 @@ o.splitbelow     = true -- Horizontal splits will be below
 o.splitright     = true -- Vertical splits will be to the right
 
 o.list           = true
-opt.listchars    = { space = '·' }
+opt.listchars    = { space = '·', trail = '·' }
 
 o.cmdheight      = 0
 o.scrolloff      = 7
@@ -50,9 +50,19 @@ o.shiftround     = true
 
 o.clipboard      = "unnamedplus"
 
-opt.shortmess:append("WcC")
+opt.shortmess:append("WF")
 
 o.statuscolumn   = [[%!v:lua.require'snacks.statuscolumn'.get()]]
 -- stylua: ignore end
 
 vim.g.lazy_file_events = { "BufReadPost", "BufNewFile" }
+
+vim.filetype.add({
+  pattern = {
+    [".*/kitty/.+%.conf"] = "bash",
+    [".*/ghostty/config"] = "config",
+    [".*/git/config"] = "ini",
+    ["%.env%.[%w_.-]+"] = "sh",
+    ["uv.lock"] = "toml",
+  },
+})
