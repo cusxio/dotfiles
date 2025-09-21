@@ -1,69 +1,71 @@
 # theme = monoglow
-theme = TokyoNight Night
+theme                      = TokyoNight Night
+font-family                = CommitMono
+font-style                 = 500Regular
 
-font-family = CommitMono
-font-style = 500Regular
+font-family-bold           = CommitMono
+font-style-bold            = 600Regular
 
-font-family-bold = CommitMono
-font-style-bold = 600Regular
+font-family-italic         = CommitMono
+font-style-italic          = 500Italic
 
-font-family-italic = CommitMono
-font-style-italic = 500Italic
+font-family-bold-italic    = CommitMono
+font-style-bold-italic     = 600Italic
 
-font-family-bold-italic = CommitMono
-font-style-bold-italic = 600Italic
+adjust-cell-width          = -2%
+adjust-cell-height         = 20%
 
-adjust-cell-width = -2%
-adjust-cell-height = 20%
-
-# font-family = JetBrains Mono
-# font-style = Medium
+# font-family              = JetBrains Mono
+# font-style               = Medium
 #
-# font-family-bold = JetBrains Mono
-# font-style-bold = SemiBold
+# font-family-bold         = JetBrains Mono
+# font-style-bold          = SemiBold
 #
-# font-family-italic = JetBrains Mono
-# font-style-italic = Medium Italic
+# font-family-italic       = JetBrains Mono
+# font-style-italic        = Medium Italic
 #
-# font-family-bold-italic = JetBrains Mono
-# font-style-bold-italic = SemiBold Italic
+# font-family-bold-italic  = JetBrains Mono
+# font-style-bold-italic   = SemiBold Italic
 
-# font-feature = calt
+# font-feature             = calt
 # https://github.com/JetBrains/JetBrainsMono/issues/669
-# font-feature = frac
-# font-feature = zero
-# font-feature = cv11
-# font-feature = cv14
-# font-feature = cv12
+# font-feature             = frac
+# font-feature             = zero
+# font-feature             = cv11
+# font-feature             = cv14
+# font-feature             = cv12
 
-# font-family = Input Mono
-# font-style = Regular
+# font-family              = Input Mono
+# font-style               = Regular
 #
-# font-family-bold = Input Mono
-# font-style-bold = Medium
+# font-family-bold         = Input Mono
+# font-style-bold          = Medium
 #
-# font-family-italic = Input Mono
-# font-style-italic = Regular Italic
+# font-family-italic       = Input Mono
+# font-style-italic        = Regular Italic
 #
-# font-family-bold-italic = Input Mono
-# font-style-bold-italic = Medium Italic
+# font-family-bold-italic  = Input Mono
+# font-style-bold-italic   = Medium Italic
 
-font-size = 15
-# font-variation = wght=600
+font-size                  = 15
+# font-variation           = wght = 600
 
-working-directory = home
+working-directory          = home
 
-cursor-style = block
-copy-on-select = true
-cursor-style-blink = true
-mouse-hide-while-typing = true
+cursor-style               = block
+cursor-style-blink         = true
+cursor-color               = #fabd2f
+copy-on-select             = true
+mouse-hide-while-typing    = true
 
 shell-integration-features = no-cursor
 
-macos-titlebar-style = hidden
-macos-titlebar-proxy-icon = hidden
-# macos-window-shadow = false
+macos-titlebar-style       = hidden
+macos-titlebar-proxy-icon  = hidden
+# macos-window-shadow      = false
 
-macos-icon = custom-style
-macos-icon-ghost-color = #f1f1f1
-macos-icon-screen-color = #121212
+macos-icon                 = custom-style
+macos-icon-ghost-color     = #f1f1f1
+macos-icon-screen-color    = #121212
+
+custom-shader              = shaders/cursor_blaze.glsl
