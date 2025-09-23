@@ -28,9 +28,7 @@ return {
     "nvim-mini/mini.bracketed",
     event = vim.g.lazy_file_events,
     opts = {
-      diagnostic = { options = {
-        float = false,
-      } },
+      file = { suffix = "" },
     },
   },
   -- probably the only comment plugin that support blockwise comments
@@ -94,12 +92,43 @@ return {
       "CmdlineEnter",
     },
     opts = {
+      keymap = { preset = "enter" },
+      completion = {
+        menu = {
+          draw = {
+            components = {
+              kind_icon = {
+                text = function(ctx)
+                  local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
+                  return kind_icon
+                end,
+                highlight = function(ctx)
+                  local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+                  return hl
+                end,
+              },
+              kind = {
+                highlight = function(ctx)
+                  local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+                  return hl
+                end,
+              },
+            },
+          },
+        },
+      },
       sources = {
         providers = {
           lazydev = {
             name = "LazyDev",
             module = "lazydev.integrations.blink",
             score_offset = 100,
+          },
+          snippets = {
+            min_keyword_length = 2,
+            should_show_items = function(ctx)
+              return ctx.trigger.initial_kind ~= "trigger_character" and not require("blink.cmp").snippet_active()
+            end,
           },
         },
         per_filetype = {

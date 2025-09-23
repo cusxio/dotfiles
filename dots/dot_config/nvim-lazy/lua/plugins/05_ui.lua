@@ -26,10 +26,8 @@ return {
       vim.cmd([[colorscheme tokyonight]])
     end,
   },
-  --
   {
     "nvim-mini/mini.icons",
-    lazy = true,
     opts = {},
   },
   {
@@ -56,6 +54,11 @@ return {
       lsp = {
         hover = {
           silent = true,
+          opts = {
+            border = {
+              padding = { 1, 2 },
+            },
+          },
         },
         overrides = {
           ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -180,6 +183,7 @@ return {
 
       return {
         options = {
+          globalstatus = vim.opt.laststatus == 3,
           theme = theme,
           section_separators = "",
           component_separators = "",

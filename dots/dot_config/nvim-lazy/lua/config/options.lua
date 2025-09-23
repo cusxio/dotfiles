@@ -29,6 +29,8 @@ opt.listchars    = { space = '·', trail = '·' }
 o.cmdheight      = 0
 o.scrolloff      = 7
 
+opt.laststatus   = 3
+
 -- o.ruler       = false -- Don't show cursor position in command line
 -- o.showmode    = false -- Don't show mode in command line
 -- o.wrap        = false -- Display long lines as just one line

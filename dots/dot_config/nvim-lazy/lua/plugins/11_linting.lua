@@ -6,18 +6,6 @@ return {
     opts = {},
   },
   {
-    "rachartier/tiny-inline-diagnostic.nvim",
-    event = vim.g.lazy_file_events,
-    opts = {
-      options = {
-        show_source = {
-          if_many = true,
-        },
-        multilines = true,
-      },
-    },
-  },
-  {
     "mfussenegger/nvim-lint",
     event = vim.g.lazy_file_events,
     config = function()
