@@ -49,7 +49,18 @@ return {
         long_message_to_split = true,
       },
       messages = {
+        view_error = "notify",
+        view_warn = "notify",
+        view = "mini",
         view_search = "mini",
+      },
+      redirect = {
+        view = "mini",
+        filter = { event = "msg_show" },
+      },
+      routes = {
+        -- https://github.com/ilan-schemoul/nvim-config/blob/a846d7ad0209cf1bae05f2d5aae3662215420ee1/nvim/lua/config/noice-routes.lua
+        { filter = { event = "msg_show", kind = "", find = '"[%w%p]+" %d+L, %d+B' }, opts = { skip = true } },
       },
       lsp = {
         hover = {
@@ -183,7 +194,7 @@ return {
 
       return {
         options = {
-          globalstatus = vim.opt.laststatus == 3,
+          globalstatus = true,
           theme = theme,
           section_separators = "",
           component_separators = "",

@@ -6,6 +6,22 @@ return {
     opts = {},
   },
   {
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = vim.g.lazy_file_events,
+    opts = {
+      preset = "simple",
+      signs = {
+        diag = "▪",
+      },
+      options = {
+        show_source = {
+          if_many = true,
+        },
+        multilines = true,
+      },
+    },
+  },
+  {
     "mfussenegger/nvim-lint",
     event = vim.g.lazy_file_events,
     config = function()
@@ -39,33 +55,24 @@ return {
     "stevearc/conform.nvim",
     event = vim.g.lazy_file_events,
     config = function()
-      local ft_by_formatters = {
-        stylua = { "lua" },
-        fish_indent = { "fish" },
-        shfmt = { "sh" },
-        prettierd = {
-          "css",
-          "html",
-          "javascript",
-          "javascriptreact",
-          "typescript",
-          "typescriptreact",
-          "yaml",
-          "json",
-          "jsonc",
-        },
+      local formatters_by_ft = {
+        lua = { "stylua" },
+        fish = { "fish_indent" },
+        sh = { "shfmt" },
+        javascript = { "eslint_d", "prettierd" },
+        javascriptreact = { "eslint_d", "prettierd" },
+        typescript = { "eslint_d", "prettierd" },
+        typescriptreact = { "eslint_d", "prettierd" },
+        yaml = { "eslint_d", "prettierd" },
+        json = { "eslint_d", "prettierd" },
+        jsonc = { "eslint_d", "prettierd" },
+        css = { "prettierd" },
+        html = { "prettierd" },
       }
-
-      local formatters_by_ft = {}
-      for formatter, fts in pairs(ft_by_formatters) do
-        for _, ft in ipairs(fts) do
-          formatters_by_ft[ft] = { formatter }
-        end
-      end
 
       require("conform").setup({
         format_on_save = {
-          timeout_ms = 3000,
+          timeout_ms = 5000,
           lsp_format = "fallback",
         },
         formatters_by_ft = formatters_by_ft,

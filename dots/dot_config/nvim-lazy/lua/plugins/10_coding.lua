@@ -28,6 +28,7 @@ return {
     "nvim-mini/mini.bracketed",
     event = vim.g.lazy_file_events,
     opts = {
+      diagnostic = { options = { float = false } },
       file = { suffix = "" },
     },
   },

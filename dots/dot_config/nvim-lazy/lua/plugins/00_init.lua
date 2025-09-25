@@ -33,6 +33,29 @@ return {
         "typos_lsp",
       },
     },
+    config = function(_, opts)
+      require("mason-lspconfig").setup(opts)
+
+      vim.diagnostic.config({
+        float = {
+          border = "solid",
+        },
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = "▪",
+            [vim.diagnostic.severity.WARN] = "▪",
+            [vim.diagnostic.severity.INFO] = "▪",
+            [vim.diagnostic.severity.HINT] = "▪",
+          },
+        },
+        virtual_text = false,
+        -- virtual_text = {
+        --   current_line = true,
+        --   source = "if_many",
+        --   prefix = "▪",
+        -- },
+      })
+    end,
     dependencies = {
       {
         "mason-org/mason.nvim",
