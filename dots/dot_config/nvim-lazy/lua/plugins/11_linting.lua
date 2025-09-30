@@ -28,7 +28,7 @@ return {
       local lint = require("lint")
 
       lint.linters_by_ft = {
-        fish = { "fish_lsp" },
+        fish = { "fish" },
         lua = { "selene" },
       }
 
