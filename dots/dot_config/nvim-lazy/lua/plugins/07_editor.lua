@@ -32,11 +32,19 @@ return {
   -- },
   {
     "folke/snacks.nvim",
+    priority = 1000,
     lazy = false,
     ---@type snacks.Config
     opts = {
       input = { enabled = true },
-      -- picker = { enabled = true },
+      picker = {
+        enabled = true,
+        sources = {
+          files = {
+            hidden = true,
+          },
+        },
+      },
       dashboard = {
         enabled = true,
         formats = {
