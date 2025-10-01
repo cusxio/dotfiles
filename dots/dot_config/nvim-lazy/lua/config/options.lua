@@ -4,8 +4,12 @@ vim.g.mapleader = " "
 
 local o, opt = vim.o, vim.opt
 
+-- stylua: ignore start
 -- General
 -- o.undofile    = true -- Enable persistent undo (see also `:h undodir`)
+o.undofile       = true
+o.undodir        = vim.fn.stdpath("state") .. "/undo"
+o.undolevels     = 10000
 
 -- o.backup      = false -- Don't store backup while overwriting the file
 -- o.writebackup = false -- Don't store backup while overwriting the file
@@ -14,7 +18,6 @@ local o, opt = vim.o, vim.opt
 
 vim.cmd("filetype plugin indent on") -- Enable all filetype plugins
 
--- stylua: ignore start
 -- Appearance
 -- o.breakindent = true -- Indent wrapped lines to match line start
 o.cursorline     = true -- Highlight current line
