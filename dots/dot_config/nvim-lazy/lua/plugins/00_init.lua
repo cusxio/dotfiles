@@ -23,14 +23,19 @@ return {
   {
     "mason-org/mason-lspconfig.nvim",
     event = vim.g.lazy_file_events,
+    cmd = "Mason",
     opts = {
       ensure_installed = {
         "lua_ls",
         "fish_lsp",
         "vtsls",
+        -- "tsgo",
         "eslint",
         "tailwindcss",
         "typos_lsp",
+        "jsonls",
+        "yamlls",
+        -- "oxlint",
       },
     },
     config = function(_, opts)
@@ -73,7 +78,15 @@ return {
           mason_tools_install(tools)
         end,
       },
-      { "neovim/nvim-lspconfig" },
+      {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+          {
+            "b0o/SchemaStore.nvim",
+            version = false,
+          },
+        },
+      },
     },
   },
   -- treesitter

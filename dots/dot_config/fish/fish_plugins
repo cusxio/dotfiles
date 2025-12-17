@@ -2,6 +2,7 @@ jorgebucaran/fisher
 jorgebucaran/autopair.fish
 patrickf1/fzf.fish
 wfxr/forgit
+g-plane/pnpm-shell-completion
 
 # https://github.com/IlanCosman/tide/pull/566#issuecomment-2779727374
 plttn/tide@main

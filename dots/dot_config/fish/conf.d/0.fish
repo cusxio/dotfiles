@@ -20,6 +20,9 @@ set --query XDG_CONFIG_HOME || set --export XDG_CONFIG_HOME $HOME/.config
 set --query XDG_CACHE_HOME || set --export XDG_CACHE_HOME $HOME/.cache
 set --query XDG_DATA_HOME || set --export XDG_DATA_HOME $HOME/.local/share
 
+set --export MISE_CARGO_HOME $XDG_DATA_HOME/cargo
+set --export MISE_RUSTUP_HOME $XDG_DATA_HOME/rustup
+
 set --export MOON_HOME $XDG_DATA_HOME/moon
 
 set --export BUN_INSTALL_CACHE_DIR $XDG_CACHE_HOME/bun
@@ -30,12 +33,12 @@ set --export PNPM_HOME $XDG_DATA_HOME/pnpm
 fish_add_path $PNPM_HOME
 
 if type -q rg
- set --export RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/config
+    set --export RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/config
 end
 
 if type -q nvim
     set --export EDITOR nvim
-    set --export NVIM_APPNAME lazyvim
+    set --export NVIM_APPNAME nvim-lazy
     abbr --add astro "env NVIM_APPNAME=astronvim nvim"
     abbr --add nvchad "env NVIM_APPNAME=nvchad nvim"
 end
@@ -70,6 +73,10 @@ end
 
 if test -d $GHOSTTY_RESOURCES_DIR
     source $GHOSTTY_RESOURCES_DIR/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish
+end
+
+if test -d $XDG_CACHE_HOME/.bun/bin
+    fish_add_path $XDG_CACHE_HOME/.bun/bin
 end
 
 # Needs to be initialize before fisher initialize it

@@ -15,6 +15,10 @@ return {
       lsp_file_methods = {
         autosave_changes = true,
       },
+      keymaps = {
+        ["<C-v>"] = { "actions.select", opts = { vertical = true } },
+        ["<C-s>"] = { "actions.select", opts = { horizontal = true } },
+      },
     },
   },
   -- {
@@ -83,6 +87,13 @@ return {
         style = "sign",
         signs = { add = "▎", change = "▎", delete = "▎" },
       },
+    },
+  },
+  {
+    "brenoprata10/nvim-highlight-colors",
+    event = vim.g.lazy_file_events,
+    opts = {
+      -- enable_tailwind = true,
     },
   },
 }

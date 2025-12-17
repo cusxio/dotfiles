@@ -24,6 +24,8 @@
   line-numbers = true
   ; side-by-side = true
   navigate = true
+  features = zebra-dark
+  zero-style = syntax dim
 
 [merge]
   conflictstyle = zdiff3
@@ -44,3 +46,15 @@
   diff-last = log --stat --oneline HEAD~1..HEAD
   show-untracked = "!git ls-files --others --exclude-standard -z | xargs -0 bat --paging=always"
 
+[delta "zebra-dark"]
+    minus-style = syntax "#330f0f"
+    minus-emph-style = syntax "#4f1917"
+    plus-style = syntax "#0e2f19"
+    plus-emph-style = syntax "#174525"
+    map-styles = \
+       bold purple => syntax "#330f29", \
+       bold blue => syntax "#271344", \
+       bold cyan => syntax "#0d3531", \
+       bold yellow => syntax "#222f14"
+    zero-style = syntax
+    whitespace-error-style = "#aaaaaa"

@@ -1,54 +1,54 @@
-# theme = monoglow
+# theme                    = monoglow
 theme                      = TokyoNight Night
-font-family                = CommitMono
-font-style                 = 500Regular
-
-font-family-bold           = CommitMono
-font-style-bold            = 600Regular
-
-font-family-italic         = CommitMono
-font-style-italic          = 500Italic
-
-font-family-bold-italic    = CommitMono
-font-style-bold-italic     = 600Italic
-
-adjust-cell-width          = -2%
-adjust-cell-height         = 20%
-
-# font-family              = JetBrains Mono
-# font-style               = Medium
-#
-# font-family-bold         = JetBrains Mono
-# font-style-bold          = SemiBold
-#
-# font-family-italic       = JetBrains Mono
-# font-style-italic        = Medium Italic
-#
-# font-family-bold-italic  = JetBrains Mono
-# font-style-bold-italic   = SemiBold Italic
-
-# font-feature             = calt
-# https://github.com/JetBrains/JetBrainsMono/issues/669
-# font-feature             = frac
-# font-feature             = zero
-# font-feature             = cv11
-# font-feature             = cv14
-# font-feature             = cv12
-
-# font-family              = Input Mono
-# font-style               = Regular
-#
-# font-family-bold         = Input Mono
-# font-style-bold          = Medium
-#
-# font-family-italic       = Input Mono
-# font-style-italic        = Regular Italic
-#
-# font-family-bold-italic  = Input Mono
-# font-style-bold-italic   = Medium Italic
 
 font-size                  = 15
-# font-variation           = wght = 600
+
+# font-family                = Ioskeley Mono
+# font-style                 = Medium
+# font-style-bold            = SemiBold
+# font-style-italic          = Medium Italic
+# font-style-bold-italic     = SemiBold Italic
+# font-feature               = -calt
+
+# adjust-cell-height         = 5%
+# font-feature               = calt, dlig
+
+
+# font-family              = TX-02
+# font-style               = Medium
+# font-style-bold          = Medium
+# font-style-italic        = Medium Oblique
+# font-style-bold-italic   = Medium Oblique
+# font-feature             = -calt
+# font-feature             = ss01
+
+# font-family              = CommitMono
+# font-style               = 500Regular
+# font-style-bold          = 600Regular
+# font-style-italic        = 500Italic
+# font-style-bold-italic   = 600Italic
+# adjust-cell-height       = 20%
+
+font-family              = JetBrains Mono
+font-style               = Medium
+font-style-bold          = SemiBold
+font-style-italic        = Medium Italic
+font-style-bold-italic   = SemiBold Italic
+
+# https://github.com/JetBrains/JetBrainsMono/issues/669
+# font-feature             = frac
+font-feature             = zero
+font-feature             = calt
+font-feature             = cv11
+font-feature             = cv12
+font-feature             = cv14
+
+# font-family              = Input Mono Condensed
+# font-style               = Regular
+# font-style-bold          = Medium
+# font-style-italic        = Regular Italic
+# font-style-bold-italic   = Medium Italic
+# adjust-cell-height         = 5%
 
 working-directory          = home
 
@@ -68,4 +68,6 @@ macos-icon                 = custom-style
 macos-icon-ghost-color     = #f1f1f1
 macos-icon-screen-color    = #121212
 
-custom-shader              = shaders/cursor_blaze.glsl
+macos-option-as-alt        = false
+
+# custom-shader              = shaders/cursor_blaze.glsl

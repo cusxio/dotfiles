@@ -1,9 +1,7 @@
 later(function()
   local function build_blink(params)
     vim.notify("Building blink.cmp", vim.log.levels.INFO)
-    local obj = vim
-      .system({ "cargo", "build", "--release" }, { cwd = params.path })
-      :wait()
+    local obj = vim.system({ "cargo", "build", "--release" }, { cwd = params.path }):wait()
     if obj.code == 0 then
       vim.notify("Building blink.cmp done", vim.log.levels.INFO)
     else
@@ -112,8 +110,7 @@ lz({
     }
 
     local theme = require("lualine.themes.tokyonight-night")
-    local modes =
-      { "normal", "insert", "command", "visual", "replace", "terminal" }
+    local modes = { "normal", "insert", "command", "visual", "replace", "terminal" }
 
     for _, mode in ipairs(modes) do
       theme[mode].b.bg = colors.bg

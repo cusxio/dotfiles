@@ -54,6 +54,7 @@ o.shiftwidth     = 2
 o.shiftround     = true
 
 o.clipboard      = "unnamedplus"
+o.confirm        = true
 
 opt.shortmess:append("WF")
 
@@ -64,10 +65,11 @@ vim.g.lazy_file_events = { "BufReadPost", "BufNewFile" }
 
 vim.filetype.add({
   pattern = {
-    [".*/kitty/.+%.conf"] = "bash",
-    [".*/ghostty/config"] = "config",
-    [".*/git/config"] = "ini",
+    [".*/kitty/.+%.conf"] = "conf",
+    [".*/ghostty/config"] = "conf",
+    [".*/git/config"] = "gitconfig",
     ["%.env%.[%w_.-]+"] = "sh",
     ["uv.lock"] = "toml",
+    ["bun.lock"] = "jsonc",
   },
 })

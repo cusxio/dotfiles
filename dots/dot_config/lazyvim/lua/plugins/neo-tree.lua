@@ -1,6 +1,13 @@
 ---@type LazySpec
 return {
   "nvim-neo-tree/neo-tree.nvim",
+  keys = {
+    {
+      "<leader>o",
+      "<cmd>Neotree focus<cr>",
+      desc = "NeoTree Focus",
+    },
+  },
   opts = {
     window = {
       width = 30,

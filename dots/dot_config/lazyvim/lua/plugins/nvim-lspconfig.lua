@@ -19,6 +19,31 @@ return {
           },
         },
       },
+      eslint = {
+        filetypes = {
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+          "astro",
+          "yaml",
+          "json",
+          "jsonc",
+        },
+      },
+      lua_ls = {
+        settings = {
+          Lua = {
+            workspace = {
+              library = {
+                vim.fn.expand("$VIMRUNTIME/lua"),
+                vim.fn.getenv("XDG_DATA_HOME") .. "/nvim-mini/site/pack/deps",
+                "${3rd}/luv/library",
+              },
+            },
+          },
+        },
+      },
     },
     -- https://github.com/LazyVim/LazyVim/issues/5861#issuecomment-2816353352
     setup = {

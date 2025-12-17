@@ -12,6 +12,7 @@ return {
       on_highlights = function(highlights, colors)
         highlights["LualineFilename"] = { fg = colors.fg, bg = colors.bg }
         highlights["LualineFilenameModified"] = { fg = colors.orange, bg = colors.bg }
+        highlights["WinSeparator"] = { fg = "#262626" }
       end,
       on_colors = function(colors)
         colors.git.add = "#a6e22e"
@@ -59,6 +60,8 @@ return {
         filter = { event = "msg_show" },
       },
       routes = {
+        { filter = { find = "E486: Pattern not found:" }, view = "mini" },
+        { filter = { find = "No information available" }, opts = { stop = true } },
         -- https://github.com/ilan-schemoul/nvim-config/blob/a846d7ad0209cf1bae05f2d5aae3662215420ee1/nvim/lua/config/noice-routes.lua
         { filter = { event = "msg_show", kind = "", find = '"[%w%p]+" %d+L, %d+B' }, opts = { skip = true } },
       },
@@ -208,5 +211,38 @@ return {
         },
       }
     end,
+  },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+      preset = "helix",
+      spec = {
+        {
+          mode = { "n", "v" },
+          { "<leader>c", group = "code" },
+          { "<leader>f", group = "file/find" },
+          { "<leader>l", group = "lsp" },
+          { "[", group = "prev" },
+          { "]", group = "next" },
+          {
+            "<leader>b",
+            group = "buffer",
+            expand = function()
+              return require("which-key.extras").expand.buf()
+            end,
+          },
+        },
+      },
+    },
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Buffer Keymaps (which-key)",
+      },
+    },
   },
 }

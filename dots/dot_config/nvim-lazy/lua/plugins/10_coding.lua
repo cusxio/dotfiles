@@ -7,6 +7,7 @@ return {
   },
   {
     "windwp/nvim-ts-autotag",
+    event = "InsertEnter",
     opts = {},
   },
   {
@@ -95,8 +96,19 @@ return {
     opts = {
       keymap = { preset = "enter" },
       completion = {
+        accept = {
+          -- experimental auto-brackets support
+          auto_brackets = {
+            enabled = true,
+          },
+        },
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 200,
+        },
         menu = {
           draw = {
+            treesitter = { "lsp" },
             components = {
               kind_icon = {
                 text = function(ctx)
@@ -119,6 +131,10 @@ return {
         },
       },
       sources = {
+        default = { "lsp", "buffer", "snippets", "path" },
+        per_filetype = {
+          lua = { inherit_defaults = true, "lazydev" },
+        },
         providers = {
           lazydev = {
             name = "LazyDev",
@@ -131,9 +147,6 @@ return {
               return ctx.trigger.initial_kind ~= "trigger_character" and not require("blink.cmp").snippet_active()
             end,
           },
-        },
-        per_filetype = {
-          lua = { inherit_defaults = true, "lazydev" },
         },
       },
     },

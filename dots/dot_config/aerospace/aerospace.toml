@@ -264,3 +264,15 @@ run = 'layout floating'
 [[on-window-detected]]
 if.app-id = 'ai.elementlabs.lmstudio'
 run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.readdle.PDFExpert-Mac'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.pdfeditor.pdfeditormac'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'org.mozilla.thunderbird'
+run = 'layout floating'
