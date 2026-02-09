@@ -54,3 +54,6 @@ vim.on_key(function(char)
     mid_mapping = false
   end)
 end, vim.api.nvim_create_namespace("auto_hlsearch"))
+
+-- Initialize the format system
+require("util.format").setup()

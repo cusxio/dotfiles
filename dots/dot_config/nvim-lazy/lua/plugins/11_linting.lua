@@ -57,78 +57,71 @@ return {
       })
     end,
   },
+
   {
     "stevearc/conform.nvim",
     event = vim.g.lazy_file_events,
-    -- cmd = "ConformInfo",
     config = function()
-      local formatters_by_ft = {
-        lua = { "stylua" },
-        fish = { "fish_indent" },
-        sh = { "shfmt" },
-        javascript = {
-          "eslint_d",
-          -- "oxlint",
-          "prettierd",
-        },
-        javascriptreact = {
-          "eslint_d",
-          -- "oxlint",
-          "prettierd",
-        },
-        typescript = {
-          "eslint_d",
-          -- "oxlint",
-          "prettierd",
-        },
-        typescriptreact = {
-          "eslint_d",
-          -- "oxlint",
-          "prettierd",
-        },
-        yaml = { "eslint_d", "prettierd" },
-        json = { "eslint_d", "prettierd" },
-        jsonc = { "eslint_d", "prettierd" },
-        css = { "prettierd" },
-        html = { "prettierd" },
-      }
+      local format = require("util.format")
 
-      -- local function has_pkg(pkg)
-      --   return function(_, ctx)
-      --     local found = vim.fs.find(
-      --       { "node_modules/" .. pkg },
-      --       { path = ctx.dirname, upward = true, type = "directory" }
-      --     )
-      --     return not vim.tbl_isempty(found)
-      --   end
-      -- end
-
-      -- local util = require("conform.util")
       require("conform").setup({
-        format_on_save = {
+        default_format_opts = {
           timeout_ms = 5000,
           lsp_format = "fallback",
         },
-        formatters_by_ft = formatters_by_ft,
-        -- formatters = {
-        --   eslint_d = {
-        --     condition = has_pkg("eslint"),
-        --   },
-        -- oxlint = {
-        --   command = util.from_node_modules("oxlint"),
-        --   cwd = util.root_file({ "package.json" }),
-        --   args = {
-        --     "--fix",
-        --     "--fix-suggestions",
-        --     "--fix-dangerously",
-        --     "$FILENAME",
-        --   },
-        --   exit_codes = { 0, 2 }, -- code 2 is given when the file includes some non-autofixable errors
-        --   stdin = true,
-        --   -- tmpfile_format = "ConformOxlint$FILENAME",
-        --   condition = has_pkg("oxlint"),
-        -- },
-        -- },
+        formatters_by_ft = {
+          lua = { "stylua" },
+          fish = { "fish_indent" },
+          sh = { "shfmt" },
+          javascript = { "prettierd" },
+          javascriptreact = { "prettierd" },
+          typescript = { "prettierd" },
+          typescriptreact = { "prettierd" },
+          yaml = { "prettierd" },
+          json = { "prettierd" },
+          jsonc = { "prettierd" },
+          css = { "prettierd" },
+          html = { "prettierd" },
+        },
+      })
+
+      -- Register ESLint LSP formatter (runs first)
+      format.register({
+        name = "eslint",
+        primary = false,
+        priority = 200,
+        format = function(buf)
+          vim.lsp.buf.format({
+            bufnr = buf,
+            async = false,
+            filter = function(client)
+              return client.name == "eslint"
+            end,
+          })
+        end,
+        sources = function(buf)
+          local clients = vim.lsp.get_clients({ bufnr = buf, name = "eslint" })
+          if #clients > 0 then
+            return { "eslint" }
+          end
+          return {}
+        end,
+      })
+
+      -- Register conform formatter (runs second)
+      format.register({
+        name = "conform",
+        primary = true,
+        priority = 100,
+        format = function(buf)
+          require("conform").format({ bufnr = buf })
+        end,
+        sources = function(buf)
+          local formatters = require("conform").list_formatters(buf)
+          return vim.tbl_map(function(f)
+            return f.name
+          end, formatters)
+        end,
       })
     end,
   },

@@ -35,7 +35,7 @@ return {
         "typos_lsp",
         "jsonls",
         "yamlls",
-        -- "oxlint",
+        "oxlint",
       },
     },
     config = function(_, opts)
