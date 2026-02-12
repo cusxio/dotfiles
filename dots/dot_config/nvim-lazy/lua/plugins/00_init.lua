@@ -41,6 +41,8 @@ return {
     config = function(_, opts)
       require("mason-lspconfig").setup(opts)
 
+      vim.lsp.enable("oxfmt")
+
       vim.diagnostic.config({
         float = {
           border = "solid",
@@ -73,6 +75,7 @@ return {
             "shfmt",
             "prettierd",
             "eslint_d",
+            "oxfmt",
           }
 
           mason_tools_install(tools)

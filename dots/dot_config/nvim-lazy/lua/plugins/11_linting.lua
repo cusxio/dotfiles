@@ -30,12 +30,6 @@ return {
       lint.linters_by_ft = {
         fish = { "fish" },
         lua = { "selene" },
-        -- NOTE: You do not need to add oxlint or eslint_d here, this is only needed
-        -- for languages without a lsp server
-        -- javascript = { "oxlint", "eslint_d" },
-        -- typescript = { "oxlint", "eslint_d" },
-        -- javascriptreact = { "oxlint", "eslint_d" },
-        -- typescriptreact = { "oxlint", "eslint_d" },
       }
 
       local function debounce(ms, fn)
@@ -83,6 +77,11 @@ return {
           css = { "prettierd" },
           html = { "prettierd" },
         },
+        formatters = {
+          prettierd = {
+            require_cwd = true,
+          },
+        },
       })
 
       -- Register ESLint LSP formatter (runs first)
@@ -103,6 +102,29 @@ return {
           local clients = vim.lsp.get_clients({ bufnr = buf, name = "eslint" })
           if #clients > 0 then
             return { "eslint" }
+          end
+          return {}
+        end,
+      })
+
+      -- Register oxfmt LSP formatter
+      format.register({
+        name = "oxfmt",
+        primary = false,
+        priority = 150,
+        format = function(buf)
+          vim.lsp.buf.format({
+            bufnr = buf,
+            async = false,
+            filter = function(client)
+              return client.name == "oxfmt"
+            end,
+          })
+        end,
+        sources = function(buf)
+          local clients = vim.lsp.get_clients({ bufnr = buf, name = "oxfmt" })
+          if #clients > 0 then
+            return { "oxfmt" }
           end
           return {}
         end,
