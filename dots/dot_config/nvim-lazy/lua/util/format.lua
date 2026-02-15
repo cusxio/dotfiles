@@ -17,6 +17,43 @@ function M.register(formatter)
   end)
 end
 
+---@param name string LSP client name
+---@param priority number
+function M.register_lsp(name, priority)
+  M.register({
+    name = name,
+    primary = false,
+    priority = priority,
+    format = function(buf)
+      vim.lsp.buf.format({ bufnr = buf, async = false, filter = function(c) return c.name == name end })
+    end,
+    sources = function(buf)
+      return #vim.lsp.get_clients({ bufnr = buf, name = name }) > 0 and { name } or {}
+    end,
+  })
+end
+
+---@param name string LSP client name
+---@param priority number
+---@param command string workspace/executeCommand command name
+---@param args_fn fun(buf: number): any[] function returning command arguments
+function M.register_lsp_command(name, priority, command, args_fn)
+  M.register({
+    name = name,
+    primary = false,
+    priority = priority,
+    format = function(buf)
+      vim.lsp.buf_request_sync(buf, "workspace/executeCommand", {
+        command = command,
+        arguments = args_fn(buf),
+      }, 5000)
+    end,
+    sources = function(buf)
+      return #vim.lsp.get_clients({ bufnr = buf, name = name }) > 0 and { name } or {}
+    end,
+  })
+end
+
 ---@param buf? number
 ---@return (Formatter|{active:boolean, resolved:string[]})[]
 function M.resolve(buf)

@@ -58,7 +58,7 @@ nmap_leader("ff", function() Snacks.picker.files() end,                         
 
 -- c is for code, l is for lsp
 nmap_leader("ld", function() vim.diagnostic.open_float() end,                        { desc = "Diagnostics popup" })
-nmap_leader("lf", function() require("conform").format({ lsp_fallback = true }) end, { desc = "Format" })
+nmap_leader("lf", function() require("util.format").format({ force = true }) end,    { desc = "Format" })
 nmap_leader("ca", vim.lsp.buf.code_action,                                           { desc = "Actions"})
 nmap_leader("cr", function() vim.lsp.buf.rename() end,                               { desc = "Rename" })
 

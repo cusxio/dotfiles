@@ -61,7 +61,7 @@ return {
       require("conform").setup({
         default_format_opts = {
           timeout_ms = 5000,
-          lsp_format = "fallback",
+          lsp_format = "never",
         },
         formatters_by_ft = {
           lua = { "stylua" },
@@ -84,53 +84,11 @@ return {
         },
       })
 
-      -- Register ESLint LSP formatter (runs first)
-      format.register({
-        name = "eslint",
-        primary = false,
-        priority = 200,
-        format = function(buf)
-          vim.lsp.buf.format({
-            bufnr = buf,
-            async = false,
-            filter = function(client)
-              return client.name == "eslint"
-            end,
-          })
-        end,
-        sources = function(buf)
-          local clients = vim.lsp.get_clients({ bufnr = buf, name = "eslint" })
-          if #clients > 0 then
-            return { "eslint" }
-          end
-          return {}
-        end,
-      })
-
-      -- Register oxfmt LSP formatter
-      format.register({
-        name = "oxfmt",
-        primary = false,
-        priority = 150,
-        format = function(buf)
-          vim.lsp.buf.format({
-            bufnr = buf,
-            async = false,
-            filter = function(client)
-              return client.name == "oxfmt"
-            end,
-          })
-        end,
-        sources = function(buf)
-          local clients = vim.lsp.get_clients({ bufnr = buf, name = "oxfmt" })
-          if #clients > 0 then
-            return { "oxfmt" }
-          end
-          return {}
-        end,
-      })
-
-      -- Register conform formatter (runs second)
+      format.register_lsp_command("oxlint", 250, "oxc.fixAll", function(buf)
+        return { { uri = vim.uri_from_bufnr(buf) } }
+      end)
+      format.register_lsp("eslint", 200)
+      format.register_lsp("oxfmt", 150)
       format.register({
         name = "conform",
         primary = true,
@@ -139,10 +97,7 @@ return {
           require("conform").format({ bufnr = buf })
         end,
         sources = function(buf)
-          local formatters = require("conform").list_formatters(buf)
-          return vim.tbl_map(function(f)
-            return f.name
-          end, formatters)
+          return vim.tbl_map(function(f) return f.name end, require("conform").list_formatters(buf))
         end,
       })
     end,
