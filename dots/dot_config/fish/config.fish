@@ -4,8 +4,8 @@ end
 
 if type -q fzf_configure_bindings
     fzf_configure_bindings --processes=\cp --directory=\ct
-    if type -q eza
-        set fzf_preview_dir_cmd eza --all --color=always
+    if type -q lsd
+        set fzf_preview_dir_cmd lsd --all --color=always
     end
 
     if type -q delta
@@ -23,4 +23,9 @@ if type -q git-forgit
     abbr --add gfa 'git-forgit add'
     abbr --add gfl 'git-forgit log'
     abbr --add gfss 'git-forgit stash_show'
+end
+
+set -l HOMEBREW_COMMAND_NOT_FOUND_HANDLER (brew --repository)/Library/Homebrew/command-not-found/handler.fish
+if test -f $HOMEBREW_COMMAND_NOT_FOUND_HANDLER
+    source $HOMEBREW_COMMAND_NOT_FOUND_HANDLER
 end
