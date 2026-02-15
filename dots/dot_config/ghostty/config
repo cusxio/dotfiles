@@ -71,3 +71,5 @@ macos-icon-screen-color    = #121212
 macos-option-as-alt        = false
 
 # custom-shader              = shaders/cursor_blaze.glsl
+# https://github.com/anthropics/claude-code/issues/1282#issuecomment-3185584410
+keybind                    = shift+enter=text:\x1b\r
