@@ -105,7 +105,7 @@ ctrl-alt-cmd-q = 'close --quit-if-last-window'
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
 ctrl-alt-cmd-f = 'fullscreen'
 ctrl-alt-cmd-semicolon = 'mode apps'
-ctrl-alt-cmd-w = 'mode join'
+ctrl-alt-cmd-w = 'mode window'
 ctrl-alt-cmd-r = 'mode resize'
 ctrl-alt-cmd-shift-semicolon = 'mode service'
 
@@ -164,12 +164,17 @@ g = ['exec-and-forget open -a /Applications/Telegram.app', 'mode main']
 w = ['exec-and-forget open -a /Applications/WhatsApp.app', 'mode main']
 esc = 'mode main'
 
-[mode.join.binding]
+[mode.window.binding]
 h = ['join-with left', 'mode main']
 j = ['join-with down', 'mode main']
 k = ['join-with up', 'mode main']
 l = ['join-with right', 'mode main']
 esc = 'mode main'
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#layout
+t = ['layout tiles horizontal vertical', 'mode main']
+a = ['layout accordion horizontal vertical', 'mode main']
+f = ['layout floating tiling', 'mode main']
 
 [mode.resize.binding]
 h = 'resize width -50'
@@ -182,11 +187,6 @@ shift-equal = 'resize smart +50'
 equal = ['balance-sizes', 'mode main']
 
 esc = 'mode main'
-
-# See: https://nikitabobko.github.io/AeroSpace/commands#layout
-t = ['layout tiles horizontal vertical', 'mode main']
-a = ['layout accordion horizontal vertical', 'mode main']
-f = ['layout floating tiling', 'mode main']
 
 [mode.service.binding]
 r = ['reload-config', 'mode main']
