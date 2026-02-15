@@ -7,3 +7,8 @@ python = "latest"
 ruby = "latest"
 # rust = "latest"
 java = "zulu-17"
+
+"github:Dicklesworthstone/destructive_command_guard" = "latest"
+
+[settings.ruby]
+compile = false
