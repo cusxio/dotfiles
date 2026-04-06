@@ -9,6 +9,8 @@ ruby = "latest"
 java = "zulu-17"
 
 "github:Dicklesworthstone/destructive_command_guard" = "latest"
+"github:backnotprop/plannotator" = "latest"
+"github:badlogic/pi-mono" = "latest"
 
 [settings.ruby]
 compile = false

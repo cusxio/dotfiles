@@ -5,3 +5,7 @@ if type -q lsd
     alias lla='ls -la'
     alias lt='ls --tree'
 end
+
+if type -q claude
+    abbr --add claude claude --dangerously-skip-permissions
+end

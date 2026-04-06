@@ -12,6 +12,7 @@
       }
     ]
   },
+  "skipDangerousModePermissionPrompt": true,
   "permissions": {
     "deny": [
       "Read(./.env)",
