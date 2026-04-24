@@ -52,9 +52,12 @@ nmap_leader("bo", function() Snacks.bufdelete.other() end,                      
 
 
 -- f is for 'fuzzy find'
-nmap_leader("fw", function() Snacks.picker.grep() end,                               { desc = "Grep Files" })
+-- nmap_leader("fw", function() Snacks.picker.grep() end,                               { desc = "Grep Files" })
+-- nmap_leader("fb", function() Snacks.picker.buffers() end,                            { desc = "Buffers" })
+-- nmap_leader("ff", function() Snacks.picker.files() end,                              { desc = "Find Files" })
+nmap_leader("fw", function() require('fff').live_grep() end,                         { desc = "Grep Files" })
 nmap_leader("fb", function() Snacks.picker.buffers() end,                            { desc = "Buffers" })
-nmap_leader("ff", function() Snacks.picker.files() end,                              { desc = "Find Files" })
+nmap_leader("ff", function() require('fff').find_files() end,                        { desc = "Find Files" })
 
 -- c is for code, l is for lsp
 nmap_leader("ld", function() vim.diagnostic.open_float() end,                        { desc = "Diagnostics popup" })

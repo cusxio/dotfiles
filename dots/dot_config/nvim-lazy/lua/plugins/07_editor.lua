@@ -21,19 +21,26 @@ return {
       },
     },
   },
-  -- {
-  --   "dmtrKovalenko/fff.nvim",
-  --   build = function()
-  --     require("fff.download").download_or_build_binary()
-  --   end,
-  --   opts = {
-  --     debug = {
-  --       enabled = true,
-  --       show_scores = true,
-  --     },
-  --   },
-  --   lazy = false,
-  -- },
+  {
+    "dmtrKovalenko/fff.nvim",
+    lazy = false,
+    build = function()
+      require("fff.download").download_or_build_binary()
+    end,
+    opts = {
+      prompt = "ϟ ",
+      layout = {
+        prompt_position = "top",
+      },
+      keymaps = {
+        close = "<C-c>",
+      },
+      -- debug = {
+      --   enabled = true,
+      --   show_scores = true,
+      -- },
+    },
+  },
   {
     "folke/snacks.nvim",
     priority = 1000,
