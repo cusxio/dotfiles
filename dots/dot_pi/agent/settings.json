@@ -1,0 +1,11 @@
+{
+  "lastChangelogVersion": "0.68.1",
+  "theme": "tokyonight_moon",
+  "packages": [
+    "npm:@plannotator/pi-extension",
+    "npm:@ff-labs/pi-fff"
+  ],
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.4",
+  "enableInstallTelemetry": false
+}
