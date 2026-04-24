@@ -4,3 +4,7 @@ command = "/opt/homebrew/bin/fish"
 [diff]
 command = "delta"
 pager = "delta"
+
+[merge]
+command = "nvim"
+args = [ "-d", "{{ .Destination }}", "{{ .Source }}", "{{ .Target }}" ]
