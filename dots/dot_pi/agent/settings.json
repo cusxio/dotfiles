@@ -1,11 +1,13 @@
 {
-  "lastChangelogVersion": "0.68.1",
-  "theme": "tokyonight_moon",
+  "lastChangelogVersion": "0.73.0",
+  "theme": "gruvbox-material-hard",
+  "treeFilterMode": "no-tools",
   "packages": [
     "npm:@plannotator/pi-extension",
     "npm:@ff-labs/pi-fff"
   ],
   "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.4",
-  "enableInstallTelemetry": false
+  "defaultModel": "gpt-5.5",
+  "enableInstallTelemetry": false,
+  "quietStartup": true
 }

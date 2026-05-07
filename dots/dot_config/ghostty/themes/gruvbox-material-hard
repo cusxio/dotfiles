@@ -1,0 +1,40 @@
+# Gruvbox Material Hard (sainnhe/gruvbox-material: background=hard, foreground=material)
+
+# black
+palette = 0=#504945
+palette = 8=#504945
+
+# red
+palette = 1=#ea6962
+palette = 9=#ea6962
+
+# green
+palette = 2=#a9b665
+palette = 10=#a9b665
+
+# yellow
+palette = 3=#d8a657
+palette = 11=#d8a657
+
+# blue
+palette = 4=#7daea3
+palette = 12=#7daea3
+
+# magenta
+palette = 5=#d3869b
+palette = 13=#d3869b
+
+# cyan / aqua
+palette = 6=#89b482
+palette = 14=#89b482
+
+# white
+palette = 7=#d4be98
+palette = 15=#d4be98
+
+background = #1d2021
+foreground = #ddc7a1
+cursor-color = #ddc7a1
+cursor-text = #1d2021
+selection-background = #3c3836
+selection-foreground = #ddc7a1

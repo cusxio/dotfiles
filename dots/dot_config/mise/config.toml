@@ -1,16 +1,23 @@
 [tools]
 bun = "latest"
 node = "latest"
-usage = "latest"
+# usage = "latest"
 go = "latest"
 python = "latest"
 ruby = "latest"
 # rust = "latest"
 java = "zulu-17"
+# aube = "latest"
+pnpm = "latest"
 
 "github:Dicklesworthstone/destructive_command_guard" = "latest"
-"github:backnotprop/plannotator" = "latest"
 "github:badlogic/pi-mono" = "latest"
+
+"npm:@sourcegraph/amp" = "latest"
+"npm:hunkdiff" = "latest"
+
+[settings.npm]
+package_manager = "pnpm"
 
 [settings.ruby]
 compile = false

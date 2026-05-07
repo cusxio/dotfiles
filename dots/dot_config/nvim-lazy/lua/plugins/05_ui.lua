@@ -1,30 +1,41 @@
 ---@type LazySpec
 return {
   -- colorscheme
+  -- {
+  --   "folke/tokyonight.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   ---@module "tokyonight"
+  --   ---@type tokyonight.Config
+  --   opts = {
+  --     style = "night",
+  --     on_highlights = function(highlights, colors)
+  --       highlights["LualineFilename"] = { fg = colors.fg, bg = colors.bg }
+  --       highlights["LualineFilenameModified"] = { fg = colors.orange, bg = colors.bg }
+  --       highlights["WinSeparator"] = { fg = "#262626" }
+  --     end,
+  --     on_colors = function(colors)
+  --       colors.git.add = "#a6e22e"
+  --       colors.git.change = "#ffd700"
+  --       colors.git.delete = "#f92672"
+  --     end,
+  --   },
+  --   config = function(_, opts)
+  --     require("tokyonight").setup(opts)
+  --     vim.g.tokyo_colors = require("tokyonight.colors").setup(opts)
+  --
+  --     vim.cmd([[colorscheme tokyonight]])
+  --   end,
+  -- },
   {
-    "folke/tokyonight.nvim",
+    "sainnhe/gruvbox-material",
     lazy = false,
     priority = 1000,
-    ---@module "tokyonight"
-    ---@type tokyonight.Config
-    opts = {
-      style = "night",
-      on_highlights = function(highlights, colors)
-        highlights["LualineFilename"] = { fg = colors.fg, bg = colors.bg }
-        highlights["LualineFilenameModified"] = { fg = colors.orange, bg = colors.bg }
-        highlights["WinSeparator"] = { fg = "#262626" }
-      end,
-      on_colors = function(colors)
-        colors.git.add = "#a6e22e"
-        colors.git.change = "#ffd700"
-        colors.git.delete = "#f92672"
-      end,
-    },
-    config = function(_, opts)
-      require("tokyonight").setup(opts)
-      vim.g.tokyo_colors = require("tokyonight.colors").setup(opts)
+    config = function()
+      vim.g.gruvbox_material_background = "hard"
+      vim.g.gruvbox_material_better_performance = 1
 
-      vim.cmd([[colorscheme tokyonight]])
+      vim.cmd.colorscheme("gruvbox-material")
     end,
   },
   {
@@ -110,16 +121,16 @@ return {
         t = "<(•ᴗ•)>",
       }
 
-      local theme = require("lualine.themes.tokyonight-night")
-      local modes = { "normal", "insert", "command", "visual", "replace", "terminal" }
+      -- local theme = require("lualine.themes.tokyonight-night")
+      -- local modes = { "normal", "insert", "command", "visual", "replace", "terminal" }
 
-      local colors = vim.g.tokyo_colors
-      for _, mode in ipairs(modes) do
-        theme[mode].b.bg = colors.bg
-        theme[mode].b.fg = colors.dark5
-      end
-
-      theme.normal.c.bg = colors.bg
+      -- local colors = vim.g.tokyo_colors
+      -- for _, mode in ipairs(modes) do
+      --   theme[mode].b.bg = colors.bg
+      --   theme[mode].b.fg = colors.dark5
+      -- end
+      --
+      -- theme.normal.c.bg = colors.bg
 
       local function pretty_path()
         local path = vim.fn.expand("%:p")
@@ -198,7 +209,8 @@ return {
       return {
         options = {
           globalstatus = true,
-          theme = theme,
+          -- theme = theme,
+          theme = "gruvbox-material",
           section_separators = "",
           component_separators = "",
         },
