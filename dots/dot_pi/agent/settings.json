@@ -1,6 +1,6 @@
 {
-  "lastChangelogVersion": "0.73.0",
-  "theme": "gruvbox-material-hard",
+  "lastChangelogVersion": "0.75.3",
+  "theme": "monoglow",
   "treeFilterMode": "no-tools",
   "packages": [
     "npm:@plannotator/pi-extension",
@@ -9,5 +9,6 @@
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.5",
   "enableInstallTelemetry": false,
-  "quietStartup": true
+  "quietStartup": true,
+  "npmCommand": ["mise", "exec", "node@latest", "--", "npm"]
 }

@@ -116,6 +116,7 @@ return {
         "markdown",
         "regex",
         "vim",
+        "fish",
       }
 
       -- https://github.com/echasnovski/nvim/blob/5d0a752aad40b08f88aee45fdcd25dc970aeb0a3/plugin/21_plugins.lua#L23-L31

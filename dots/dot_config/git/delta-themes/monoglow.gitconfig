@@ -1,0 +1,90 @@
+# Delta theme inspired by wnkz/monoglow.nvim (monoglow-z) and the local
+# Ghostty monoglow palette.
+#
+# Usage:
+#   [include]
+#     path = ./delta-themes/monoglow.gitconfig
+#
+#   [delta]
+#     features = monoglow
+
+[delta "monoglow"]
+    dark = true
+
+    # Palette
+    gray3 = "#2a2a2a"
+    gray4 = "#4a4a4a"
+    gray6 = "#7a7a7a"
+    orange = "#fd9353"
+    magenta = "#948ae3"
+    cyan = "#5ad4e6"
+    git-add = "#a6e22e"
+    git-change = "#e6db74"
+    git-delete = "#f92672"
+
+    # Core diff content. Keep normal lines syntax-highlighted; use subdued
+    # tinted backgrounds for additions/removals and stronger tints for inline
+    # changed spans.
+    # syntax-theme = Monokai Extended
+    zero-style = syntax dim
+    minus-style = syntax "#2b121a"
+    minus-emph-style = syntax bold "#4a2030"
+    minus-non-emph-style = syntax "#241016"
+    minus-empty-line-marker-style = syntax "#2b121a"
+    plus-style = syntax "#122318"
+    plus-emph-style = syntax bold "#1f3b27"
+    plus-non-emph-style = syntax "#0f1d14"
+    plus-empty-line-marker-style = syntax "#122318"
+    whitespace-error-style = monoglow.git-delete reverse
+
+    # File headers. Use the hunk header for the useful path/line info and omit
+    # the extra file header so the output is cleaner and closer to Delta's
+    # bundled themes.
+    file-style = omit
+    file-decoration-style = none
+    file-added-label = [+]
+    file-copied-label = [==]
+    file-modified-label = [*]
+    file-removed-label = [-]
+    file-renamed-label = [->]
+
+    # Hunk headers need the special `file line-number syntax` style so Delta can
+    # color those parts separately. The previous plain color style made header
+    # sections hard to read.
+    hunk-header-style = file line-number syntax
+    hunk-header-decoration-style = monoglow.gray3 box ul
+    hunk-header-file-style = monoglow.cyan bold
+    hunk-header-line-number-style = monoglow.orange bold
+
+    # Line number gutter.
+    line-numbers = true
+    line-numbers-left-format = " {nm:>3} │"
+    line-numbers-right-format = " {np:>3} │"
+    line-numbers-left-style = monoglow.gray4
+    line-numbers-right-style = monoglow.gray4
+    line-numbers-zero-style = monoglow.gray6
+    line-numbers-minus-style = monoglow.git-delete bold
+    line-numbers-plus-style = monoglow.git-add bold
+
+    # Commits / blame / merge conflicts.
+    # commit-style = monoglow.magenta bold
+    # commit-decoration-style = monoglow.gray3 box
+    # blame-code-style = syntax
+    # blame-format = "{author:<18} ({commit:>8}) {timestamp:<13} "
+    # blame-palette = "#121212 #191919 #222222 #2a2a2a #303030"
+    # merge-conflict-begin-symbol = ~
+    # merge-conflict-end-symbol = ~
+    # merge-conflict-ours-diff-header-style = monoglow.git-add bold
+    # merge-conflict-ours-diff-header-decoration-style = monoglow.gray3 box
+    # merge-conflict-theirs-diff-header-style = monoglow.git-delete bold
+    # merge-conflict-theirs-diff-header-decoration-style = monoglow.gray3 box
+
+    # Re-map common bold ANSI syntax colors to muted monoglow-compatible
+    # backgrounds so highlighted syntax still feels cohesive in diff context.
+    map-styles = \
+        bold red => syntax "#3a1420", \
+        bold green => syntax "#16301d", \
+        bold yellow => syntax "#343015", \
+        bold blue => syntax "#18283a", \
+        bold purple => syntax "#251f3d", \
+        bold cyan => syntax "#153339"

@@ -1,41 +1,47 @@
 ---@type LazySpec
 return {
   -- colorscheme
-  -- {
-  --   "folke/tokyonight.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   ---@module "tokyonight"
-  --   ---@type tokyonight.Config
-  --   opts = {
-  --     style = "night",
-  --     on_highlights = function(highlights, colors)
-  --       highlights["LualineFilename"] = { fg = colors.fg, bg = colors.bg }
-  --       highlights["LualineFilenameModified"] = { fg = colors.orange, bg = colors.bg }
-  --       highlights["WinSeparator"] = { fg = "#262626" }
-  --     end,
-  --     on_colors = function(colors)
-  --       colors.git.add = "#a6e22e"
-  --       colors.git.change = "#ffd700"
-  --       colors.git.delete = "#f92672"
-  --     end,
-  --   },
-  --   config = function(_, opts)
-  --     require("tokyonight").setup(opts)
-  --     vim.g.tokyo_colors = require("tokyonight.colors").setup(opts)
-  --
-  --     vim.cmd([[colorscheme tokyonight]])
-  --   end,
-  -- },
   {
-    "sainnhe/gruvbox-material",
+    "wnkz/monoglow.nvim",
     lazy = false,
     priority = 1000,
-    config = function()
-      vim.g.gruvbox_material_background = "hard"
-      vim.g.gruvbox_material_better_performance = 1
+    opts = {
+      glow = false,
+      on_colors = function(colors)
+        colors.git.add = "#a6e22e"
+        colors.git.change = "#e6db74"
+        colors.git.delete = "#f92672"
 
-      vim.cmd.colorscheme("gruvbox-material")
+        colors.error = "#f92672"
+        colors.warning = "#e6db74"
+        colors.info = "#66d9ef"
+        colors.hint = "#66d9ef"
+      end,
+      on_highlights = function(hl, c)
+        local util = require("monoglow.util")
+
+        local glow_light_1 = util.lighten(c.glow, 0.5)
+
+        -- hl["@keyword.return"] = { fg = glow_light_1 }
+        -- hl["@keyword.exception"] = { fg = glow_light_1 }
+
+        -- hl["@number.tsx"] = { fg = glow_light_1 }
+        -- hl["@number.typescript"] = { fg = glow_light_1 }
+
+        hl["@boolean.tsx"] = { fg = glow_light_1 }
+        hl["@boolean.typescript"] = { fg = glow_light_1 }
+
+        hl["@tag.tsx"] = { link = "@tag.builtin.tsx" }
+        hl["@tag.attribute.tsx"] = { fg = util.lighten(c.glow, 0.2) }
+
+        hl["MiniDiffSignAdd"] = { fg = c.git.add }
+        hl["MiniDiffSignChange"] = { fg = c.git.change }
+        hl["MiniDiffSignDelete"] = { fg = c.git.delete }
+      end,
+    },
+    config = function(_, opts)
+      require("monoglow").setup(opts)
+      vim.cmd.colorscheme("monoglow-z")
     end,
   },
   {
@@ -121,17 +127,6 @@ return {
         t = "<(•ᴗ•)>",
       }
 
-      -- local theme = require("lualine.themes.tokyonight-night")
-      -- local modes = { "normal", "insert", "command", "visual", "replace", "terminal" }
-
-      -- local colors = vim.g.tokyo_colors
-      -- for _, mode in ipairs(modes) do
-      --   theme[mode].b.bg = colors.bg
-      --   theme[mode].b.fg = colors.dark5
-      -- end
-      --
-      -- theme.normal.c.bg = colors.bg
-
       local function pretty_path()
         local path = vim.fn.expand("%:p")
 
@@ -209,8 +204,7 @@ return {
       return {
         options = {
           globalstatus = true,
-          -- theme = theme,
-          theme = "gruvbox-material",
+          theme = "monoglow-z",
           section_separators = "",
           component_separators = "",
         },

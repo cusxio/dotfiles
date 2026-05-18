@@ -10,11 +10,12 @@ java = "zulu-17"
 # aube = "latest"
 pnpm = "latest"
 
+"github:earendil-works/pi" = "latest"
 "github:Dicklesworthstone/destructive_command_guard" = "latest"
-"github:badlogic/pi-mono" = "latest"
 
 "npm:@sourcegraph/amp" = "latest"
 "npm:hunkdiff" = "latest"
+# "npm:@earendil-works/pi-coding-agent" = "latest"
 
 [settings.npm]
 package_manager = "pnpm"

@@ -1,7 +1,4 @@
-# theme                    = monoglow
-# theme                    = TokyoNight Night
-# theme                    = Gruvbox Dark Hard
-theme                      = gruvbox-material-hard
+theme                    = monoglow
 
 font-size                  = 15
 
@@ -56,7 +53,6 @@ working-directory          = home
 
 cursor-style               = block
 cursor-style-blink         = true
-cursor-color               = #ddc7a1
 copy-on-select             = true
 mouse-hide-while-typing    = true
 

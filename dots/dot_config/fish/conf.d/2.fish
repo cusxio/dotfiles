@@ -1,9 +1,11 @@
 if type -q lsd
-    alias ls='lsd'
-    alias l='ls -l'
-    alias la='ls -a'
-    alias lla='ls -la'
-    alias lt='ls --tree'
+    set -l lsd_opts --group-dirs first
+
+    abbr --add ls "lsd $lsd_opts"
+    abbr --add l "lsd $lsd_opts -l"
+    abbr --add la "lsd $lsd_opts -a"
+    abbr --add lla "lsd $lsd_opts -la"
+    abbr --add lt "lsd $lsd_opts --tree"
 end
 
 if type -q claude

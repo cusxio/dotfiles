@@ -31,6 +31,7 @@ set --export MANPAGER "sh -c 'col -bx | bat -l man -p'"
 
 set --export PNPM_HOME $XDG_DATA_HOME/pnpm
 fish_add_path $PNPM_HOME
+fish_add_path $PNPM_HOME/bin
 
 if type -q rg
     set --export RIPGREP_CONFIG_PATH $XDG_CONFIG_HOME/ripgrep/config

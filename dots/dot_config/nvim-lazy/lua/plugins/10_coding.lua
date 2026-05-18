@@ -39,8 +39,20 @@ return {
     event = vim.g.lazy_file_events,
     dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
     config = function()
+      local ts_pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook()
+
       require("Comment").setup({
-        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+        pre_hook = function(ctx)
+          local cstr = ts_pre_hook(ctx)
+          if cstr then
+            return cstr
+          end
+
+          local ok, parser = pcall(vim.treesitter.get_parser, 0)
+          if not ok or not parser then
+            return vim.bo.commentstring
+          end
+        end,
       })
     end,
   },

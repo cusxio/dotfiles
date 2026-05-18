@@ -8,7 +8,7 @@
 # "↯"
 # "⇒"
 # "›"
-set --global tide_character_icon λ
+set --global tide_character_icon ϟ
 set --global tide_character_color yellow
 #
 set --global tide_pwd_color_anchors white
