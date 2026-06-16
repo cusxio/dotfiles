@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.75.3",
+  "lastChangelogVersion": "0.79.4",
   "theme": "monoglow",
   "treeFilterMode": "no-tools",
   "packages": [
@@ -10,5 +10,11 @@
   "defaultModel": "gpt-5.5",
   "enableInstallTelemetry": false,
   "quietStartup": true,
-  "npmCommand": ["mise", "exec", "node@latest", "--", "npm"]
+  "npmCommand": [
+    "mise",
+    "exec",
+    "node@latest",
+    "--",
+    "npm"
+  ]
 }
