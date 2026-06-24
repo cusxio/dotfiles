@@ -1,0 +1,91 @@
+# Delta theme inspired by Kanagawa Wave
+# https://github.com/rebelot/kanagawa.nvim
+#
+# Usage:
+#   [include]
+#     path = ./delta-themes/kanagawa-wave.gitconfig
+#
+#   [delta]
+#     features = kanagawa-wave
+
+[delta "kanagawa-wave"]
+    dark = true
+
+    # Kanagawa Wave colors used by this delta theme
+    sumiInk0 = "#16161d"
+    sumiInk6 = "#54546d"
+    waveBlue1 = "#223249"
+    winterGreen = "#2b3328"
+    winterRed = "#43242b"
+    springGreen = "#98bb6c"
+    autumnGreen = "#76946a"
+    samuraiRed = "#e82424"
+    peachRed = "#ff5d62"
+    autumnRed = "#c34043"
+    carpYellow = "#e6c384"
+    surimiOrange = "#ffa066"
+    waveAqua2 = "#7aa89f"
+    springBlue = "#7fb4ca"
+    crystalBlue = "#7e9cd8"
+    springViolet1 = "#938aa9"
+
+    # Syntax highlighting. Uses the official kanagawa.nvim tmTheme:
+    #   ~/.config/bat/themes/Kanagawa Wave.tmTheme
+    # Run `bat cache --build` after installing it.
+    syntax-theme = Kanagawa Wave
+
+    # Diff content. These colors mirror the local Kanagawa Wave tmTheme:
+    # deleted/inserted lines use the theme's diff scope backgrounds, while
+    # syntax remains the primary foreground signal.
+    zero-style = syntax dim
+    minus-style = syntax kanagawa-wave.winterRed
+    minus-emph-style = syntax bold kanagawa-wave.winterRed
+    minus-non-emph-style = syntax kanagawa-wave.sumiInk0
+    minus-empty-line-marker-style = syntax kanagawa-wave.winterRed
+    plus-style = syntax kanagawa-wave.winterGreen
+    plus-emph-style = syntax bold kanagawa-wave.winterGreen
+    plus-non-emph-style = syntax kanagawa-wave.sumiInk0
+    plus-empty-line-marker-style = syntax kanagawa-wave.winterGreen
+    whitespace-error-style = kanagawa-wave.peachRed reverse
+
+    # File headers
+    file-style = omit
+    file-decoration-style = none
+    file-added-label = [+]
+    file-copied-label = [==]
+    file-modified-label = [*]
+    file-removed-label = [-]
+    file-renamed-label = [->]
+
+    # Hunk headers
+    hunk-header-style = file line-number syntax
+    hunk-header-decoration-style = kanagawa-wave.waveBlue1 box ul
+    hunk-header-file-style = kanagawa-wave.crystalBlue bold
+    hunk-header-line-number-style = kanagawa-wave.surimiOrange bold
+
+    # Line number gutter
+    line-numbers = true
+    line-numbers-left-format = " {nm:>3} │"
+    line-numbers-right-format = " {np:>3} │"
+    line-numbers-left-style = kanagawa-wave.sumiInk6
+    line-numbers-right-style = kanagawa-wave.sumiInk6
+    line-numbers-zero-style = kanagawa-wave.sumiInk6
+    line-numbers-minus-style = kanagawa-wave.autumnRed bold
+    line-numbers-plus-style = kanagawa-wave.autumnGreen bold
+
+    # Merge conflicts
+    merge-conflict-begin-symbol = ~
+    merge-conflict-end-symbol = ~
+    merge-conflict-ours-diff-header-style = kanagawa-wave.springGreen bold
+    merge-conflict-ours-diff-header-decoration-style = kanagawa-wave.waveBlue1 box
+    merge-conflict-theirs-diff-header-style = kanagawa-wave.peachRed bold
+    merge-conflict-theirs-diff-header-decoration-style = kanagawa-wave.waveBlue1 box
+
+    # Match upstream Kanagawa Wave bright terminal colors for bold ANSI styles.
+    map-styles = \
+        bold red => syntax kanagawa-wave.samuraiRed, \
+        bold green => syntax kanagawa-wave.springGreen, \
+        bold yellow => syntax kanagawa-wave.carpYellow, \
+        bold blue => syntax kanagawa-wave.springBlue, \
+        bold purple => syntax kanagawa-wave.springViolet1, \
+        bold cyan => syntax kanagawa-wave.waveAqua2

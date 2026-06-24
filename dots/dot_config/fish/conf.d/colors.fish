@@ -1,1 +1,1 @@
-fish_config theme choose catppuccin-mocha --color-theme=dark
+fish_config theme choose kanagawa

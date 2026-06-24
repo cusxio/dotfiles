@@ -2,15 +2,27 @@
 return {
   -- colorscheme
   {
-    "catppuccin/nvim",
+    "rebelot/kanagawa.nvim",
     lazy = false,
     priority = 1000,
     opts = {
-      flavour = "mocha",
+      compile = true,
+      theme = "wave",
+      colors = {
+        theme = {
+          wave = {
+            ui = {
+              bg = "#121212",
+              bg_gutter = "NONE",
+              whitespace = "#31313a",
+            },
+          },
+        },
+      },
     },
     config = function(_, opts)
-      require("catppuccin").setup(opts)
-      vim.cmd.colorscheme("catppuccin-nvim")
+      require("kanagawa").setup(opts)
+      vim.cmd.colorscheme("kanagawa")
     end,
   },
   {
@@ -173,7 +185,6 @@ return {
       return {
         options = {
           globalstatus = true,
-          theme = "catppuccin-nvim",
           section_separators = "",
           component_separators = "",
         },

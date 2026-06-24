@@ -12,7 +12,10 @@ channel = "stable"
 [theme]
 # Built-ins include: catppuccin, terminal, tokyo-night, dracula, nord,
 # gruvbox, one-dark, solarized, kanagawa, rose-pine, vesper.
-name = "catppuccin"
+name = "kanagawa"
+
+[theme.custom]
+panel_bg = "reset"
 
 [terminal]
 # New interactive panes use fish. On macOS, `auto` starts it as a login shell.
