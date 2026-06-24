@@ -1,1 +1,1 @@
-fish_config theme choose monoglow
+fish_config theme choose catppuccin-mocha --color-theme=dark

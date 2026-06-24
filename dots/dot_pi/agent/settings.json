@@ -1,10 +1,11 @@
 {
   "lastChangelogVersion": "0.79.4",
-  "theme": "monoglow",
+  "theme": "catppuccin-macchiato",
   "treeFilterMode": "no-tools",
   "packages": [
     "npm:@plannotator/pi-extension",
-    "npm:@ff-labs/pi-fff"
+    "npm:@ff-labs/pi-fff",
+    "git:github.com/otahontas/pi-coding-agent-catppuccin"
   ],
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.5",

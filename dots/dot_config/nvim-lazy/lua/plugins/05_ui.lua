@@ -2,46 +2,15 @@
 return {
   -- colorscheme
   {
-    "wnkz/monoglow.nvim",
+    "catppuccin/nvim",
     lazy = false,
     priority = 1000,
     opts = {
-      glow = false,
-      on_colors = function(colors)
-        colors.git.add = "#a6e22e"
-        colors.git.change = "#e6db74"
-        colors.git.delete = "#f92672"
-
-        colors.error = "#f92672"
-        colors.warning = "#e6db74"
-        colors.info = "#66d9ef"
-        colors.hint = "#66d9ef"
-      end,
-      on_highlights = function(hl, c)
-        local util = require("monoglow.util")
-
-        local glow_light_1 = util.lighten(c.glow, 0.5)
-
-        -- hl["@keyword.return"] = { fg = glow_light_1 }
-        -- hl["@keyword.exception"] = { fg = glow_light_1 }
-
-        -- hl["@number.tsx"] = { fg = glow_light_1 }
-        -- hl["@number.typescript"] = { fg = glow_light_1 }
-
-        hl["@boolean.tsx"] = { fg = glow_light_1 }
-        hl["@boolean.typescript"] = { fg = glow_light_1 }
-
-        hl["@tag.tsx"] = { link = "@tag.builtin.tsx" }
-        hl["@tag.attribute.tsx"] = { fg = util.lighten(c.glow, 0.2) }
-
-        hl["MiniDiffSignAdd"] = { fg = c.git.add }
-        hl["MiniDiffSignChange"] = { fg = c.git.change }
-        hl["MiniDiffSignDelete"] = { fg = c.git.delete }
-      end,
+      flavour = "mocha",
     },
     config = function(_, opts)
-      require("monoglow").setup(opts)
-      vim.cmd.colorscheme("monoglow-z")
+      require("catppuccin").setup(opts)
+      vim.cmd.colorscheme("catppuccin-nvim")
     end,
   },
   {
@@ -204,7 +173,7 @@ return {
       return {
         options = {
           globalstatus = true,
-          theme = "monoglow-z",
+          theme = "catppuccin-nvim",
           section_separators = "",
           component_separators = "",
         },
