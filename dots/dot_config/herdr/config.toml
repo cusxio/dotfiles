@@ -1,0 +1,80 @@
+# herdr configuration
+# Docs: https://herdr.dev/docs/configuration/
+# Installed as: ~/.config/herdr/config.toml
+
+# Skip first-run setup now that integrations/settings are configured.
+onboarding = false
+
+[update]
+# Direct installs use this for `herdr update`; Homebrew/mise/Nix ignore it.
+channel = "stable"
+
+[theme]
+# Built-ins include: catppuccin, terminal, tokyo-night, dracula, nord,
+# gruvbox, one-dark, solarized, kanagawa, rose-pine, vesper.
+name = "catppuccin"
+
+[terminal]
+# New interactive panes use fish. On macOS, `auto` starts it as a login shell.
+default_shell = "fish"
+shell_mode = "auto"
+
+# New panes/tabs/workspaces inherit the source pane/workspace cwd.
+new_cwd = "follow"
+
+[keys]
+# Prefix ----------------------------------------------------------------------
+prefix = "ctrl+semicolon"
+help = "prefix+?"
+settings = "prefix+shift+s"
+reload_config = "prefix+r"
+detach = ["prefix+d", "prefix+q"]
+
+# Workspaces ------------------------------------------------------------------
+workspace_picker = "prefix+w"
+new_workspace = "prefix+shift+n"
+rename_workspace = "prefix+shift+w"
+close_workspace = "prefix+shift+d"
+previous_workspace = "prefix+("
+next_workspace = "prefix+)"
+
+# Tabs / tmux-style windows ---------------------------------------------------
+new_tab = "prefix+n"
+previous_tab = "prefix+["
+next_tab = "prefix+]"
+switch_tab = "prefix+1..9"
+rename_tab = "prefix+comma"
+close_tab = "prefix+shift+x"
+
+# Panes -----------------------------------------------------------------------
+split_vertical = "prefix+v"
+split_horizontal = "prefix+s"
+close_pane = "prefix+x"
+copy_mode = "prefix+shift+v"
+edit_scrollback = "prefix+e"
+resize_mode = "prefix+shift+r"
+
+# Pane navigation -------------------------------------------------------------
+focus_pane_left = "ctrl+h"
+focus_pane_down = "ctrl+j"
+focus_pane_up = "ctrl+k"
+focus_pane_right = "ctrl+l"
+cycle_pane_next = "prefix+tab"
+cycle_pane_previous = "prefix+shift+tab"
+
+# UI --------------------------------------------------------------------------
+toggle_sidebar = "prefix+b"
+
+[ui]
+# Leave UI defaults active unless explicitly changed here.
+# sidebar_width = 26
+# mouse_capture = true
+# confirm_close = true
+
+[ui.toast]
+
+[session]
+
+[remote]
+
+[experimental]
