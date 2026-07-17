@@ -1,27 +1,21 @@
 [tools]
-bun                                                  = "latest"
-node                                                 = "latest"
-go                                                   = "latest"
-python                                               = "latest"
-ruby                                                 = "latest"
-java                                                 = "zulu-17"
-pnpm                                                 = "latest"
+# bun                                                  = "latest"
+node = "latest"
+# go                                                   = "latest"
+python = "latest"
+ruby = "latest"
+java = "zulu-17"
+nub = "latest"
+aube = "latest"
 
-"github:earendil-works/pi"                           = "latest"
-"github:Dicklesworthstone/destructive_command_guard" = "latest"
-"github:can1357/oh-my-pi"                            = "latest"
+"aqua:earendil-works/pi" = "latest"
+"aqua:modem-dev/hunk" = "latest"
 
-"npm:hunkdiff"                                       = "latest"
-"npm:@ampcode/cli" = {
-  version          = "latest",
-  pnpm_args        = "--allow-build = @ampcode/cli"
-}
+[settings]
+minimum_release_age_excludes = [ "aube", "pnpm", "ruby", "aqua:*", "npm:*", "github:*" ]
 
 [settings.npm]
-package_manager = "pnpm"
+package_manager = "aube"
 
 [settings.ruby]
 compile = false
-
-[settings]
-minimum_release_age_excludes = ["npm:*", "github:*"]
