@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.80.2",
+  "lastChangelogVersion": "0.80.10",
   "theme": "kanagawa-wave",
   "treeFilterMode": "no-tools",
   "packages": [
@@ -7,15 +7,15 @@
     "npm:@ff-labs/pi-fff"
   ],
   "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.5",
+  "defaultModel": "gpt-5.6-sol",
   "enableInstallTelemetry": false,
   "quietStartup": true,
   "npmCommand": [
     "mise",
     "exec",
-    "node@latest",
+    "pnpm@latest",
     "--",
-    "npm"
+    "pnpm"
   ],
-  "defaultThinkingLevel": "medium"
+  "defaultThinkingLevel": "high"
 }

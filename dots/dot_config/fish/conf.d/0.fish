@@ -58,6 +58,7 @@ abbr --add gcane git commit --amend --no-edit
 abbr --add gco git checkout
 abbr --add gcob git checkout -b
 abbr --add gd git diff
+abbr --add gdc git diff --cached
 abbr --add gdup git diff @{upstream}
 abbr --add gp git push
 
