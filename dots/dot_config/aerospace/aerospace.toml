@@ -276,3 +276,7 @@ run = 'layout floating'
 [[on-window-detected]]
 if.app-id = 'org.mozilla.thunderbird'
 run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Outlook'
+run = 'layout floating'
