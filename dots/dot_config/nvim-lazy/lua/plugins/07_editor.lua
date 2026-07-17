@@ -35,6 +35,11 @@ return {
       keymaps = {
         close = "<C-c>",
       },
+      hl = {
+        winhl = {
+          preview = "CursorLine:FFFPreviewCursorLine",
+        },
+      },
       -- debug = {
       --   enabled = true,
       --   show_scores = true,
