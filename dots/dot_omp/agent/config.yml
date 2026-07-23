@@ -1,13 +1,25 @@
 symbolPreset: nerd
-theme:
+theme: 
   dark: dark-monokai
 setupVersion: 1
-modelRoles:
-  default: openai-codex/gpt-5.6-sol:high
-statusLine:
+modelRoles: 
+  default: openai-codex/gpt-5.6-sol:medium
+  smol: openai-codex/gpt-5.6-terra:medium
+  slow: openai-codex/gpt-5.6-sol:xhigh
+  plan: openai-codex/gpt-5.6-sol:high
+  advisor: openai-codex/gpt-5.6-sol:high
+  task: openai-codex/gpt-5.6-terra:medium
+  designer: openai-codex/gpt-5.6-sol:high
+  vision: openai-codex/gpt-5.6-terra:medium
+  commit: openai-codex/gpt-5.6-luna:low
+  tiny: openai-codex/gpt-5.6-luna:low
+statusLine: 
   preset: default
   separator: ascii
   sessionAccent: true
   transparent: true
 textVerbosity: low
-
+display: 
+  cacheMissMarker: true
+compaction: 
+  strategy: context-full

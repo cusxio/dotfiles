@@ -1,21 +1,70 @@
 [tools]
-# bun                                                  = "latest"
-node = "latest"
-# go                                                   = "latest"
-python = "latest"
-ruby = "latest"
-java = "zulu-17"
-nub = "latest"
-aube = "latest"
+# Languages and runtimes
+bun                          = "latest"
+# go                         = "latest"
+java                         = "zulu-17"
+node                         = "latest"
+python                       = "latest"
+ruby                         = "latest"
 
-"aqua:earendil-works/pi" = "latest"
-"aqua:modem-dev/hunk" = "latest"
+# CLI tools
+aube                         = "latest"
+bat                          = "latest"
+cloudflared                  = "latest"
+delta                        = "latest"
+fastfetch                    = "latest"
+fd                           = "latest"
+fzf                          = "latest"
+gh                           = "latest"
+herdr                        = "latest"
+hunk                         = "latest"
+hyperfine                    = "latest"
+lazygit                      = "latest"
+lsd                          = "latest"
+nub                          = "latest"
+pi                           = "latest"
+tree-sitter                  = "latest"
+xh                           = "latest"
+yt-dlp                       = "latest"
+zoxide                       = "latest"
+
+# Aqua tools
+"aqua:planetscale/cli"       = "latest"
+
+# GitHub tools
+"github:1broseidon/ketch"    = "latest"
+
+[bootstrap.packages]
+"brew:btop"                  = "latest"
+"brew:exiftool"              = "latest"
+"brew:fish"                  = "latest"
+"brew:git"                   = "latest"
+"brew:libyaml"               = "latest"
+"brew:trash"                 = "latest"
+
+[dotfiles]
+"~/.omp" = {
+  source = "~/.local/share/chezmoi/dots/dot_omp",
+  mode = "symlink-each"
+}
+
+"~/.pi" = {
+  source = "~/.local/share/chezmoi/dots/dot_pi",
+  mode = "symlink-each"
+}
 
 [settings]
-minimum_release_age_excludes = [ "aube", "pnpm", "ruby", "aqua:*", "npm:*", "github:*" ]
+minimum_release_age_excludes = [
+  "aqua:*",
+  "aube",
+  "github:*",
+  "npm:*",
+  "pnpm",
+  "ruby",
+]
 
 [settings.npm]
-package_manager = "aube"
+package_manager              = "aube"
 
 [settings.ruby]
-compile = false
+compile                      = false

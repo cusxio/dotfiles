@@ -1,16 +1,16 @@
-theme                    = Kanagawa Wave
+theme                      = Kanagawa Wave
 
 font-size                  = 15
 
-# font-family                = Ioskeley Mono
-# font-style                 = Medium
-# font-style-bold            = SemiBold
-# font-style-italic          = Medium Italic
-# font-style-bold-italic     = SemiBold Italic
-# font-feature               = -calt
+# font-family              = Ioskeley Mono
+# font-style               = Medium
+# font-style-bold          = SemiBold
+# font-style-italic        = Medium Italic
+# font-style-bold-italic   = SemiBold Italic
+# font-feature             = -calt
 
-# adjust-cell-height         = 5%
-# font-feature               = calt, dlig
+# adjust-cell-height       = 5%
+# font-feature             = calt, dlig
 
 
 # font-family              = TX-02
@@ -28,26 +28,26 @@ font-size                  = 15
 # font-style-bold-italic   = 600Italic
 # adjust-cell-height       = 20%
 
-font-family              = JetBrains Mono
-font-style               = Medium
-font-style-bold          = SemiBold
-font-style-italic        = Medium Italic
-font-style-bold-italic   = SemiBold Italic
+font-family                = JetBrains Mono
+font-style                 = Medium
+font-style-bold            = SemiBold
+font-style-italic          = Medium Italic
+font-style-bold-italic     = SemiBold Italic
 
 # https://github.com/JetBrains/JetBrainsMono/issues/669
 # font-feature             = frac
-font-feature             = zero
-font-feature             = calt
-font-feature             = cv11
-font-feature             = cv12
-font-feature             = cv14
+font-feature               = zero
+font-feature               = calt
+font-feature               = cv11
+font-feature               = cv12
+font-feature               = cv14
 
 # font-family              = Input Mono Condensed
 # font-style               = Regular
 # font-style-bold          = Medium
 # font-style-italic        = Regular Italic
 # font-style-bold-italic   = Medium Italic
-# adjust-cell-height         = 5%
+# adjust-cell-height       = 5%
 
 working-directory          = home
 
@@ -68,5 +68,5 @@ macos-icon-screen-color    = #121212
 
 macos-option-as-alt        = false
 
-# custom-shader              = shaders/cursor_blaze.glsl
-background = #121212
+# custom-shader            = shaders/cursor_blaze.glsl
+background                 = #121212
