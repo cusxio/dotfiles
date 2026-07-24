@@ -1,0 +1,85 @@
+[settings]
+default_disable = false
+focus_follows_mouse = false
+mouse_follows_focus = false
+mouse_hides_on_focus = true
+
+[settings.layout]
+mode = "bsp"
+
+[settings.ui.menu_bar]
+enabled = true
+mode = "active"
+display_style = "label"
+
+# JankyBorders strokes are centered on window edges. For a 6-point border,
+# 3-point outer gaps and 6-point inner gaps let the borders meet evenly.
+[settings.layout.gaps.outer]
+top = 3
+left = 3
+bottom = 3
+right = 3
+
+[settings.layout.gaps.inner]
+horizontal = 6
+vertical = 6
+
+[virtual_workspaces]
+default_workspace_count = 7
+app_rules = [
+  { app_id = "org.qbittorrent.qBittorrent", manage = false },
+  { app_id = "com.apple.finder", manage = false },
+  { app_id = "com.apple.systempreferences", manage = false },
+  { app_id = "com.apple.ActivityMonitor", manage = false },
+  { app_id = "com.apple.TextEdit", manage = false },
+  { app_id = "com.eltima.elmedia6.mas", manage = false },
+  { app_id = "com.1password.1password", manage = false },
+  { app_id = "com.electron.ollama", manage = false },
+  { app_id = "dev.kdrag0n.MacVirt", manage = false },
+  { app_id = "com.tinyapp.TablePlus", manage = false },
+  { app_id = "app.yaak.desktop", manage = false },
+  { app_id = "ai.elementlabs.lmstudio", manage = false },
+  { app_id = "com.readdle.PDFExpert-Mac", manage = false },
+  { app_id = "com.pdfeditor.pdfeditormac", manage = false },
+  { app_id = "com.microsoft.Outlook", manage = false },
+]
+
+[modifier_combinations]
+hyper = "Ctrl + Alt + Meta"
+
+[keys]
+"hyper + Q" = "close_window"
+"hyper + F" = "toggle_fullscreen"
+
+"hyper + H" = { move_focus = "left" }
+"hyper + J" = { move_focus = "down" }
+"hyper + K" = { move_focus = "up" }
+"hyper + L" = { move_focus = "right" }
+
+"hyper + Shift + H" = { move_node = "left" }
+"hyper + Shift + J" = { move_node = "down" }
+"hyper + Shift + K" = { move_node = "up" }
+"hyper + Shift + L" = { move_node = "right" }
+
+"hyper + Minus" = { resize_window_shrink = "smart" }
+"hyper + Equal" = { resize_window_grow = "smart" }
+
+"hyper + 1" = { switch_to_workspace = 0 }
+"hyper + 2" = { switch_to_workspace = 1 }
+"hyper + 3" = { switch_to_workspace = 2 }
+"hyper + 4" = { switch_to_workspace = 3 }
+"hyper + 5" = { switch_to_workspace = 4 }
+"hyper + 6" = { switch_to_workspace = 5 }
+"hyper + 7" = { switch_to_workspace = 6 }
+
+"hyper + Shift + 1" = { move_window_to_workspace = 0 }
+"hyper + Shift + 2" = { move_window_to_workspace = 1 }
+"hyper + Shift + 3" = { move_window_to_workspace = 2 }
+"hyper + Shift + 4" = { move_window_to_workspace = 3 }
+"hyper + Shift + 5" = { move_window_to_workspace = 4 }
+"hyper + Shift + 6" = { move_window_to_workspace = 5 }
+"hyper + Shift + 7" = { move_window_to_workspace = 6 }
+
+"hyper + Tab" = "switch_to_last_workspace"
+"hyper + LeftSquareBracket" = "prev_workspace"
+"hyper + RightSquareBracket" = "next_workspace"
