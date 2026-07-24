@@ -42,17 +42,6 @@ zoxide                       = "latest"
 "brew:libyaml"               = "latest"
 "brew:trash"                 = "latest"
 
-[dotfiles]
-"~/.omp" = {
-  source = "~/.local/share/chezmoi/dots/dot_omp",
-  mode = "symlink-each"
-}
-
-"~/.pi" = {
-  source = "~/.local/share/chezmoi/dots/dot_pi",
-  mode = "symlink-each"
-}
-
 [settings]
 minimum_release_age_excludes = [
   "aqua:*",

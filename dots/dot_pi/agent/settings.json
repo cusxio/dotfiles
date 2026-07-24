@@ -4,7 +4,9 @@
   "treeFilterMode": "no-tools",
   "packages": [
     "npm:@plannotator/pi-extension",
-    "npm:@ff-labs/pi-fff"
+    "npm:@ff-labs/pi-fff",
+    "npm:@ogulcancelik/pi-minimal-footer",
+    "npm:@ogulcancelik/pi-codex-compaction"
   ],
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.6-sol",
