@@ -2,10 +2,15 @@
 default_disable = false
 focus_follows_mouse = false
 mouse_follows_focus = false
-mouse_hides_on_focus = true
+mouse_hides_on_focus = false
 
 [settings.layout]
-mode = "bsp"
+# mode = "bsp"
+mode = "traditional"
+
+[settings.layout.master_stack]
+master_ratio = 0.5
+new_window_placement = "focused"
 
 [settings.ui.menu_bar]
 enabled = true
@@ -27,6 +32,9 @@ vertical = 6
 [virtual_workspaces]
 default_workspace_count = 7
 app_rules = [
+  { app_id = "com.apple.iphonesimulator", manage = false },
+  # Android Emulator is a standalone executable with no macOS bundle ID.
+  { app_name = "qemu-system-aarch64", manage = false },
   { app_id = "org.qbittorrent.qBittorrent", manage = false },
   { app_id = "com.apple.finder", manage = false },
   { app_id = "com.apple.systempreferences", manage = false },

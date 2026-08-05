@@ -17,10 +17,14 @@ new_cwd                = "follow"
 [keys]
 prefix                 = "ctrl+a"
 
+# Spaces
+previous_workspace     = "prefix+k"
+next_workspace         = "prefix+j"
+
 # Tabs
 new_tab                = "prefix+n"
-previous_tab           = "prefix+["
-next_tab               = "prefix+]"
+previous_tab           = "prefix+h"
+next_tab               = "prefix+l"
 switch_tab             = "prefix+1..9"
 
 # Panes
@@ -30,6 +34,7 @@ focus_pane_left        = "ctrl+h"
 focus_pane_down        = "ctrl+j"
 focus_pane_up          = "ctrl+k"
 focus_pane_right       = "ctrl+l"
+
 cycle_pane_next        = "prefix+tab"
 cycle_pane_previous    = "prefix+shift+tab"
 
@@ -38,6 +43,7 @@ split_horizontal       = "prefix+s"
 
 [ui]
 sidebar_collapsed_mode = "hidden"
+# tab_bar_position       = "bottom"
 
 [ui.toast]
 delivery               = "herdr"
