@@ -1,0 +1,11 @@
+{
+  "toolDescriptionMode": "compact",
+  "maxSubagentDepth": 1,
+  "scheduledRuns": {
+    "enabled": false
+  },
+  "missions": {
+    "enabled": false
+  },
+  "artifactDir": "session"
+}

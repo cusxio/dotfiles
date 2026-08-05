@@ -1,12 +1,14 @@
 {
-  "lastChangelogVersion": "0.81.1",
+  "lastChangelogVersion": "0.83.0",
   "theme": "kanagawa-wave",
   "treeFilterMode": "no-tools",
   "packages": [
     "npm:@plannotator/pi-extension",
     "npm:@ff-labs/pi-fff",
     "npm:@ogulcancelik/pi-minimal-footer",
-    "npm:@ogulcancelik/pi-codex-compaction"
+    "npm:@ogulcancelik/pi-codex-compaction",
+    "npm:pi-subagents",
+    "npm:pi-web-access"
   ],
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.6-sol",
@@ -19,5 +21,69 @@
     "--",
     "pnpm"
   ],
-  "defaultThinkingLevel": "high"
+  "defaultThinkingLevel": "high",
+  "subagents": {
+    "defaultModel": "openai-codex/gpt-5.6-terra",
+    "defaultThinking": "medium",
+    "defaultExtensions": [],
+    "agentOverrides": {
+      "scout": {
+        "model": "openai-codex/gpt-5.6-luna",
+        "thinking": "low",
+        "defaultContext": "fresh"
+      },
+      "planner": {
+        "model": "openai-codex/gpt-5.6-sol",
+        "thinking": "high",
+        "defaultContext": "fresh"
+      },
+      "worker": {
+        "model": "openai-codex/gpt-5.6-terra",
+        "thinking": "medium",
+        "defaultContext": "fresh"
+      },
+      "reviewer": {
+        "model": "openai-codex/gpt-5.6-terra",
+        "thinking": "medium",
+        "tools": [
+          "read",
+          "grep",
+          "find",
+          "ls",
+          "bash"
+        ],
+        "defaultContext": "fresh",
+        "acceptanceRole": "read-only"
+      },
+      "delegate": {
+        "model": "openai-codex/gpt-5.6-terra",
+        "thinking": "medium",
+        "defaultContext": "fresh"
+      },
+      "advisor": {
+        "disabled": true
+      },
+      "researcher": {
+        "disabled": false,
+        "model": "openai-codex/gpt-5.6-terra",
+        "thinking": "medium",
+        "tools": [
+          "read",
+          "write",
+          "web_search",
+          "fetch_content",
+          "get_search_content",
+          "source_check",
+          "intercom"
+        ],
+        "extensions": [
+          "npm:pi-web-access"
+        ],
+        "defaultContext": "fresh"
+      },
+      "context-builder": {
+        "disabled": true
+      }
+    }
+  }
 }
