@@ -1,6 +1,6 @@
 symbolPreset: nerd
 setupVersion: 1
-modelRoles:
+modelRoles: 
   default: openai-codex/gpt-5.6-sol:high
   smol: openai-codex/gpt-5.6-terra:medium
   slow: openai-codex/gpt-5.6-sol:xhigh
@@ -11,28 +11,30 @@ modelRoles:
   vision: openai-codex/gpt-5.6-terra:medium
   commit: openai-codex/gpt-5.6-luna:low
   tiny: openai-codex/gpt-5.6-luna:low
-statusLine:
+statusLine: 
   preset: custom
   separator: slash
-  leftSegments:
+  leftSegments: 
     - path
     - git
     - mode
-  rightSegments:
+  rightSegments: 
     - model
     - context_pct
   segmentOptions: null
-  model:
+  model: 
     showThinkingLevel: true
-  path:
+  path: 
     abbreviate: true
     maxLength: 40
-  git:
+  git: 
     showBranch: true
   transparent: true
   compactThinkingLevel: true
 textVerbosity: low
-display:
+display: 
   cacheMissMarker: true
-compaction:
+compaction: 
   strategy: context-full
+theme: 
+  dark: dark

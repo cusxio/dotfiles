@@ -10,6 +10,7 @@ ruby                         = "latest"
 # CLI tools
 aube                         = "latest"
 bat                          = "latest"
+chezmoi                      = "latest"
 cloudflared                  = "latest"
 delta                        = "latest"
 fastfetch                    = "latest"
@@ -21,8 +22,10 @@ hunk                         = "latest"
 hyperfine                    = "latest"
 lazygit                      = "latest"
 lsd                          = "latest"
+neovim                       = "latest"
 nub                          = "latest"
 pi                           = "latest"
+ripgrep                      = "latest"
 tree-sitter                  = "latest"
 xh                           = "latest"
 yt-dlp                       = "latest"
@@ -43,14 +46,7 @@ zoxide                       = "latest"
 "brew:trash"                 = "latest"
 
 [settings]
-minimum_release_age_excludes = [
-  "aqua:*",
-  "aube",
-  "github:*",
-  "npm:*",
-  "pnpm",
-  "ruby",
-]
+minimum_release_age = "0s"
 
 [settings.npm]
 package_manager              = "aube"
