@@ -4,8 +4,6 @@ description: Cross-repository GitHub researcher for public and authenticated pri
 aliases: github-researcher, remote-code-researcher
 tools: read, grep, find, ls, bash
 extensions:
-model: openai-codex/gpt-5.6-terra
-thinking: medium
 systemPromptMode: replace
 inheritProjectContext: false
 inheritSkills: false

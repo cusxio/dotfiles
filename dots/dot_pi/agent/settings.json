@@ -1,6 +1,6 @@
 {
-  "lastChangelogVersion": "0.84.0",
-  "theme": "kanagawa-wave",
+  "lastChangelogVersion": "0.84.1",
+  "theme": "Kanagawa Wave",
   "treeFilterMode": "no-tools",
   "packages": [
     "npm:@plannotator/pi-extension",
@@ -29,22 +29,9 @@
     "agentOverrides": {
       "scout": {
         "model": "openai-codex/gpt-5.6-luna",
-        "thinking": "low",
-        "defaultContext": "fresh"
-      },
-      "planner": {
-        "model": "openai-codex/gpt-5.6-sol",
-        "thinking": "high",
-        "defaultContext": "fresh"
-      },
-      "worker": {
-        "model": "openai-codex/gpt-5.6-terra",
-        "thinking": "medium",
-        "defaultContext": "fresh"
+        "thinking": "low"
       },
       "reviewer": {
-        "model": "openai-codex/gpt-5.6-terra",
-        "thinking": "medium",
         "tools": [
           "read",
           "grep",
@@ -52,21 +39,12 @@
           "ls",
           "bash"
         ],
-        "defaultContext": "fresh",
         "acceptanceRole": "read-only"
-      },
-      "delegate": {
-        "model": "openai-codex/gpt-5.6-terra",
-        "thinking": "medium",
-        "defaultContext": "fresh"
       },
       "advisor": {
         "disabled": true
       },
       "researcher": {
-        "disabled": false,
-        "model": "openai-codex/gpt-5.6-terra",
-        "thinking": "medium",
         "tools": [
           "read",
           "write",
@@ -78,11 +56,7 @@
         ],
         "extensions": [
           "npm:pi-web-access"
-        ],
-        "defaultContext": "fresh"
-      },
-      "context-builder": {
-        "disabled": true
+        ]
       }
     }
   },
