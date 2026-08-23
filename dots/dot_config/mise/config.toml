@@ -38,6 +38,7 @@ zoxide = "latest"
 # GitHub tools
 "github:1broseidon/ketch" = "latest"
 "github:backnotprop/plannotator" = "latest"
+"github:can1357/oh-my-pi" = "latest"
 "github:vercel-labs/fx" = "latest"
 
 # npm tools
@@ -56,6 +57,9 @@ minimum_release_age = "0s"
 
 [settings.npm]
 package_manager = "aube"
+
+[settings.github]
+credential_command = 'gh auth token --hostname "$MISE_CREDENTIAL_HOST"'
 
 [settings.ruby]
 compile = false

@@ -3,6 +3,10 @@ functions --erase __herdr_set_process_title __herdr_clear_process_title \
     __herdr_report_process_metadata 2>/dev/null
 
 if status is-interactive; and test "$HERDR_ENV" = 1; and set --query HERDR_TAB_ID
+    # Override this list before sourcing to customize which commands set the title.
+    set --query HERDR_TAB_TITLE_COMMANDS
+    or set --global HERDR_TAB_TITLE_COMMANDS nvim pi omp
+
     function __herdr_command_name --argument-names commandline
         printf '%s\n' "$commandline" | read --tokenize --list tokens
         set --local index 1
@@ -41,6 +45,7 @@ if status is-interactive; and test "$HERDR_ENV" = 1; and set --query HERDR_TAB_I
     function __herdr_set_process_tab_title --on-event fish_preexec
         set --local title (__herdr_command_name "$argv[1]")
         test -n "$title"; or return
+        contains -- "$title" $HERDR_TAB_TITLE_COMMANDS; or return
 
         set --erase --global __herdr_previous_tab_title
         if type --query jq

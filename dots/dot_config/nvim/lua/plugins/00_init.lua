@@ -97,7 +97,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     branch = "main",
     build = ":TSUpdate",
-    event = vim.g.lazy_file_events,
+    lazy = false,
     config = function()
       local ensure_installed = {
         "typescript",
