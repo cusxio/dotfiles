@@ -31,25 +31,23 @@ vertical = 6
 
 [virtual_workspaces]
 default_workspace_count = 7
+auto_assign_windows = true
 app_rules = [
-  { app_id = "com.apple.iphonesimulator", manage = false },
-  # Android Emulator is a standalone executable with no macOS bundle ID.
-  { app_name = "qemu-system-aarch64", manage = false },
-  { app_id = "org.qbittorrent.qBittorrent", manage = false },
-  { app_id = "com.apple.finder", manage = false },
-  { app_id = "com.apple.systempreferences", manage = false },
-  { app_id = "com.apple.ActivityMonitor", manage = false },
-  { app_id = "com.apple.TextEdit", manage = false },
-  { app_id = "com.eltima.elmedia6.mas", manage = false },
-  { app_id = "com.1password.1password", manage = false },
-  { app_id = "com.electron.ollama", manage = false },
-  { app_id = "dev.kdrag0n.MacVirt", manage = false },
-  { app_id = "com.tinyapp.TablePlus", manage = false },
-  { app_id = "app.yaak.desktop", manage = false },
-  { app_id = "ai.elementlabs.lmstudio", manage = false },
-  { app_id = "com.readdle.PDFExpert-Mac", manage = false },
-  { app_id = "com.pdfeditor.pdfeditormac", manage = false },
-  { app_id = "com.microsoft.Outlook", manage = false },
+  # Floating apps from OmniWM's appRules.
+  { app_id = "com.microsoft.Outlook", floating = true },
+  { app_id = "com.apple.TextEdit", floating = true },
+  { app_id = "com.apple.finder", floating = true },
+  { app_id = "com.apple.iphonesimulator", floating = true },
+  { app_id = "com.1password.1password", floating = true },
+  { app_id = "dev.kdrag0n.MacVirt", floating = true },
+  { app_id = "com.eltima.elmedia6.mas", floating = true },
+  { app_id = "org.qbittorrent.qBittorrent", floating = true },
+
+  # OmniWM workspace numbers are 1-based; Rift's are 0-based.
+  { app_id = "com.spotify.client", workspace = 6 },
+  { app_id = "net.whatsapp.WhatsApp", workspace = 4 },
+  { app_id = "com.hnc.Discord", workspace = 5 },
+  { app_id = "ru.keepcoder.Telegram", workspace = 5 },
 ]
 
 [modifier_combinations]

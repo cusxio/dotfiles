@@ -30,7 +30,8 @@ statusLine:
   git: 
     showBranch: true
   transparent: true
-  compactThinkingLevel: true
+  compactThinkingLevel: false
+  showHookStatus: true
 textVerbosity: low
 display: 
   cacheMissMarker: true
@@ -38,3 +39,5 @@ compaction:
   strategy: context-full
 theme: 
   dark: dark
+codexResets: 
+  autoRedeem: "no"

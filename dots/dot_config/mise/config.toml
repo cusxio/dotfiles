@@ -1,55 +1,61 @@
 [tools]
 # Languages and runtimes
-bun                          = "latest"
-# go                         = "latest"
-java                         = "zulu-17"
-node                         = "latest"
-python                       = "latest"
-ruby                         = "latest"
+bun = "latest"
+# go = "latest"
+java = "zulu-17"
+node = "latest"
+python = "latest"
+ruby = "latest"
 
 # CLI tools
-aube                         = "latest"
-bat                          = "latest"
-chezmoi                      = "latest"
-cloudflared                  = "latest"
-delta                        = "latest"
-fastfetch                    = "latest"
-fd                           = "latest"
-fzf                          = "latest"
-gh                           = "latest"
-herdr                        = "latest"
-hunk                         = "latest"
-hyperfine                    = "latest"
-lazygit                      = "latest"
-lsd                          = "latest"
-neovim                       = "latest"
-nub                          = "latest"
-pi                           = "latest"
-ripgrep                      = "latest"
-tree-sitter                  = "latest"
-xh                           = "latest"
-yt-dlp                       = "latest"
-zoxide                       = "latest"
+amp = "latest"
+aube = "latest"
+bat = "latest"
+chezmoi = "latest"
+cloudflared = "latest"
+delta = "latest"
+fastfetch = "latest"
+fd = "latest"
+fzf = "latest"
+gh = "latest"
+herdr = "latest"
+hunk = "latest"
+hyperfine = "latest"
+lazygit = "latest"
+lsd = "latest"
+neovim = "latest"
+nub = "latest"
+# pi = "latest"
+ripgrep = "latest"
+tree-sitter = "latest"
+xh = "latest"
+yt-dlp = "latest"
+zoxide = "latest"
 
 # Aqua tools
-"aqua:planetscale/cli"       = "latest"
+"aqua:planetscale/cli" = "latest"
 
 # GitHub tools
-"github:1broseidon/ketch"    = "latest"
+"github:1broseidon/ketch" = "latest"
+"github:backnotprop/plannotator" = "latest"
+"github:vercel-labs/fx" = "latest"
+
+# npm tools
+"npm:@earendil-works/pi-coding-agent" = "latest"
 
 [bootstrap.packages]
-"brew:btop"                  = "latest"
-"brew:exiftool"              = "latest"
-"brew:fish"                  = "latest"
-"brew:git"                   = "latest"
-"brew:libyaml"               = "latest"
-"brew:trash"                 = "latest"
+"brew:btop" = "latest"
+"brew:exiftool" = "latest"
+"brew:fish" = "latest"
+"brew:git" = "latest"
+"brew:libyaml" = "latest"
+"brew:trash" = "latest"
 
 [settings]
 minimum_release_age = "0s"
 
 [settings.npm]
-package_manager              = "aube"
+package_manager = "aube"
 
 [settings.ruby]
-compile                      = false
+compile = false
