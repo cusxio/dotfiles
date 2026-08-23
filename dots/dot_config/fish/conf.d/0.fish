@@ -39,9 +39,6 @@ end
 
 if type -q nvim
     set --export EDITOR nvim
-    set --export NVIM_APPNAME nvim-lazy
-    abbr --add astro "env NVIM_APPNAME=astronvim nvim"
-    abbr --add nvchad "env NVIM_APPNAME=nvchad nvim"
 end
 
 abbr --add c clear
