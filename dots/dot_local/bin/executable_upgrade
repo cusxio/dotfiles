@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+
+# Upgrade tools managed by the package managers used in these dotfiles.
+# Keep going after a failed step so one package manager cannot block the rest.
+set -uo pipefail
+
+failures=()
+
+run() {
+  local label=$1
+  shift
+
+  printf '\n\033[1;34m==> %s\033[0m\n' "$label"
+  if ! "$@"; then
+    failures+=("$label")
+  fi
+}
+
+if command -v mise >/dev/null 2>&1; then
+  run "mise tools" mise upgrade
+else
+  printf '\n==> Skipping mise tools (mise not found)\n'
+fi
+
+if command -v brew >/dev/null 2>&1; then
+  # `brew upgrade` auto-updates Homebrew first and cleans upgraded packages.
+  run "Homebrew packages" brew upgrade
+else
+  printf '\n==> Skipping Homebrew packages (brew not found)\n'
+fi
+
+if command -v pi >/dev/null 2>&1; then
+  # pi itself is managed by mise, so only update pi-managed data here.
+  run "pi extensions" pi update --extensions
+  run "pi model catalogs" pi update --models
+else
+  printf '\n==> Skipping pi updates (pi not found)\n'
+fi
+
+if command -v omp >/dev/null 2>&1; then
+  # `omp plugin upgrade` only handles marketplace plugins. Reinstall npm
+  # plugins at their latest version so both kinds are covered.
+  run "OMP marketplace plugins" omp plugin upgrade
+
+  if command -v jq >/dev/null 2>&1; then
+    omp_plugin_json=$(omp plugin list --json)
+    omp_npm_plugins=$(jq -r '.npm[]?.name' <<<"$omp_plugin_json")
+    while IFS= read -r plugin; do
+      [[ -n $plugin ]] || continue
+      run "OMP npm plugin: $plugin" \
+        omp plugin install "${plugin}@latest" --force
+    done <<<"$omp_npm_plugins"
+  else
+    printf '\n==> Skipping OMP npm plugins (jq not found)\n'
+  fi
+else
+  printf '\n==> Skipping OMP plugins (omp not found)\n'
+fi
+
+if command -v aubx >/dev/null 2>&1; then
+  run "global skills" aubx skills@latest update -g
+else
+  printf '\n==> Skipping global skills (aubx not found)\n'
+fi
+
+if command -v fish >/dev/null 2>&1 && fish -c 'type -q fisher'; then
+  run "Fisher plugins" fish -c 'fisher update'
+else
+  printf '\n==> Skipping Fisher plugins (fisher not found)\n'
+fi
+
+if ((${#failures[@]})); then
+  printf '\n\033[1;31mFailed steps:\033[0m\n' >&2
+  printf '  - %s\n' "${failures[@]}" >&2
+  exit 1
+fi
+
+printf '\n\033[1;32mEverything is up to date.\033[0m\n'
