@@ -1,4 +1,5 @@
 if type -q /opt/homebrew/bin/brew
+    set --export HOMEBREW_NO_ASK 1
     eval (/opt/homebrew/bin/brew shellenv)
 end
 
