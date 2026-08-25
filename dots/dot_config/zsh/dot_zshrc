@@ -57,7 +57,7 @@ z4h source $ZDOTDIR/before.zsh
 z4h init || return
 
 # Extend PATH.
-path=(~/bin $path)
+path=(~/.local/bin $path)
 
 # Export environment variables.
 export GPG_TTY=$TTY

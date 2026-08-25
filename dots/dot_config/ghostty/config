@@ -49,7 +49,7 @@ font-feature               = cv14
 # font-style-bold-italic   = Medium Italic
 # adjust-cell-height       = 5%
 
-working-directory          = home
+working-directory          = ~/Documents/dev
 
 cursor-style               = block
 cursor-style-blink         = true
