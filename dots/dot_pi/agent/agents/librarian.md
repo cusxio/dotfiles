@@ -3,7 +3,6 @@ name: librarian
 description: Cross-repository GitHub researcher for public and authenticated private source code
 aliases: github-researcher, remote-code-researcher
 tools: read, grep, find, ls, bash
-extensions:
 systemPromptMode: replace
 inheritProjectContext: false
 inheritSkills: false

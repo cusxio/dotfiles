@@ -27,47 +27,21 @@
     "defaultThinking": "medium",
     "defaultExtensions": [],
     "agentOverrides": {
-      "scout": {
-        "model": "openai-codex/gpt-5.6-luna",
-        "thinking": "low",
-        "defaultContext": "fresh"
+      "oracle": {
+        "model": "openai-codex/gpt-5.6-sol",
+        "thinking": "high"
+      },
+      "librarian": {
+        "model": "openai-codex/gpt-5.6-sol"
       },
       "worker": {
-        "model": "openai-codex/gpt-5.6-terra",
         "thinking": "medium",
         "defaultContext": "fresh"
-      },
-      "reviewer": {
-        "model": "openai-codex/gpt-5.6-terra",
-        "thinking": "medium",
-        "defaultContext": "fresh",
-        "acceptanceRole": "read-only"
-      },
-      "delegate": {
-        "model": "openai-codex/gpt-5.6-terra",
-        "thinking": "medium",
-        "defaultContext": "fresh"
-      },
-      "advisor": {
-        "disabled": true
       },
       "researcher": {
-        "disabled": false,
-        "model": "openai-codex/gpt-5.6-terra",
-        "thinking": "medium",
-        "tools": [
-          "read",
-          "write",
-          "web_search",
-          "fetch_content",
-          "get_search_content",
-          "source_check",
-          "intercom"
-        ],
         "extensions": [
           "npm:pi-web-access"
-        ],
-        "defaultContext": "fresh"
+        ]
       }
     }
   },

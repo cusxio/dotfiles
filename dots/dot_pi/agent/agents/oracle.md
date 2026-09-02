@@ -1,11 +1,8 @@
 ---
 name: oracle
 description: Independent second opinion for difficult debugging, architecture, planning, and review decisions
-aliases: second-opinion
+aliases: advisor, second-opinion
 tools: read, grep, find, ls, bash
-extensions:
-model: openai-codex/gpt-5.6-sol
-thinking: high
 systemPromptMode: replace
 inheritProjectContext: true
 inheritSkills: false
