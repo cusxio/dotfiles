@@ -7,7 +7,6 @@
     "npm:@ff-labs/pi-fff",
     "npm:@ogulcancelik/pi-minimal-footer",
     "npm:@ogulcancelik/pi-codex-compaction",
-    "npm:pi-subagents",
     "npm:pi-web-access"
   ],
   "defaultProvider": "openai-codex",
@@ -15,37 +14,6 @@
   "enableInstallTelemetry": false,
   "quietStartup": true,
   "defaultThinkingLevel": "low",
-  "subagents": {
-    "defaultModel": "openai-codex/gpt-5.6-sol",
-    "defaultThinking": "low",
-    "defaultExtensions": [],
-    "agentOverrides": {
-      "oracle": {
-        "model": "openai-codex/gpt-6-astra",
-        "thinking": "xhigh"
-      },
-      "scout": {
-        "model": "openai-codex/gpt-5.6-terra",
-        "thinking": "low"
-      },
-      "librarian": {
-        "model": "openai-codex/gpt-5.6-sol",
-        "thinking": "off"
-      },
-      "reviewer": {
-        "model": "openai-codex/gpt-5.6-terra",
-        "thinking": "medium"
-      },
-      "worker": {
-        "model": "openai-codex/gpt-5.6-sol",
-        "thinking": "low",
-        "defaultContext": "fresh"
-      },
-      "researcher": {
-        "extensions": ["npm:pi-web-access"]
-      }
-    }
-  },
   "tuiMode": "fullscreen"
 }
 
