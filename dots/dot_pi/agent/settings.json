@@ -10,10 +10,9 @@
     "npm:pi-web-access"
   ],
   "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-6-astra",
+  "defaultModel": "gpt-5.6-sol",
   "enableInstallTelemetry": false,
   "quietStartup": true,
-  "defaultThinkingLevel": "low",
+  "defaultThinkingLevel": "medium",
   "tuiMode": "fullscreen"
 }
-
