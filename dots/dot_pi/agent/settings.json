@@ -7,7 +7,8 @@
     "npm:@ff-labs/pi-fff",
     "npm:@ogulcancelik/pi-minimal-footer",
     "npm:@ogulcancelik/pi-codex-compaction",
-    "npm:pi-web-access"
+    "npm:pi-web-access",
+    "npm:@tintinweb/pi-subagents"
   ],
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.6-sol",

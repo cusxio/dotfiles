@@ -1,0 +1,9 @@
+{
+  "maxConcurrent": 6,
+  "backgroundByDefault": true,
+  "fallbackSubagent": "none",
+  "strictAgentFiles": true,
+  "agentMentions": "model",
+  "rememberAgents": true,
+  "workflowsEnabled": true
+}
