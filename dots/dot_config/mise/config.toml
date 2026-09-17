@@ -10,6 +10,7 @@ ruby = "latest"
 # CLI tools
 amp = "latest"
 aube = "latest"
+# "github:aubepkg/aube" = "latest"
 bat = "latest"
 chezmoi = "latest"
 cloudflared = "latest"
@@ -25,7 +26,7 @@ lazygit = "latest"
 lsd = "latest"
 neovim = "latest"
 nub = "latest"
-# pi = "latest"
+pi = "latest"
 ripgrep = "latest"
 tree-sitter = "latest"
 xh = "latest"
@@ -39,10 +40,12 @@ zoxide = "latest"
 "github:1broseidon/ketch" = "latest"
 "github:backnotprop/plannotator" = "latest"
 "github:can1357/oh-my-pi" = "latest"
+"github:Dicklesworthstone/destructive_command_guard" = "latest"
 "github:vercel-labs/fx" = "latest"
 
 # npm tools
-"npm:@earendil-works/pi-coding-agent" = "latest"
+# "npm:@earendil-works/pi-coding-agent" = "latest"
+"npm:@opencode-ai/cli" = { version = "beta", allow_builds = ["@opencode-ai/cli"] }
 
 [bootstrap.packages]
 "brew:btop" = "latest"

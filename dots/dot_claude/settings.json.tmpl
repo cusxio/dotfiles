@@ -2,11 +2,11 @@
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Bash",
+        "matcher": "Bash|PowerShell",
         "hooks": [
           {
             "type": "command",
-            "command": "dcg"
+            "command": "{{ .chezmoi.homeDir }}/.local/share/mise/shims/dcg"
           }
         ]
       }
