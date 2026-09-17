@@ -8,12 +8,41 @@
     "npm:@ogulcancelik/pi-minimal-footer",
     "npm:@ogulcancelik/pi-codex-compaction",
     "npm:pi-web-access",
-    "npm:@tintinweb/pi-subagents"
+    "npm:pi-subagents"
   ],
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.6-sol",
   "enableInstallTelemetry": false,
   "quietStartup": true,
   "defaultThinkingLevel": "medium",
+  "subagents": {
+    "defaultModel": "openai-codex/gpt-5.6-sol",
+    "defaultThinking": "low",
+    "defaultExtensions": [],
+    "agentOverrides": {
+      "oracle": {
+        "model": "openai-codex/gpt-6-astra",
+        "thinking": "xhigh"
+      },
+      "scout": {
+        "model": "openai-codex/gpt-5.6-terra",
+        "thinking": "low"
+      },
+      "reviewer": {
+        "model": "openai-codex/gpt-5.6-terra",
+        "thinking": "medium"
+      },
+      "worker": {
+        "model": "openai-codex/gpt-5.6-sol",
+        "thinking": "low",
+        "defaultContext": "fresh"
+      },
+      "researcher": {
+        "model": "openai-codex/gpt-5.6-sol",
+        "thinking": "off",
+        "extensions": ["npm:pi-web-access"]
+      }
+    }
+  },
   "tuiMode": "fullscreen"
 }
