@@ -25,7 +25,7 @@ if type -q git-forgit
     abbr --add gfss 'git-forgit stash_show'
 end
 
-set -l HOMEBREW_COMMAND_NOT_FOUND_HANDLER (brew --repository)/Library/Homebrew/command-not-found/handler.fish
+set -l HOMEBREW_COMMAND_NOT_FOUND_HANDLER /opt/homebrew/Library/Homebrew/command-not-found/handler.fish
 if test -f $HOMEBREW_COMMAND_NOT_FOUND_HANDLER
     source $HOMEBREW_COMMAND_NOT_FOUND_HANDLER
 end
