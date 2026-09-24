@@ -33,7 +33,7 @@ vertical = 6
 default_workspace_count = 7
 auto_assign_windows = true
 app_rules = [
-  # Floating apps from OmniWM's appRules.
+  # Floating apps shared with AeroSpace and OmniWM.
   { app_id = "com.microsoft.Outlook", floating = true },
   { app_id = "com.apple.TextEdit", floating = true },
   { app_id = "com.apple.finder", floating = true },
@@ -42,6 +42,19 @@ app_rules = [
   { app_id = "dev.kdrag0n.MacVirt", floating = true },
   { app_id = "com.eltima.elmedia6.mas", floating = true },
   { app_id = "org.qbittorrent.qBittorrent", floating = true },
+  { app_id = "com.apple.systempreferences", floating = true },
+  { app_id = "com.apple.ActivityMonitor", floating = true },
+  { app_id = "io.canarymail.mac", floating = true },
+  { app_id = "com.electron.ollama", floating = true },
+  { app_id = "com.tinyapp.TablePlus", floating = true },
+  { app_id = "app.yaak.desktop", floating = true },
+  { app_id = "com.luckymarmot.Paw", floating = true },
+  { app_id = "ai.elementlabs.lmstudio", floating = true },
+  { app_id = "com.readdle.PDFExpert-Mac", floating = true },
+  { app_id = "com.pdfeditor.pdfeditormac", floating = true },
+  { app_id = "org.mozilla.thunderbird", floating = true },
+  { app_id = "com.fournova.Tower3", floating = true },
+  { app_id = "app.kaleidoscope.v4", floating = true },
 
   # OmniWM workspace numbers are 1-based; Rift's are 0-based.
   { app_id = "com.spotify.client", workspace = 6 },

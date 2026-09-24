@@ -226,6 +226,71 @@ id = "62B00421-A378-4CC6-8FB9-EA5DA124DD01"
 layout = "float"
 
 [[appRules]]
+bundleId = "com.apple.systempreferences"
+id = "F6D92D8C-A5BE-43CE-8328-F59DAA789E88"
+layout = "float"
+
+[[appRules]]
+bundleId = "com.apple.ActivityMonitor"
+id = "3DA59947-65AA-4251-A1CD-793E8F078B75"
+layout = "float"
+
+[[appRules]]
+bundleId = "io.canarymail.mac"
+id = "F44593E4-D79A-490B-ABEC-BCB4585E8892"
+layout = "float"
+
+[[appRules]]
+bundleId = "com.electron.ollama"
+id = "C57CE29B-86CE-4774-895C-C5D98A3DD79A"
+layout = "float"
+
+[[appRules]]
+bundleId = "com.tinyapp.TablePlus"
+id = "985D8E28-C8B4-4686-9A14-24D72A9117E9"
+layout = "float"
+
+[[appRules]]
+bundleId = "app.yaak.desktop"
+id = "CC45621A-B623-4164-961D-B54B83C788DD"
+layout = "float"
+
+[[appRules]]
+bundleId = "com.luckymarmot.Paw"
+id = "F25823C8-FAA4-4043-9812-14384938CD1C"
+layout = "float"
+
+[[appRules]]
+bundleId = "ai.elementlabs.lmstudio"
+id = "49A3B84D-8774-453D-AC95-56B6B60FC03A"
+layout = "float"
+
+[[appRules]]
+bundleId = "com.readdle.PDFExpert-Mac"
+id = "9859FA01-382B-4CA7-961C-8CE22099618F"
+layout = "float"
+
+[[appRules]]
+bundleId = "com.pdfeditor.pdfeditormac"
+id = "B1744EC7-404F-4CCA-A674-C627DD5CE93C"
+layout = "float"
+
+[[appRules]]
+bundleId = "org.mozilla.thunderbird"
+id = "6DD8D969-2E9D-4582-AA1A-54517CD35DD4"
+layout = "float"
+
+[[appRules]]
+bundleId = "com.fournova.Tower3"
+id = "498E49CE-F507-48BB-A96A-AD2AB92CF19D"
+layout = "float"
+
+[[appRules]]
+bundleId = "app.kaleidoscope.v4"
+id = "5BF58957-39C1-4F0D-97B7-6599F1CEA783"
+layout = "float"
+
+[[appRules]]
 assignToWorkspace = "7"
 bundleId = "com.spotify.client"
 id = "81646504-AB2D-425F-A212-12D926D4CDA3"

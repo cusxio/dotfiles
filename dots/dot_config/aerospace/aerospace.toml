@@ -194,8 +194,8 @@ f = ['flatten-workspace-tree', 'mode main']
 esc = 'mode main'
 
 [[on-window-detected]]
-if.app-id = 'com.tdesktop.Telegram'
-run = 'move-node-to-workspace 5'
+if.app-id = 'ru.keepcoder.Telegram'
+run = 'move-node-to-workspace 6'
 
 [[on-window-detected]]
 if.app-id = 'net.whatsapp.WhatsApp'
@@ -203,11 +203,11 @@ run = 'move-node-to-workspace 5'
 
 [[on-window-detected]]
 if.app-id = 'com.hnc.Discord'
-run = 'move-node-to-workspace 5'
+run = 'move-node-to-workspace 6'
 
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
-run = 'move-node-to-workspace 4'
+run = 'move-node-to-workspace 7'
 
 [[on-window-detected]]
 if.app-id = 'org.qbittorrent.qBittorrent'
@@ -215,6 +215,10 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iphonesimulator'
 run = 'layout floating'
 
 [[on-window-detected]]
@@ -283,4 +287,8 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.fournova.Tower3'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'app.kaleidoscope.v4'
 run = 'layout floating'
