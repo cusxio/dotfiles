@@ -29,6 +29,7 @@ return {
         "lua_ls",
         "fish_lsp",
         "vtsls",
+        "phpantom_lsp",
         -- "tsgo",
         "eslint",
         "tailwindcss",
