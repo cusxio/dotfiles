@@ -1,0 +1,4 @@
+[dotfiles]
+"~/.config/*" = { source = "home/config/*", mode = "symlink-each" }
+"~/.pi/agent" = { source = "home/pi/agent", mode = "symlink-each" }
+"~/.agents/.skill-lock.json" = { source = "home/agents/.skill-lock.json", mode = "symlink" }

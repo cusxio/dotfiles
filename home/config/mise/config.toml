@@ -8,7 +8,7 @@ python = "latest"
 ruby = "latest"
 
 # CLI tools
-# amp = "latest"
+amp = "latest"
 aube = "latest"
 # "github:aubepkg/aube" = "latest"
 bat = "latest"
