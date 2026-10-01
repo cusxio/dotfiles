@@ -100,6 +100,18 @@ return {
     build = ":TSUpdate",
     lazy = false,
     config = function()
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "TSUpdate",
+        callback = function()
+          require("nvim-treesitter.parsers").mustache = {
+            install_info = {
+              url = "https://github.com/TheLeoP/tree-sitter-mustache",
+              queries = "queries",
+            },
+          }
+        end,
+      })
+
       local ensure_installed = {
         "typescript",
         "tsx",
@@ -107,6 +119,7 @@ return {
         "comment",
         "astro",
         "html",
+        "mustache",
         "javascript",
         "json",
         "jsonc",
