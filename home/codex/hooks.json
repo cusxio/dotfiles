@@ -4,7 +4,7 @@
       {
         "hooks": [
           {
-            "command": "bash '{{ .chezmoi.homeDir }}/.codex/herdr-agent-state.sh' session",
+            "command": "bash \"$HOME/.codex/herdr-agent-state.sh\" session",
             "timeout": 10,
             "type": "command"
           }
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "{{ .chezmoi.homeDir }}/.local/share/mise/shims/dcg"
+            "command": "\"$HOME/.local/share/mise/shims/dcg\""
           }
         ]
       }

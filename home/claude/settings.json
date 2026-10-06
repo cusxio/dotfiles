@@ -6,13 +6,14 @@
         "hooks": [
           {
             "type": "command",
-            "command": "{{ .chezmoi.homeDir }}/.local/share/mise/shims/dcg"
+            "command": "\"$HOME/.local/share/mise/installs/github-dicklesworthstone-destructive-command-guard/latest/dcg\""
           }
         ]
       }
     ]
   },
   "skipDangerousModePermissionPrompt": true,
+  "tui": "fullscreen",
   "permissions": {
     "deny": [
       "Read(./.env)",

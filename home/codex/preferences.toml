@@ -1,0 +1,25 @@
+model = "gpt-6.1-sol"
+model_reasoning_effort = "medium"
+
+# Automatically review approval requests while keeping workspace sandboxing.
+approvals_reviewer = "auto_review"
+default_permissions = ":workspace"
+service_tier = "default"
+
+[features]
+hooks = true
+multi_agent = true
+
+[marketplaces.pstack-claude]
+source_type = "git"
+source = "https://github.com/michael-denyer/pstack-claude.git"
+
+[plugins."pstack@pstack-claude"]
+enabled = true
+
+# Keep this table last so local TUI onboarding fields can follow the managed block.
+[tui]
+session_picker_view = "dense"
+fullscreen_transcript = true
+status_line = ["current-dir", "model-with-reasoning", "thread-name", "weekly-limit", "context-used"]
+status_line_use_colors = true
