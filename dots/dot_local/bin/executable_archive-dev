@@ -1,0 +1,587 @@
+#!/usr/bin/env python3
+"""Archive a folder under ~/Documents/dev and migrate local coding-tool history."""
+import argparse
+import bisect
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import shutil
+import sqlite3
+import subprocess
+import tempfile
+from datetime import datetime, timezone
+
+HOME = Path.home()
+OLD = ''
+NEW = ''
+HISTORY_GROUPS = []
+PATH_KEYS = {'cwd', 'workspaceRoot', 'workspace_root', 'worktreePath', 'worktree_path',
+             'directory', 'project', 'worktree', 'parentSession', 'sessionFile', 'sessionPath',
+             'writable_roots', 'additionalDirectories', 'uri'}
+
+def remap(value):
+    if isinstance(value, str):
+        mappings = [(OLD, NEW), ('file://' + OLD, 'file://' + NEW)]
+        for base, encode in [(HOME / '.pi/agent/sessions', lambda p: '--' + p.strip('/').replace('/', '-') + '--'),
+                             (HOME / '.claude/projects', lambda p: re.sub('[^A-Za-z0-9]', '-', p))]:
+            mappings.append((str(base / encode(OLD)), str(base / encode(NEW))))
+        mappings += [(g['source'], g['target']) for g in HISTORY_GROUPS]
+        for prefix, target in sorted(mappings, key=lambda pair: len(pair[0]), reverse=True):
+            if value == prefix or value.startswith(prefix + '/'):
+                return target + value[len(prefix):]
+    return value
+
+def paths(value, all_strings=False):
+    if isinstance(value, dict):
+        return {k: paths(v, all_strings or k in PATH_KEYS) for k, v in value.items()}
+    if isinstance(value, list):
+        return [paths(v, all_strings) for v in value]
+    return remap(value) if all_strings else value
+
+def digest(data):
+    return hashlib.sha256(data).hexdigest()
+
+def dbopen(path, readonly=False):
+    return sqlite3.connect(f'file:{path}?mode=ro', uri=True) if readonly else sqlite3.connect(path)
+
+def tables(c):
+    return {r[0] for r in c.execute("select name from sqlite_master where type='table'")}
+
+def columns(c, table):
+    return {r[1] for r in c.execute(f'pragma table_info("{table}")')}
+
+def running_writers():
+    output = subprocess.check_output(['ps', '-axo', 'pid=,comm='], text=True)
+    candidates = []
+    for line in output.splitlines():
+        pid, _, command = line.strip().partition(' ')
+        base = Path(command.strip()).name.lower()
+        if base in {'codex', 'claude', 'amp', 'pi', 'opencode', 't3', 't3code', 't3 code'} or 't3-code' in base:
+            candidates.append((int(pid), command.strip()))
+    if not candidates:
+        return []
+    r = subprocess.run(['lsof', '-a', '-p', ','.join(str(x[0]) for x in candidates),
+                        '-d', 'cwd', '-Fn'], text=True, capture_output=True)
+    if r.returncode not in (0, 1):
+        raise RuntimeError('Could not inspect active tool working directories: ' + r.stderr)
+    cwds, current = {}, None
+    for line in r.stdout.splitlines():
+        if line.startswith('p'):
+            current = int(line[1:])
+        elif line.startswith('n') and current:
+            cwds[current] = line[1:]
+    blocked = []
+    for pid, command in candidates:
+        cwd = cwds.get(pid)
+        if Path(command).name.lower() in {'codex', 'claude', 'amp', 'pi', 'opencode', 't3', 't3code', 't3 code'} or 't3' in Path(command).name.lower():
+            blocked.append({'pid': pid, 'executable': command, 'cwd': cwd})
+    return blocked
+
+class Journal:
+    def __init__(self, root):
+        self.root = root
+        root.mkdir(parents=True, mode=0o700)
+        self.items = []
+        self.status = 'pending'
+        self.seen = set()
+        self.flush()
+    def flush(self):
+        (self.root / 'manifest.json').write_text(json.dumps(
+            {'old': OLD, 'new': NEW, 'status': self.status, 'operations': self.items}, indent=2) + '\n')
+    def save(self, path, database=False):
+        path = Path(path)
+        if str(path) in self.seen:
+            return
+        self.seen.add(str(path))
+        backup = self.root / 'originals' / str(path).lstrip('/')
+        backup.parent.mkdir(parents=True, exist_ok=True)
+        if database:
+            with dbopen(path, True) as src, sqlite3.connect(backup) as dst:
+                src.backup(dst)
+        elif path.is_dir():
+            shutil.copytree(path, backup, symlinks=True)
+        else:
+            shutil.copy2(path, backup)
+        self.items.append({'kind': 'database' if database else 'directory' if path.is_dir() else 'file',
+                           'path': str(path), 'backup': str(backup)})
+        self.flush()
+    def rename(self, source, target):
+        source, target = Path(source), Path(target)
+        if target.exists():
+            raise RuntimeError('Refusing to overwrite ' + str(target))
+        self.items.append({'kind': 'rename', 'path': str(source), 'target': str(target)})
+        self.flush()
+        target.parent.mkdir(parents=True, exist_ok=True)
+        source.rename(target)
+    def write(self, path, data):
+        self.save(path)
+        atomic_write(Path(path), data)
+
+def atomic_write(path, data):
+    fd, temporary = tempfile.mkstemp(prefix='.archive-migration-', dir=path.parent)
+    try:
+        with os.fdopen(fd, 'wb') as f:
+            f.write(data)
+            f.flush()
+            os.fsync(f.fileno())
+        shutil.copymode(path, temporary)
+        os.replace(temporary, path)
+    finally:
+        if os.path.exists(temporary):
+            os.unlink(temporary)
+
+def rollback(root):
+    m = json.loads((Path(root) / 'manifest.json').read_text())
+    if m.get('status') == 'rolled_back':
+        print('This migration has already been rolled back. Nothing changed.')
+        return
+    for op in reversed(m['operations']):
+        p = Path(op['path'])
+        if op['kind'] == 'rename':
+            target = Path(op['target'])
+            if target.exists() and not p.exists():
+                target.rename(p)
+        elif op['kind'] == 'database':
+            with sqlite3.connect(op['backup']) as src, sqlite3.connect(p) as dst:
+                src.backup(dst)
+        elif op['kind'] == 'directory':
+            if p.exists():
+                shutil.rmtree(p)
+            shutil.copytree(op['backup'], p, symlinks=True)
+        else:
+            shutil.copy2(op['backup'], p)
+    m['status'] = 'rolled_back'
+    (Path(root) / 'manifest.json').write_text(json.dumps(m, indent=2) + '\n')
+    print('Restored original folder location and backed-up metadata.')
+
+def transform_jsonl(path, tool):
+    chunks, thresholds, shifts = [], [], []
+    old_pos = shift = changed = 0
+    protected_before = hashlib.sha256()
+    protected_after = hashlib.sha256()
+    for line in path.read_bytes().splitlines(keepends=True):
+        if not line.strip():
+            chunks.append(line)
+            old_pos += len(line)
+            protected_before.update(line)
+            protected_after.update(line)
+            continue
+        d = json.loads(line)
+        eligible = isinstance(d, dict) and (
+            tool != 'codex' or d.get('type') in {'session_meta', 'turn_context'}
+        )
+        updated = d
+        if eligible:
+            if tool == 'codex':
+                updated = paths(d)
+            else:
+                updated = {k: remap(v) if k in PATH_KEYS else v for k, v in d.items()}
+        if updated != d:
+            newline = b'\n' if line.endswith(b'\n') else b''
+            result = json.dumps(updated, ensure_ascii=False, separators=(',', ':')).encode() + newline
+            changed += 1
+        else:
+            result = line
+        # Historical messages, tool calls and results must remain byte-identical.
+        if isinstance(d, dict) and (not eligible or tool in {'claude', 'amp'}):
+            before = dict(d)
+            after = dict(updated)
+            for k in PATH_KEYS:
+                before.pop(k, None)
+                after.pop(k, None)
+            assert before == after, 'Non-metadata changed in ' + str(path)
+        if not eligible:
+            protected_before.update(line)
+            protected_after.update(result)
+        old_pos += len(line)
+        if result != line:
+            shift += len(result) - len(line)
+            thresholds.append(old_pos)
+            shifts.append(shift)
+        chunks.append(result)
+    assert protected_before.digest() == protected_after.digest()
+    return b''.join(chunks), changed, thresholds, shifts
+
+def discover_history_groups():
+    groups = []
+    for tool, base, encode in [
+        ('claude', HOME / '.claude/projects', lambda p: re.sub('[^A-Za-z0-9]', '-', p)),
+        ('pi', HOME / '.pi/agent/sessions', lambda p: '--' + p.strip('/').replace('/', '-') + '--'),
+    ]:
+        if not base.exists():
+            continue
+        name = encode(OLD)
+        prefix = name[:-2] + '-' if tool == 'pi' else name + '-'
+        for folder in base.iterdir():
+            if not folder.is_dir() or not (folder.name == name or folder.name.startswith(prefix)):
+                continue
+            roots = {OLD} if folder.name == name else set()
+            for file in folder.glob('*.jsonl'):
+                with file.open() as stream:
+                    for index, line in enumerate(stream):
+                        if index >= 64:
+                            break
+                        if not line.strip():
+                            continue
+                        entry = json.loads(line)
+                        cwd = entry.get('cwd') if isinstance(entry, dict) else None
+                        if isinstance(cwd, str) and encode(cwd) == folder.name:
+                            roots.add(cwd)
+                            break
+            related = [root for root in roots if root == OLD or root.startswith(OLD + '/')]
+            if not related:
+                continue
+            if len(roots) != 1:
+                raise SystemExit('Ambiguous history folder contains multiple directory identities: ' + str(folder))
+            root = related[0]
+            destination = NEW + root[len(OLD):]
+            groups.append({'tool': tool, 'source': str(folder), 'target': str(base / encode(destination))})
+    return groups
+
+def legacy_opencode_records():
+    records = []
+    for kind in ['project', 'session']:
+        for path in (HOME / '.local/share/opencode/storage' / kind).rglob('*.json'):
+            data = json.loads(path.read_text())
+            if not isinstance(data, dict):
+                continue
+            updated = {key: remap(value) if key in PATH_KEYS else [remap(v) for v in value] if key == 'sandboxes' and isinstance(value, list) else value
+                       for key, value in data.items()}
+            if updated != data:
+                records.append((path, updated))
+    return records
+
+def inventory():
+    global HISTORY_GROUPS
+    HISTORY_GROUPS = discover_history_groups()
+    result = {'source': OLD, 'destination': NEW, 'source_exists': Path(OLD).is_dir(),
+              'destination_exists': Path(NEW).exists(), 'tools': {}}
+    state = HOME / '.codex/state_5.sqlite'
+    rows = []
+    if state.exists():
+        with dbopen(state, True) as c:
+            rows = list(c.execute('select id,rollout_path,cwd from threads where cwd=? or substr(cwd,1,length(?))=?', (OLD, OLD + '/', OLD + '/')))
+    result['tools']['codex'] = {'sessions': len(rows), 'rollouts': sum(Path(r[1]).exists() for r in rows)}
+    for tool, folder in [('claude', HOME / '.claude/projects' / re.sub('[^A-Za-z0-9]', '-', OLD)),
+                         ('pi', HOME / '.pi/agent/sessions' / ('--' + OLD.strip('/').replace('/', '-') + '--'))]:
+        result['tools'][tool] = {'session_files': len(list(folder.rglob('*.jsonl'))) if folder.exists() else 0,
+                                'folder': str(folder),
+                                'history_groups': [g for g in HISTORY_GROUPS if g['tool'] == tool]}
+        result['tools'][tool]['session_files'] = sum(len(list(Path(g['source']).rglob('*.jsonl'))) for g in result['tools'][tool]['history_groups'])
+    amp_threads = []
+    for p in (HOME / '.local/share/amp/threads').glob('*.json'):
+        d = json.loads(p.read_text())
+        if paths(d.get('env', {})) != d.get('env', {}):
+            amp_threads.append(p)
+    result['tools']['amp'] = {'threads': len(amp_threads)}
+    t3 = HOME / '.t3/userdata/state.sqlite'
+    if t3.exists():
+        with dbopen(t3, True) as c:
+            pids = [r[0] for r in c.execute('select project_id from projection_projects where workspace_root=?', (OLD,))]
+            n = sum(c.execute('select count(*) from projection_threads where project_id=?', (p,)).fetchone()[0] for p in pids)
+            result['tools']['t3code'] = {'project_records': len(pids), 'threads': n}
+    opencode = HOME / '.local/share/opencode/opencode.db'
+    if opencode.exists():
+        with dbopen(opencode, True) as c:
+            result['tools']['opencode'] = {t: c.execute(f'select count(*) from "{t}" where directory=? or substr(directory,1,length(?))=?', (OLD, OLD + '/', OLD + '/')).fetchone()[0]
+                                           for t in ['session', 'session_v2'] if t in tables(c)}
+    result['tools'].setdefault('opencode', {})['legacy_records'] = len(legacy_opencode_records())
+    result['running_writers'] = running_writers()
+    return result, rows, amp_threads
+
+def update_path_columns(c, table, fields):
+    if table not in tables(c):
+        return
+    for field in fields:
+        if field not in columns(c, table):
+            continue
+        for rowid, value in c.execute(f'select rowid,"{field}" from "{table}" where "{field}"=? or substr("{field}",1,length(?))=?', (OLD, OLD + '/', OLD + '/')).fetchall():
+            c.execute(f'update "{table}" set "{field}"=? where rowid=?', (remap(value), rowid))
+
+def update_json_column(c, table, field, project_only=False):
+    if table not in tables(c) or field not in columns(c, table):
+        return
+    query = f'select rowid,"{field}" from "{table}" where "{field}" like ?'
+    if project_only:
+        query += " and event_type like 'project.%'"
+    for rowid, value in c.execute(query, ('%' + OLD + '%',)).fetchall():
+        d = json.loads(value)
+        updated = paths(d, all_strings=field == 'sandboxes')
+        if d != updated:
+            c.execute(f'update "{table}" set "{field}"=? where rowid=?', (json.dumps(updated, ensure_ascii=False), rowid))
+
+def migrate(journal, rows, amp_threads):
+    changes = {}
+    # Preserve byte offsets in Codex's paginated history when metadata lines grow.
+    offsets = {}
+    codex_db = HOME / '.codex/state_5.sqlite'
+    history_db = HOME / '.codex/thread_history_1.sqlite'
+    if codex_db.exists():
+        journal.save(codex_db, database=True)
+    if history_db.exists():
+        journal.save(history_db, database=True)
+    for session_id, rollout, cwd in rows:
+        p = Path(rollout)
+        if not p.exists():
+            continue
+        data, count, ends, shifts = transform_jsonl(p, 'codex')
+        if count:
+            journal.write(p, data)
+            offsets[session_id] = (ends, shifts)
+    changes['codex_rollouts'] = len(offsets)
+    if history_db.exists():
+        with dbopen(history_db) as c:
+            c.execute('begin immediate')
+            for thread_id, (ends, shifts) in offsets.items():
+                def offset(v):
+                    if v is None:
+                        return None
+                    ix = bisect.bisect_right(ends, v) - 1
+                    return v + (shifts[ix] if ix >= 0 else 0)
+                if 'thread_turns' in tables(c):
+                    for rowid, start, end in c.execute('select rowid,rollout_byte_offset,rollout_end_byte_offset from thread_turns where thread_id=?', (thread_id,)).fetchall():
+                        c.execute('update thread_turns set rollout_byte_offset=?,rollout_end_byte_offset=? where rowid=?', (offset(start), offset(end), rowid))
+                if 'thread_history_projection_state' in tables(c):
+                    for rowid, pos in c.execute('select rowid,next_rollout_byte_offset from thread_history_projection_state where thread_id=?', (thread_id,)).fetchall():
+                        c.execute('update thread_history_projection_state set next_rollout_byte_offset=? where rowid=?', (offset(pos), rowid))
+    if codex_db.exists():
+        with dbopen(codex_db) as c:
+            c.execute('begin immediate')
+            update_path_columns(c, 'threads', ['cwd', 'agent_path'])
+            update_path_columns(c, 'project_roots', ['path'])
+            update_json_column(c, 'threads', 'sandbox_policy')
+    config = HOME / '.codex/config.toml'
+    if config.exists():
+        original = config.read_bytes()
+        lines = original.splitlines(keepends=True)
+        # Only TOML table keys; do not modify prompts or arbitrary config values.
+        updated = b''.join(line.replace(json.dumps(OLD, ensure_ascii=False).encode(), json.dumps(NEW, ensure_ascii=False).encode()) if line.lstrip().startswith(b'[projects.') else line.replace((OLD + '/').encode(), (NEW + '/').encode()) if line.lstrip().startswith(b'[hooks.state.') else line for line in lines)
+        if updated != original:
+            journal.write(config, updated)
+
+    groups = HISTORY_GROUPS or [
+        {'tool': 'claude', 'source': str(HOME / '.claude/projects' / re.sub('[^A-Za-z0-9]', '-', OLD)), 'target': str(HOME / '.claude/projects' / re.sub('[^A-Za-z0-9]', '-', NEW))},
+        {'tool': 'pi', 'source': str(HOME / '.pi/agent/sessions' / ('--' + OLD.strip('/').replace('/', '-') + '--')), 'target': str(HOME / '.pi/agent/sessions' / ('--' + NEW.strip('/').replace('/', '-') + '--'))},
+    ]
+    for group in groups:
+        tool = group['tool']
+        folder = Path(group['source'])
+        target = Path(group['target'])
+        if not folder.exists():
+            continue
+        if target.exists():
+            raise RuntimeError('History destination exists: ' + str(target))
+        count = 0
+        for p in folder.rglob('*.jsonl'):
+            data, n, _, _ = transform_jsonl(p, tool)
+            if n:
+                journal.write(p, data)
+                count += 1
+        journal.rename(folder, target)
+        changes[tool + '_files'] = changes.get(tool + '_files', 0) + count
+    # Project settings and prompt history are path-indexed separately from transcripts.
+    config = HOME / '.claude.json'
+    if config.exists():
+        d = json.loads(config.read_text())
+        before = json.loads(config.read_text())
+        projects = d.get('projects', {})
+        if OLD in projects:
+            if NEW in projects:
+                raise RuntimeError('Claude already has settings for destination')
+            projects[NEW] = projects.pop(OLD)
+        for name, values in d.get('githubRepoPaths', {}).items():
+            if isinstance(values, list):
+                d['githubRepoPaths'][name] = [remap(v) for v in values]
+        if d != before:
+            journal.write(config, (json.dumps(d, indent=2, ensure_ascii=False) + '\n').encode())
+    for p in [HOME / '.claude/history.jsonl', HOME / '.local/share/amp/history.jsonl']:
+        if p.exists():
+            data, count, _, _ = transform_jsonl(p, 'amp')
+            if count:
+                journal.write(p, data)
+            changes[str(p.relative_to(HOME))] = count
+    for p in amp_threads:
+        d = json.loads(p.read_text())
+        original_messages = d.get('messages')
+        d['env'] = paths(d.get('env', {}))
+        assert d.get('messages') == original_messages
+        journal.write(p, (json.dumps(d, ensure_ascii=False) + '\n').encode())
+    changes['amp_threads'] = len(amp_threads)
+    migrated_ids = {p.stem for p in amp_threads}
+    for pointer in (HOME / '.local/share/amp/last-threads').glob('*.json'):
+        value = json.loads(pointer.read_text())
+        if isinstance(value, str) and value in migrated_ids:
+            journal.save(pointer)
+            pointer.unlink()
+    for path, updated in legacy_opencode_records():
+        journal.write(path, (json.dumps(updated, ensure_ascii=False) + '\n').encode())
+
+    t3 = HOME / '.t3/userdata/state.sqlite'
+    if t3.exists():
+        journal.save(t3, database=True)
+        with dbopen(t3) as c:
+            c.execute('begin immediate')
+            update_path_columns(c, 'projection_projects', ['workspace_root', 'favicon_path'])
+            update_path_columns(c, 'projection_threads', ['worktree_path'])
+            # Both the projection and project events must agree after a rebuild.
+            update_json_column(c, 'orchestration_events', 'payload_json', project_only=True)
+            update_json_column(c, 'provider_session_runtime', 'runtime_payload_json')
+    opencode = HOME / '.local/share/opencode/opencode.db'
+    if opencode.exists():
+        journal.save(opencode, database=True)
+        with dbopen(opencode) as c:
+            c.execute('begin immediate')
+            update_path_columns(c, 'project', ['worktree'])
+            update_json_column(c, 'project', 'sandboxes')
+            for t in ['session', 'session_v2', 'project_directory']:
+                update_path_columns(c, t, ['directory', 'path'])
+    return changes
+
+def verify(rows, expected_history_folders=None):
+    checks = {}
+    if (HOME / '.codex/state_5.sqlite').exists():
+        with dbopen(HOME / '.codex/state_5.sqlite', True) as c:
+            checks['codex_no_old_cwd'] = c.execute('select count(*) from threads where cwd=? or substr(cwd,1,length(?))=?', (OLD, OLD + '/', OLD + '/')).fetchone()[0] == 0
+            checks['codex_session_ids_preserved'] = all(c.execute('select cwd from threads where id=?', (sid,)).fetchone() == (remap(cwd),) for sid, _, cwd in rows)
+            checks['codex_db_integrity'] = c.execute('pragma integrity_check').fetchone()[0] == 'ok'
+    for db in [HOME / '.codex/thread_history_1.sqlite', HOME / '.t3/userdata/state.sqlite', HOME / '.local/share/opencode/opencode.db']:
+        if db.exists():
+            with dbopen(db, True) as c:
+                checks[str(db.relative_to(HOME)) + '_integrity'] = c.execute('pragma integrity_check').fetchone()[0] == 'ok'
+    folders = expected_history_folders if expected_history_folders is not None else [
+        str(HOME / '.claude/projects' / re.sub('[^A-Za-z0-9]', '-', NEW)),
+        str(HOME / '.pi/agent/sessions' / ('--' + NEW.strip('/').replace('/', '-') + '--')),
+    ]
+    for folder in folders:
+        checks[str(Path(folder).relative_to(HOME))] = Path(folder).exists()
+    checks['folder_moved'] = Path(NEW).is_dir() and not Path(OLD).exists()
+    print(json.dumps({'verification': checks}, indent=2))
+    if not all(checks.values()):
+        raise RuntimeError('Verification failed')
+
+def configure_source(directory):
+    global OLD, NEW, HISTORY_GROUPS
+    HISTORY_GROUPS = []
+    dev = (HOME / 'Documents/dev').resolve()
+    raw = str(directory)
+    if raw.startswith('/Documents/dev/'):
+        raw = str(HOME) + raw
+    source = Path(raw).expanduser()
+    if len(source.parts) == 1:
+        source = dev / source
+    if source.is_symlink():
+        raise SystemExit('Choose the actual project folder, not a symlink.')
+    source = source.resolve()
+    if not source.is_dir():
+        raise SystemExit('Directory does not exist: ' + str(source))
+    if source.parent != dev or source.name == 'archive':
+        raise SystemExit('Choose a direct child folder of ' + str(dev) + ', excluding archive itself.')
+    OLD = str(source)
+    archive = dev / 'archive'
+    if archive.is_symlink():
+        raise SystemExit('Archive directory must not be a symlink.')
+    date = datetime.now().date().isoformat()
+    stem = source.name + '-archive-' + date
+    suffix = 1
+    while True:
+        candidate = archive / (stem if suffix == 1 else stem + '-' + str(suffix))
+        history_targets = [HOME / '.claude/projects' / re.sub('[^A-Za-z0-9]', '-', str(candidate)),
+                           HOME / '.pi/agent/sessions' / ('--' + str(candidate).strip('/').replace('/', '-') + '--')]
+        if not candidate.exists() and not any(p.exists() for p in history_targets):
+            NEW = str(candidate)
+            return
+        suffix += 1
+
+
+def git_snapshot(directory):
+    if not (Path(directory) / '.git').exists():
+        return None
+    if (Path(directory) / '.git').is_file():
+        raise SystemExit('This is a linked Git worktree. Archive the main repository folder instead.')
+    head = subprocess.run(['git', '-C', directory, 'rev-parse', '--verify', 'HEAD'], capture_output=True)
+    return (subprocess.check_output(['git', '-C', directory, 'status', '--porcelain=v1', '-z']),
+            head.stdout if head.returncode == 0 else None)
+
+
+def main():
+    global OLD, NEW
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('directory', nargs='?', help='folder to archive, or its name under ~/Documents/dev')
+    parser.add_argument('--dry-run', action='store_true', help='show the plan without changing files')
+    parser.add_argument('--rollback', type=Path, help='restore a completed or failed migration from its backup folder')
+    args = parser.parse_args()
+    if args.rollback:
+        if args.directory or args.dry_run:
+            parser.error('--rollback cannot be combined with a directory or --dry-run')
+        manifest = json.loads((args.rollback / 'manifest.json').read_text())
+        OLD, NEW = manifest['old'], manifest['new']
+        blocked = running_writers()
+        if blocked:
+            raise SystemExit('Close coding tools before rollback: ' + json.dumps(blocked))
+        if Path(OLD).exists() and Path(NEW).exists():
+            raise SystemExit('The old path has been reused. Move that new folder aside before rollback.')
+        rollback(args.rollback)
+        return
+    if not args.directory:
+        parser.error('a directory is required unless --rollback is used')
+    configure_source(args.directory)
+    snapshot = git_snapshot(OLD)
+    plan, rows, amp_threads = inventory()
+    plan['git_repository'] = snapshot is not None
+    print(json.dumps(plan, indent=2))
+    if args.dry_run:
+        return
+    if plan['running_writers']:
+        raise SystemExit('Nothing changed. Close the listed coding tools, including the Codex daemon, then rerun.')
+    expected_history_folders = [g['target'] for g in HISTORY_GROUPS]
+    for target in expected_history_folders:
+        if Path(target).exists():
+            raise SystemExit('Nothing changed. A destination history folder already exists: ' + target)
+    # Parse affected histories before backing up or changing anything.
+    affected = [(Path(r[1]), 'codex') for r in rows if Path(r[1]).exists()]
+    for group in HISTORY_GROUPS:
+        affected += [(p, group['tool']) for p in Path(group['source']).rglob('*.jsonl')]
+    affected += [(p, 'amp') for p in [HOME / '.claude/history.jsonl', HOME / '.local/share/amp/history.jsonl'] if p.exists()]
+    for path, tool in affected:
+        transform_jsonl(path, tool)
+    if running_writers():
+        raise SystemExit('Nothing changed. A coding tool started during preflight; close it before rerunning.')
+    timestamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S.%fZ')
+    root = HOME / '.local/share/archive-dev/backups' / (Path(OLD).name + '-' + timestamp)
+    journal = Journal(root)
+    try:
+        external = []
+        if snapshot is not None:
+            worktrees = subprocess.check_output(['git', '-C', OLD, 'worktree', 'list', '--porcelain'], text=True)
+            external = [Path(l[len('worktree '):]) for l in worktrees.splitlines() if l.startswith('worktree ') and l != 'worktree ' + OLD]
+            wtmeta = Path(OLD) / '.git/worktrees'
+            if wtmeta.exists():
+                journal.save(wtmeta)
+            for w in external:
+                if (w / '.git').is_file():
+                    journal.save(w / '.git')
+        changes = migrate(journal, rows, amp_threads)
+        journal.rename(OLD, NEW)
+        if snapshot is not None:
+            subprocess.run(['git', '-C', NEW, 'worktree', 'repair'], check=True)
+            if git_snapshot(NEW) != snapshot:
+                raise RuntimeError('Git HEAD or uncommitted status changed during migration.')
+            for w in external:
+                if w.exists():
+                    subprocess.run(['git', '-C', str(w), 'rev-parse', '--git-common-dir'], check=True, stdout=subprocess.DEVNULL)
+        verify(rows, expected_history_folders)
+        (root / 'result.json').write_text(json.dumps({'source': OLD, 'destination': NEW, 'changes': changes, 'status': 'complete'}, indent=2) + '\n')
+        journal.status = 'complete'
+        journal.flush()
+        print('Archived: ' + NEW)
+        print('Backup: ' + str(root))
+        print('Rollback: archive-dev --rollback ' + __import__('shlex').quote(str(root)))
+    except BaseException:
+        print('Migration interrupted. Restoring backed-up metadata and original folder location.')
+        rollback(root)
+        raise
+
+if __name__ == '__main__':
+    main()
