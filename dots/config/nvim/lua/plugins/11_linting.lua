@@ -29,7 +29,6 @@ return {
 
       lint.linters_by_ft = {
         fish = { "fish" },
-        lua = { "selene" },
       }
 
       local function debounce(ms, fn)

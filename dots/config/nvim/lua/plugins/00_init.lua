@@ -71,7 +71,6 @@ return {
           require("mason").setup()
 
           local tools = {
-            "selene",
             "stylua",
             "shfmt",
             "prettierd",
