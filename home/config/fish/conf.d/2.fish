@@ -8,6 +8,6 @@ if type -q lsd
     abbr --add lt "lsd $lsd_opts --tree"
 end
 
-if type -q claude
-    abbr --add claude claude --dangerously-skip-permissions
-end
+# if type -q claude
+#     abbr --add claude claude --dangerously-skip-permissions
+# end

@@ -12,7 +12,6 @@ amp = "latest"
 aube = "latest"
 # "github:aubepkg/aube" = "latest"
 bat = "latest"
-chezmoi = "latest"
 claude = "latest"
 cloudflared = "latest"
 codex = "latest"
@@ -57,10 +56,13 @@ zoxide = "latest"
 "brew:git" = "latest"
 "brew:libyaml" = "latest"
 "brew:trash" = "latest"
-"brew-cask:t3-code" = "latest"
+"brew-cask:t3-code@nightly" = "latest"
 
 [settings]
 minimum_release_age = "0s"
+
+[settings.self_update]
+auto = true
 
 [settings.npm]
 package_manager = "aube"

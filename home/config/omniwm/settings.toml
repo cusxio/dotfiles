@@ -54,6 +54,7 @@ right = 0.0
 top = 0.0
 
 [general]
+animationSpeed = 1.0
 animationsEnabled = false
 defaultLayoutType = "dwindle"
 hotkeysEnabled = true
@@ -100,6 +101,7 @@ containerPrimarySpanPresets = [0.3333333333333333, 0.5, 0.6666666666666666]
 defaultContainerPrimarySpan = 0.5
 edgeGaps = true
 infiniteLoop = false
+resizeStepPercent = 5
 singleWindowFit = "fill"
 visibleContainerCount = 2
 
@@ -172,6 +174,8 @@ hideInNativeFullscreen = false
 hoverPreviewsEnabled = true
 notchActiveZoneWidth = 180.0
 notchMode = "moveBelowMenuBar"
+notificationBadgeRefreshIntervalSeconds = 5.0
+notificationBadges = "off"
 position = "overlappingMenuBar"
 reserveLayoutSpace = false
 revealHoldMilliseconds = 200.0
@@ -567,7 +571,7 @@ binding = "Control+Option+Command+L"
 id = "focus.right"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Option+Tab"
 id = "focusPrevious"
 
 [[hotkeys]]
@@ -1031,7 +1035,7 @@ binding = "Unassigned"
 id = "rescueOffscreenWindows"
 
 [[hotkeys]]
-binding = "Control+Option+Shift+Command+F"
+binding = "Hyper+F"
 id = "toggleFocusedWindowFloating"
 
 [[hotkeys]]

@@ -1,19 +1,8 @@
 {
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Bash|PowerShell",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "\"$HOME/.local/share/mise/installs/github-dicklesworthstone-destructive-command-guard/latest/dcg\""
-          }
-        ]
-      }
-    ]
+  "attribution": {
+    "commit": "",
+    "pr": ""
   },
-  "skipDangerousModePermissionPrompt": true,
-  "tui": "fullscreen",
   "permissions": {
     "deny": [
       "Read(./.env)",
@@ -21,5 +10,23 @@
       "Read(~/.aws/**)",
       "Read(~/.ssh/**)"
     ]
-  }
+  },
+  "model": "opus",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell|Monitor",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/x/.local/share/mise/installs/github-dicklesworthstone-destructive-command-guard/latest/dcg"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {},
+  "extraKnownMarketplaces": {},
+  "tui": "fullscreen",
+  "skipDangerousModePermissionPrompt": true
 }
