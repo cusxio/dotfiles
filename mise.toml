@@ -1,9 +1,3 @@
 [dotfiles]
-"~/.config/*" = { source = "home/config/*", mode = "symlink-each" }
-"~/.claude" = { source = "home/claude", mode = "symlink-each" }
-"~/.codex/hooks.json" = { source = "home/codex/hooks.json", mode = "symlink" }
-"~/.codex/config.toml/preferences" = { source = "home/codex/preferences.toml", template = "tera" }
-"~/.pi/agent" = { source = "home/pi/agent", mode = "symlink-each" }
-"~/.agents/.skill-lock.json" = { source = "home/agents/.skill-lock.json", mode = "symlink" }
-"~/.local/bin" = { source = "home/local/bin", mode = "symlink-each" }
-"~/.omp/agent" = { source = "home/omp/agent", mode = "symlink-each" }
+"~/.*" = { source = "dots/*", mode = "symlink-each", exclude = ["preferences.toml"] }
+"~/.codex/config.toml/preferences" = { source = "dots/codex/preferences.toml", template = "tera" }
