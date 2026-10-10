@@ -6,5 +6,4 @@
 "~/.pi/agent" = { source = "home/pi/agent", mode = "symlink-each" }
 "~/.agents/.skill-lock.json" = { source = "home/agents/.skill-lock.json", mode = "symlink" }
 "~/.local/bin" = { source = "home/local/bin", mode = "symlink-each" }
-"~/.local/share/archive-dev" = { source = "home/local/share/archive-dev", mode = "symlink-each" }
 "~/.omp/agent" = { source = "home/omp/agent", mode = "symlink-each" }

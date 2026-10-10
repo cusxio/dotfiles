@@ -52,10 +52,10 @@ Close coding tools before rollback. If you have recreated the original source
 path, move that new folder aside before rollback. Repeating an already completed
 rollback does nothing.
 
-Verification commands:
-    python3 ~/.local/share/archive-dev/verify-command.py
-    python3 ~/.local/share/archive-dev/verify-history.py
-    python3 ~/.local/share/archive-dev/verify.py
+Verification commands (from the dotfiles repository root):
+    python3 scripts/archive-dev/verify-command.py
+    python3 scripts/archive-dev/verify-history.py
+    python3 scripts/archive-dev/verify.py
 
 These operate on temporary stores and folders. Tests cover normal and unborn Git
 repositories, linked-worktree repair, plain folders, missing tools, subfolder
